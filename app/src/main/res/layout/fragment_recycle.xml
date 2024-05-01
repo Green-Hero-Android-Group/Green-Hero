@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -17,12 +16,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        />
+        app:menu="@menu/bottom_nav_menu" />
 
     <View
         android:id="@+id/background_shape"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/background_view"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
@@ -31,72 +29,150 @@
         tools:ignore="MissingConstraints,VisualLintBounds"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/recycle_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/recycle"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="517dp"
-        tools:ignore="MissingConstraints" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="389dp"
+        android:layout_height="98dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025"
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:id="@+id/recycle_image"
-        android:layout_width="223dp"
-        android:layout_height="183dp"
-        app:srcCompat="@drawable/trash"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="126dp"
-        android:contentDescription="TODO" />
+        <TextView
+            android:id="@+id/recycle_head"
+            android:layout_width="197dp"
+            android:layout_height="78dp"
+            android:fontFamily="@font/open_sans_bold_italic"
+            android:shadowColor="@color/black"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:text="@string/recycle"
+            android:textColor="@color/primaryGreen"
+            android:textSize="55sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck"
+            tools:layout_editor_absoluteY="10dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/add_item_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/add_item"
-        android:textColor="@color/white"
-        android:textSize="48sp"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="309dp"
-        tools:ignore="MissingConstraints" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="270dp"
+        android:layout_height="205dp"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="0.083"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/recycle_head"
-        android:layout_width="197dp"
-        android:layout_height="78dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/recycle"
-        android:textColor="@color/primaryGreen"
-        android:textSize="55sp"
-        tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        <ImageView
+            android:id="@+id/recycle_image"
+            android:layout_width="223dp"
+            android:layout_height="183dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/trash"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/type_name_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:text="@string/type_name"
-        android:textColor="@color/backgroundWhite"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="387dp"
-        android:importantForAutofill="no" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="358dp"
+        android:layout_height="459dp"
+        android:backgroundTint="@color/primaryGreen"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="0.288">
 
-    <NumberPicker
-        android:id="@+id/items_number"
-        android:layout_width="63dp"
-        android:layout_height="86dp"
-        android:layout_gravity="start"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="303dp"
-        tools:layout_editor_absoluteY="373dp"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/add_item_head"
+            android:layout_width="227dp"
+            android:layout_height="73dp"
+            android:fontFamily="@font/open_sans_bold_italic"
+            android:text="@string/add_item"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.041" />
+
+        <EditText
+            android:id="@+id/type_name_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/type_name"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/backgroundWhite"
+            android:textColorHint="@color/backgroundWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.294" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="130dp"
+            android:layout_height="144dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589"
+            tools:ignore="MissingConstraints">
+
+            <RadioButton
+                android:id="@+id/papper_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/papper"
+                android:textColor="@color/backgroundWhite" />
+
+            <RadioButton
+                android:id="@+id/plastic_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/plastic"
+                android:textColor="@color/backgroundWhite" />
+
+            <RadioButton
+                android:id="@+id/glass_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/glass"
+                android:textColor="@color/backgroundWhite" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/recycle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryGreen"
+            android:text="@string/recycle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.909" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
