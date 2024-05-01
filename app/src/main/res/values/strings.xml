@@ -6,4 +6,7 @@
     <string name="title_profile">Profile</string>
     <string name="my_hero">My Hero</string>
     <string name="button">LOG OUT</string>
+    <string name="recycle">Recycle</string>
+    <string name="add_item">Add Item</string>
+    <string name="type_name">Type Name</string>
 </resources>
