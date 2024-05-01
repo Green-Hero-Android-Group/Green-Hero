@@ -47,7 +47,8 @@
         app:srcCompat="@drawable/trash"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="126dp" />
+        tools:layout_editor_absoluteY="126dp"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/add_item_head"
