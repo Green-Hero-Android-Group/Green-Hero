@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
+    android:backgroundTint="@color/primaryWhite"
+    android:paddingBottom="?attr/actionBarSize">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryPurple">
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/primaryPurple">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryPurple"
             android:backgroundTint="@color/primaryPurple"
             android:paddingTop="20sp"
             app:flow_horizontalAlign="center"
@@ -29,18 +32,15 @@
 
                 <TextView
                     android:id="@+id/header"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold_italic"
                     android:paddingHorizontal="20sp"
                     android:paddingVertical="20sp"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="0"
-                    android:shadowDy="10"
-                    android:shadowRadius="20"
                     android:text="@string/my_hero"
                     android:textColor="@color/primaryGreen"
-                    android:textSize="24sp"
+                    android:textSize="34sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,9 +82,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_bold_italic"
-                        android:shadowColor="@color/black"
+                        android:shadowColor="@color/shadowGray"
                         android:shadowDy="10"
-                        android:shadowRadius="20"
+                        android:shadowRadius="5"
                         android:text="Dimitris"
                         android:textColor="@color/backgroundWhite"
                         android:textSize="48sp"
@@ -98,6 +98,7 @@
                         android:id="@+id/imageButton3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/backgroundWhite"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView2"
                         app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +113,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:background="@drawable/rounded_elements"
+                android:backgroundTint="@color/backgroundWhite"
                 android:orientation="vertical"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -123,14 +128,17 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/merriweather"
                     android:text="Level 10"
-                    android:textColor="@color/backgroundWhite"
+                    android:textColor="@color/primaryPurple"
                     android:textSize="24sp" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/progress_bar_border"
+                    android:indeterminateDrawable="@color/primaryPurple"
+                    android:progressDrawable="@color/primaryGreen" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -147,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold_italic"
                     android:text="Paper Badge"
-                    android:textColor="@color/backgroundWhite"
+                    android:textColor="@color/primaryPurple"
                     android:textSize="34sp" />
             </LinearLayout>
 
@@ -164,14 +172,12 @@
 
                 <TextView
                     android:id="@+id/textView6"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/open_sans_bold_italic"
-                    android:shadowColor="@color/black"
-                    android:shadowDy="10"
-                    android:shadowRadius="20"
                     android:text="Your Trophies"
                     android:textColor="@color/primaryYellow"
                     android:textSize="24sp"
@@ -179,31 +185,38 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:layout_width="93dp"
-                    android:layout_height="71dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="vertical"
-                    app:flow_verticalAlign="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="74dp"
-                        android:layout_height="49dp"
-                        app:srcCompat="@drawable/trophy" />
+                    <LinearLayout
+                        android:layout_width="93dp"
+                        android:layout_height="71dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical"
+                        app:flow_verticalAlign="center">
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/open_sans_bold_italic"
-                        android:text="Trophy Title"
-                        android:textSize="16sp" />
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="49dp"
+                            app:srcCompat="@drawable/trophy" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:text="Trophy Title"
+                            android:textSize="16sp" />
+                    </LinearLayout>
                 </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
