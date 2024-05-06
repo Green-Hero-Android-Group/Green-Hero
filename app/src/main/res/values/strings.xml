@@ -9,7 +9,8 @@
     <string name="recycle">Recycle</string>
     <string name="add_item">Add Item</string>
     <string name="type_name">Type Name</string>
-    <string name="papper">Papper</string>
+    <string name="paper">Paper</string>
     <string name="plastic">Plastic</string>
     <string name="glass">Glass</string>
+    <string name="description">Description</string>
 </resources>
