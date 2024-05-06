@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/home"
-        android:iconTint="@null"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        />
 
     <item
         android:id="@+id/navigation_recycle"
-        android:icon="@drawable/recycle_icon"
-        android:iconTint="@null"
+        android:icon="@drawable/recycle_logo"
         android:title="@string/title_recycle" />
     <item
         android:id="@+id/navigation_collection"
         android:icon="@drawable/collection"
-        android:iconTint="@null"
         android:title="@string/title_collection" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/hero"
-        android:iconTint="@null"
         android:title="@string/title_profile" />
 
 </menu>
