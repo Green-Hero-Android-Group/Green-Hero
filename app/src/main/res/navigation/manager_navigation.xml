@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/manager_navigation"
         android:name="com.example.green_hero.ui.collection.ManageUsersFragment"
-        android:label="Manage"
+        android:label="Manager"
         tools:layout="@layout/fragment_manage_users" />
 
 

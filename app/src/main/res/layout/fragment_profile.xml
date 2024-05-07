@@ -12,13 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/primaryPurple">
+        android:backgroundTint="@color/primaryPurple"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-289dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primaryPurple"
-            android:paddingTop="20sp"
+            android:paddingTop="2sp"
             app:flow_horizontalAlign="center"
             app:flow_verticalAlign="center">
 
@@ -109,8 +111,8 @@
             </LinearLayout>
 
             <LinearLayout
-                style="@style/ContainerWithShadow"
                 android:id="@+id/linearLayout5"
+                style="@style/ContainerWithShadow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
