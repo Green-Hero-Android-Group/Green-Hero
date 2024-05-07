@@ -11,11 +11,14 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
+
+
     <fragment
         android:id="@+id/navigation_recycle"
         android:name="com.example.green_hero.ui.recycle.RecycleFragment"
         android:label="@string/title_recycle"
         tools:layout="@layout/fragment_recycle" />
+
 
     <fragment
         android:id="@+id/navigation_collection"

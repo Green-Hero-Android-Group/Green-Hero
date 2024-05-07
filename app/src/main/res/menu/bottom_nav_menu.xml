@@ -12,6 +12,7 @@
         android:id="@+id/navigation_recycle"
         android:icon="@drawable/recycle_logo"
         android:title="@string/title_recycle" />
+
     <item
         android:id="@+id/navigation_collection"
         android:icon="@drawable/collection"

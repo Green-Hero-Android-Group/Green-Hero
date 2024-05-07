@@ -13,4 +13,6 @@
     <string name="plastic">Plastic</string>
     <string name="glass">Glass</string>
     <string name="description">Description</string>
+    <string name="manager">Manager</string>
+    <string name="stats">Stats</string>
 </resources>
