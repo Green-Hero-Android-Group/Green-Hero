@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/primaryBlue" />
+
+    <TextView
+        android:id="@+id/manage_head"
+        android:layout_width="250dp"
+        android:layout_height="78dp"
+        android:fontFamily="@font/open_sans_bold_italic"
+        android:shadowColor="@color/black"
+        android:shadowDy="10"
+        android:shadowRadius="15"
+        android:text="Manage Users"
+        android:textColor="@color/primaryPurple"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/box1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/manage_image"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/manage_head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/users_list"
+        tools:ignore="MissingConstraints,ImageContrastCheck" />
+
+    <!-- Πρώτο κουτί -->
+    <LinearLayout
+        android:id="@+id/box1"
+        android:layout_width="340dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_elements"
+        android:backgroundTint="@color/backgroundWhite"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/manage_image">
+
+        <TextView
+            android:id="@+id/box1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold_italic"
+            android:padding="16dp"
+            android:text="Dimitris has recycled"
+            android:textColor="@color/primaryPurple"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/box1_check1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 plastic bottles"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box1_check2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="3 cans"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box1_check3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1 papper"
+            android:textColor="@android:color/holo_green_dark" />
+    </LinearLayout>
+
+    <!-- Δεύτερο κουτί -->
+    <LinearLayout
+        android:id="@+id/box2"
+        android:layout_width="340dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_elements"
+        android:backgroundTint="@color/backgroundWhite"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/box1">
+
+        <TextView
+            android:id="@+id/box2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold_italic"
+            android:padding="16dp"
+            android:text="Dimitris has recycled"
+            android:textColor="@color/primaryPurple"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/box2_check1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check 1"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box2_check2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Check 2"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box2_check3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Check 3"
+            android:textColor="@android:color/holo_green_dark" />
+    </LinearLayout>
+
+    <!-- Τρίτο κουτί -->
+    <LinearLayout
+        android:id="@+id/box3"
+        android:layout_width="340dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_elements"
+        android:backgroundTint="@color/backgroundWhite"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/box2">
+
+        <TextView
+            android:id="@+id/box3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold_italic"
+            android:padding="16dp"
+            android:text="Dimitris has recycled"
+            android:textColor="@color/primaryPurple"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/box3_check1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check 1"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box3_check2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Check 2"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/box3_check3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Check 3"
+            android:textColor="@android:color/holo_green_dark" />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
