@@ -14,4 +14,5 @@
     <string name="glass">Glass</string>
     <string name="username_or_email">Username or email</string>
     <string name="turn_waste_into_wonder_recycle_today">Turn waste into wonder, recycle today.</string>
+    <string name="description">Description</string>
 </resources>
