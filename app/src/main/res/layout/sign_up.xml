@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView8"
@@ -32,7 +32,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="73dp"
                 android:layout_marginBottom="18dp"
-                android:text="Already have an account? Sign In"
+                android:text="@string/already_have_an_account_sign_in"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,10 +44,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="292dp"
                 android:layout_height="140dp"
-
-
                 android:cropToPadding="true"
-                android:idth="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/signup_hero2" />
@@ -73,7 +70,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Create an account"
+                    android:text="@string/create_an_account"
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     android:textSize="30sp" />
@@ -83,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
-                    android:text="Reduce, reuse, recycle: for a greener world."
+                    android:text="@string/reduce_reuse_recycle_for_a_greener_world"
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     app:layout_constraintTop_toBottomOf="@+id/add_item_head"
@@ -105,7 +102,7 @@
                         android:background="@drawable/rounded_corners_edittext"
                         android:ems="10"
                         android:hint="@string/username_or_email"
-                        android:textAlignment="center"
+                        android:paddingStart="50dp"
                         android:inputType="text"
                         android:minHeight="48dp"
 
@@ -142,10 +139,10 @@
                         android:layout_marginEnd="59dp"
                         android:background="@drawable/rounded_corners_edittext"
                         android:ems="10"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:minHeight="48dp"
-                        android:textAlignment="center"
+                        android:paddingStart="50dp"
                         android:textColor="@color/primaryGreen"
 
                         android:textColorHint="@color/secondaryGray"
@@ -180,10 +177,10 @@
                         android:layout_marginEnd="59dp"
                         android:background="@drawable/rounded_corners_edittext"
                         android:ems="10"
-                        android:hint="Password"
+                        android:hint="@string/password_text"
                         android:inputType="textPassword"
                         android:minHeight="48dp"
-                        android:textAlignment="center"
+                        android:paddingStart="50dp"
                         android:textColor="@color/primaryGreen"
 
                         android:textColorHint="@color/secondaryGray"
@@ -223,7 +220,7 @@
 
                         android:background="@drawable/rounded_corners_button"
                         android:backgroundTint="@color/primaryPurple"
-                        android:text="Sign up"
+                        android:text="@string/sign_up"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -241,7 +238,7 @@
 
                         android:layout_marginEnd="59dp"
                         android:layout_marginBottom="2dp"
-                        android:text="OR"
+                        android:text="@string/or"
                         android:textAlignment="center"
                         android:textColor="@color/secondaryGreen"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
