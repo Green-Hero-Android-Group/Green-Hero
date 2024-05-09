@@ -44,6 +44,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="292dp"
                 android:layout_height="140dp"
+                android:layout_marginEnd="-10dp"
                 android:cropToPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,8 +53,8 @@
             <LinearLayout
 
                 android:id="@+id/linearLayout"
-                android:layout_width="351dp"
-                android:layout_height="428dp"
+                android:layout_width="361dp"
+                android:layout_height="451dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="32dp"
@@ -68,6 +69,7 @@
 
                 <TextView
                     android:id="@+id/textView10"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/create_an_account"
@@ -77,6 +79,7 @@
 
                 <TextView
                     android:id="@+id/textView7"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -97,14 +100,14 @@
                         android:layout_width="262dp"
                         android:layout_height="48dp"
 
-                        android:layout_marginStart="59dp"
+                        android:layout_marginStart="55dp"
                         android:layout_marginEnd="59dp"
                         android:background="@drawable/rounded_corners_edittext"
                         android:ems="10"
                         android:hint="@string/username_or_email"
-                        android:paddingStart="50dp"
                         android:inputType="text"
                         android:minHeight="48dp"
+                        android:paddingStart="50dp"
 
                         android:textColor="@color/primaryGreen"
                         android:textColorHint="@color/secondaryGray"
@@ -213,7 +216,7 @@
                     <Button
                         android:id="@+id/recycle_button"
 
-                        android:layout_width="264dp"
+                        android:layout_width="262dp"
                         android:layout_height="57dp"
                         android:layout_marginStart="59dp"
                         android:layout_marginEnd="59dp"
@@ -232,10 +235,10 @@
                     <TextView
 
                         android:id="@+id/textView9"
+                        style="@style/TextViewWithShadow"
                         android:layout_width="256dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="59dp"
-
                         android:layout_marginEnd="59dp"
                         android:layout_marginBottom="2dp"
                         android:text="@string/or"
@@ -260,8 +263,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout4"
-                            android:layout_width="350dp"
-                            android:layout_height="53dp"
+                            android:layout_width="348dp"
+                            android:layout_height="63dp"
                             android:layout_marginTop="1dp"
                             android:layout_marginEnd="1dp"
                             android:layout_marginBottom="1dp"
@@ -272,8 +275,8 @@
 
                             <com.google.android.gms.common.SignInButton
                                 android:id="@+id/google_button"
-                                android:layout_width="264dp"
-                                android:layout_height="57dp"
+                                android:layout_width="262dp"
+                                android:layout_height="60dp"
                                 android:layout_alignParentTop="true"
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="59dp"
