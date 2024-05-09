@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_recycle"
-        android:name="com.example.green_hero.ui.recycle.RecycleFragment"
+        android:id="@+id/navigation_login"
+        android:name="com.example.green_hero.ui.login.LoginFragment"
         android:label="@string/title_recycle"
-        tools:layout="@layout/fragment_recycle" />
+        tools:layout="@layout/log_in" />
 
     <fragment
         android:id="@+id/navigation_collection"
