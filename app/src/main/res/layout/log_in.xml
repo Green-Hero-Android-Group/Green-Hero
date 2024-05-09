@@ -42,7 +42,6 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-
                 android:layout_width="292dp"
                 android:layout_height="140dp"
                 android:layout_marginTop="-5dp"
@@ -54,10 +53,9 @@
                 app:srcCompat="@drawable/login_hero2" />
 
             <LinearLayout
-
                 android:id="@+id/linearLayout"
                 android:layout_width="352dp"
-                android:layout_height="524dp"
+                android:layout_height="525dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
@@ -78,7 +76,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     android:textSize="34sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    style="@style/TextViewWithShadow"/>
 
                 <TextView
                     android:id="@+id/textView7"
@@ -89,7 +88,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     app:layout_constraintTop_toBottomOf="@+id/add_item_head"
-                    tools:layout_editor_absoluteX="60dp" />
+                    tools:layout_editor_absoluteX="60dp"
+                    style="@style/TextViewWithShadow"/>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -172,12 +172,11 @@
                     <Button
                         android:id="@+id/recycle_button"
 
-                        android:layout_width="255dp"
-                        android:layout_height="59dp"
+                        android:layout_width="262dp"
+                        android:layout_height="57dp"
                         android:background="@drawable/rounded_corners_button"
                         android:backgroundTint="@color/primaryPurple"
                         android:text="@string/login"
-
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -195,7 +194,7 @@
                         android:layout_height="24dp"
                         android:text="@string/or"
                         android:textAlignment="center"
-
+                        style="@style/TextViewWithShadow"
                         android:textColor="@color/secondaryGreen"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -215,8 +214,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout4"
-                            android:layout_width="351dp"
-                            android:layout_height="66dp"
+                            android:layout_width="354dp"
+                            android:layout_height="77dp"
                             android:layout_marginTop="1dp"
                             android:layout_marginEnd="1dp"
                             android:layout_marginBottom="1dp"
@@ -227,8 +226,8 @@
 
                             <com.google.android.gms.common.SignInButton
                                 android:id="@+id/google_button"
-                                android:layout_width="255dp"
-                                android:layout_height="59dp"
+                                android:layout_width="262dp"
+                                android:layout_height="60dp"
                                 android:layout_alignParentTop="true"
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="59dp"
@@ -240,33 +239,33 @@
                                 app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                            android:id="@+id/constraintLayout5"-->
-<!--                            android:layout_width="353dp"-->
-<!--                            android:layout_height="63dp"-->
-<!--                            android:layout_marginTop="1dp"-->
-<!--                            android:layout_marginBottom="4dp"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">-->
+                        <!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+                        <!--                            android:id="@+id/constraintLayout5"-->
+                        <!--                            android:layout_width="353dp"-->
+                        <!--                            android:layout_height="63dp"-->
+                        <!--                            android:layout_marginTop="1dp"-->
+                        <!--                            android:layout_marginBottom="4dp"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">-->
 
-<!--                            <Button-->
+                        <!--                            <Button-->
 
 
-<!--                                android:layout_width="255dp"-->
-<!--                                android:layout_height="59dp"-->
-<!--                                android:background="@drawable/rounded_corners_button"-->
-<!--                                android:backgroundTint="@color/backgroundWhite"-->
-<!--                                android:text="Google"-->
-<!--                                android:textAllCaps="false"-->
+                        <!--                                android:layout_width="255dp"-->
+                        <!--                                android:layout_height="59dp"-->
+                        <!--                                android:background="@drawable/rounded_corners_button"-->
+                        <!--                                android:backgroundTint="@color/backgroundWhite"-->
+                        <!--                                android:text="Google"-->
+                        <!--                                android:textAllCaps="false"-->
 
-<!--                                android:textColor="@color/black"-->
-<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                app:layout_constraintStart_toStartOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="parent" />-->
-<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+                        <!--                                android:textColor="@color/black"-->
+                        <!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                                app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                                app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                                app:layout_constraintTop_toTopOf="parent" />-->
+                        <!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
