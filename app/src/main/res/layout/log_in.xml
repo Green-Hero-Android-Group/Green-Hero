@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="292dp"
-                android:layout_height="140dp"
+                android:layout_width="338dp"
+                android:layout_height="159dp"
                 android:layout_marginTop="-5dp"
                 android:cropToPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,10 +57,11 @@
                 android:layout_width="352dp"
                 android:layout_height="525dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/rounded_corners_edittext"
                 android:backgroundTint="@color/backgroundGreen"
+
                 android:orientation="vertical"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -70,17 +71,18 @@
 
                 <TextView
                     android:id="@+id/textView10"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/log_in"
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     android:textSize="34sp"
-                    android:textStyle="bold"
-                    style="@style/TextViewWithShadow"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView7"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginTop="5dp"
@@ -88,8 +90,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/secondaryGreen"
                     app:layout_constraintTop_toBottomOf="@+id/add_item_head"
-                    tools:layout_editor_absoluteX="60dp"
-                    style="@style/TextViewWithShadow"/>
+                    tools:layout_editor_absoluteX="60dp" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -190,11 +191,11 @@
                     <TextView
 
                         android:id="@+id/textView9"
+                        style="@style/TextViewWithShadow"
                         android:layout_width="256dp"
                         android:layout_height="24dp"
                         android:text="@string/or"
                         android:textAlignment="center"
-                        style="@style/TextViewWithShadow"
                         android:textColor="@color/secondaryGreen"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
