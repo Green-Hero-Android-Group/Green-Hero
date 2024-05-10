@@ -15,4 +15,6 @@
     <color name="primaryBlue">#8DE4FF</color>
     <color name="primaryYellow">#FCD53F</color>
     <color name="shadowGray">#686363</color>
+    <color name="backgroundGreen">#DCFBF6</color>
+    <color name="secondaryGray">#858380</color>
 </resources>
