@@ -47,11 +47,13 @@
         public void onClickRecycle() {
             EditText name = getView().findViewById(R.id.type_name_input);
             String typeName = name.getText().toString().trim();
+            EditText qntInput = getView().findViewById(R.id.quantity);
+            int qnt = Integer.parseInt(qntInput.getText().toString());
 
             RadioGroup rg = getView().findViewById(R.id.radioGroup);
             int checkedButton = rg.getCheckedRadioButtonId();
 
-            if(checkedButton == -1 || typeName.isEmpty()){
+            if(checkedButton == -1 || typeName.isEmpty() || qnt<=0){
                 Toast.makeText(getActivity(),
                         "Please fill all the fields", Toast.LENGTH_SHORT).show();
             }else{
@@ -68,9 +70,10 @@
                         break;
                 }
                 Toast.makeText(getActivity(),
-                        "You Recycled: " + selected + "\nName: " + typeName, Toast.LENGTH_SHORT).show();
+                        "You Recycled: " + selected + "\nName: " + typeName + "\nQuantity: " + qnt, Toast.LENGTH_SHORT).show();
             }
             name.getText().clear();
+            qntInput.getText().clear();
             rg.clearCheck();
         }
     }
