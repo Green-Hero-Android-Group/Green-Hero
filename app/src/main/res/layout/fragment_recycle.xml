@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -107,7 +108,7 @@
                     android:textColor="@color/backgroundWhite"
                     android:textColorHint="@color/backgroundWhite"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/editTextNumberSigned3"
+                    app:layout_constraintEnd_toStartOf="@+id/quantity"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -163,7 +164,7 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/editTextNumberSigned3"
+                    android:id="@+id/quantity"
                     android:layout_width="100dp"
                     android:layout_height="48dp"
                     android:autofillHints=""
