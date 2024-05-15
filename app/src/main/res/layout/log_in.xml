@@ -26,16 +26,14 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="277dp"
+                android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginStart="61dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="73dp"
-                android:layout_marginBottom="18dp"
                 android:text="@string/don_t_have_an_account_register_here"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -46,15 +44,13 @@
                 android:layout_height="159dp"
                 android:layout_marginTop="-5dp"
                 android:cropToPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/login_hero2" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="352dp"
+                android:layout_width="wrap_content"
                 android:layout_height="525dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="20dp"
@@ -168,7 +164,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="297dp">
+                    android:layout_height="266dp">
 
                     <Button
                         android:id="@+id/recycle_button"
@@ -180,12 +176,11 @@
                         android:text="@string/login"
                         android:textAlignment="center"
                         android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/textView9"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.505"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.115" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
                     <TextView
@@ -197,15 +192,15 @@
                         android:text="@string/or"
                         android:textAlignment="center"
                         android:textColor="@color/secondaryGreen"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recycle_button"
-                        app:layout_constraintVertical_bias="0.077" />
+                        app:layout_constraintTop_toBottomOf="@+id/recycle_button" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="349dp"
-                        android:layout_height="155dp"
+                        android:id="@+id/constraintLayout10"
+                        android:layout_width="356dp"
+                        android:layout_height="95dp"
                         android:layout_marginStart="1dp"
                         android:layout_marginTop="1dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -220,7 +215,7 @@
                             android:layout_marginTop="1dp"
                             android:layout_marginEnd="1dp"
                             android:layout_marginBottom="1dp"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
