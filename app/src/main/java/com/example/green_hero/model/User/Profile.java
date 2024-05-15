@@ -22,6 +22,16 @@ public class Profile extends RealmObject {
         this.email=email;
     }
 
+
+
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,7 +56,9 @@ public class Profile extends RealmObject {
         this.email = email;
     }
 
+
     public Profile(){
 
     }
+
 }
