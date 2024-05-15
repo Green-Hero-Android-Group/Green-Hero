@@ -67,7 +67,7 @@ public class LoginFragment extends Fragment {
             Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
             // Εδώ μπορείς να προχωρήσεις σε μια άλλη δραστηριότητα ή να εκτελέσεις κάποιες άλλες ενέργειες
         } else {
-            // Εάν η ταυτοποίηση αποτύχει
+
             Toast.makeText(getActivity(), "Invalid username or password", Toast.LENGTH_SHORT).show();
         }
 
