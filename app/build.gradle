@@ -2,6 +2,13 @@ plugins {
     id 'com.android.application'
 }
 
+apply plugin: "realm-android"
+
+realm {
+    syncEnabled = true
+
+}
+
 android {
     namespace 'com.example.green_hero'
     compileSdk 34
