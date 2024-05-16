@@ -1,7 +1,13 @@
 package com.example.green_hero.model.User;
 
-public class Level {
+import org.bson.types.ObjectId;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Level extends RealmObject {
+    @PrimaryKey
+    private ObjectId _id;
     private int xp;
 
     public Level(){

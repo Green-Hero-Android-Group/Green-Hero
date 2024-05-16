@@ -1,8 +1,13 @@
 package com.example.green_hero.model.Recycle;
 
+import org.bson.types.ObjectId;
+
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Recycle extends RealmObject {
+    @PrimaryKey
+    private ObjectId _id;
     private String date;
     private Item item;
 

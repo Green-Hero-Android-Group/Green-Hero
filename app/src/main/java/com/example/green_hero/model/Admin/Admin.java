@@ -1,13 +1,12 @@
 package com.example.green_hero.model.Admin;
 
-import com.example.green_hero.model.User.Profile;
-
 import org.bson.types.ObjectId;
 
 import io.realm.RealmList;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Admin extends Profile {
+public class Admin extends RealmObject {
     @PrimaryKey
     private ObjectId _id;
     private String name;
@@ -17,9 +16,13 @@ public class Admin extends Profile {
 
     public Admin() {
     }
-    public Admin(ObjectId _id, String name, String email, String password) {
-        super(_id, name, email, password);
-        this.requests = new RealmList<>();
+
+    public Admin(ObjectId _id, String name, String email, String password, RealmList<Request> requests) {
+        this._id = _id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.requests = requests;
     }
 
     public ObjectId get_id() {
