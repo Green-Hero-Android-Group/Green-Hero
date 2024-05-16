@@ -19,6 +19,9 @@ public class Request extends RealmObject {
         this.status = status;
     }
 
+    public Request() {
+    }
+
     public ObjectId get_id() {
         return _id;
     }
