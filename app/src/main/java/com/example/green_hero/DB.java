@@ -48,10 +48,21 @@ public class DB extends Application {
     }
 
     private static void initializeRealm(User user) {
-        SyncConfiguration config = new SyncConfiguration.Builder(user)
-                .allowWritesOnUiThread(true)
-                .allowQueriesOnUiThread(true)
-                .build();
-        realm = Realm.getInstance(config);
+        SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+            @Override
+            public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(ClassicUser.class)
+                        )
+                );
+            }
+        };
+
+        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(app.currentUser())
+                .initialSubscriptions(handler).build();
+        Realm realm = Realm.getInstance(flexibleSyncConfig);
+
+        realm = Realm.getInstance(flexibleSyncConfig);
     }
 }
