@@ -1,9 +1,7 @@
-package com.example.green_hero.ui.home;
+package com.example.green_hero.ui.logIn;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.green_hero.DB;
@@ -11,8 +9,7 @@ import com.example.green_hero.model.User.ClassicUser;
 
 import io.realm.Realm;
 
-public class HomeViewModel extends ViewModel {
-
+public class LoginViewModel extends ViewModel {
     private Realm realm = DB.realm;
 
     public void insertEntry() {

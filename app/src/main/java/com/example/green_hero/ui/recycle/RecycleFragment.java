@@ -1,7 +1,6 @@
     package com.example.green_hero.ui.recycle;
     
     import android.os.Bundle;
-    import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
@@ -12,6 +11,7 @@
     
     import androidx.annotation.NonNull;
     import androidx.fragment.app.Fragment;
+    import androidx.lifecycle.ViewModelProvider;
 
     import com.example.green_hero.R;
     import com.example.green_hero.databinding.FragmentRecycleBinding;
@@ -27,13 +27,16 @@
             View root;
             root = binding.getRoot();
 
-            recycleButton = root.findViewById(R.id.recycle_button);
+            recycleButton = root.findViewById(R.id.loginButton);
             recycleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClickRecycle();
                 }
             });
+
+            //DB
+            RecycleViewModel viewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
 
             return root;
         }

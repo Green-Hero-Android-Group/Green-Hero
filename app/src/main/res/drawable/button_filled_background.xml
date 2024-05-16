@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bottom layer: Custom background -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="24dp" /> <!-- Adjust the corner radius as needed -->
+            <solid android:color="@color/primaryPurple" /> <!-- Adjust the fill color -->
+        </shape>
+    </item>
+    <!-- Top layer: Ripple effect -->
+    <item android:id="@android:id/background">
+        <ripple android:color="?android:colorControlHighlight">
+            <item android:id="@android:id/mask">
+                <shape android:shape="rectangle">
+                    <corners android:radius="24dp" /> <!-- Adjust the corner radius as needed -->
+                    <solid android:color="@android:color/white" /> <!-- Adjust the color of the mask -->
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</layer-list>
