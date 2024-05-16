@@ -11,16 +11,23 @@ public class ClassicUser extends RealmObject {
 
     @PrimaryKey
     private ObjectId _id;
+    private String name;
+    private String email;
+    private String password;
     private String role;
     private Level level;
     private int xp;
     private RealmList<Trophy> trophies;
 
-    public ClassicUser(String role, Level level, int xp, RealmList<Trophy> trophies) {
+    public ClassicUser(String name,String email,String password,String role, Level level, int xp) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this._id = new ObjectId();
         this.role = role;
         this.level = level;
         this.xp = xp;
-        this.trophies = trophies;
+        this.trophies = new RealmList<>();
     }
 
     public String getRole() {

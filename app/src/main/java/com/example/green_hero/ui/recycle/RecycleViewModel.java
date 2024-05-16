@@ -1,9 +1,7 @@
-package com.example.green_hero.ui.home;
+package com.example.green_hero.ui.recycle;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.green_hero.DB;
@@ -11,8 +9,7 @@ import com.example.green_hero.model.User.ClassicUser;
 
 import io.realm.Realm;
 
-public class HomeViewModel extends ViewModel {
-
+public class RecycleViewModel extends ViewModel {
     private Realm realm = DB.realm;
 
     public void insertEntry() {
@@ -23,7 +20,7 @@ public class HomeViewModel extends ViewModel {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                ClassicUser user = new ClassicUser("Dimitris", "dimsparagis@gmail.com",
+                ClassicUser user = new ClassicUser("Dimitris2", "dimsparagis@gmail.com",
                         "1234", "user", null, 0);
                 realm.insert(user);
                 Log.v("QUICKSTART", "Successfully inserted user.");

@@ -150,7 +150,7 @@
                 </RadioGroup>
 
                 <Button
-                    android:id="@+id/recycle_button"
+                    android:id="@+id/loginButton"
                     android:layout_width="163dp"
                     android:layout_height="50dp"
                     android:backgroundTint="@color/primaryGreen"

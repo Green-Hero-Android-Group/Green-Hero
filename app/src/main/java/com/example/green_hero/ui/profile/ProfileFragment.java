@@ -35,6 +35,9 @@ public class ProfileFragment extends Fragment {
             root.setPadding(root.getPaddingLeft(), root.getPaddingTop(), root.getPaddingRight(), height);
         });
 
+        //DB
+        ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+
         return root;
     }
 
