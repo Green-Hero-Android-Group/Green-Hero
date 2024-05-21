@@ -12,10 +12,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.green_hero.R;
 import com.example.green_hero.databinding.FragmentHomeBinding;
+import com.example.green_hero.model.User.ClassicUser;
+
+import org.bson.types.ObjectId;
+
+import io.realm.RealmResults;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    TextView helloMessage;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -28,6 +34,15 @@ public class HomeFragment extends Fragment {
         //DB
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+        RealmResults<ClassicUser> users = homeViewModel.getClassicUser();
+        for(ClassicUser user : users) {
+            System.out.println(user);
+        }
+
+        //Updating the UI
+        //Update user's name in Hello message
+        helloMessage = binding.helloMessage;
+        helloMessage.setText("Hello, " + users.get(0).getName() + "!");
 
         return root;
     }

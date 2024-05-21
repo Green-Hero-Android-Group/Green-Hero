@@ -22,7 +22,7 @@ public class RecycleViewModel extends ViewModel {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                ClassicUser user = new ClassicUser("Dimitris2", "dimsparagis@gmail.com",
+                ClassicUser user = new ClassicUser("Dimitris4", "dimsparagis@gmail.com",
                         "1234", "user", null, 0);
                 realm.insert(user);
                 Log.v("QUICKSTART", "Successfully inserted user.");
@@ -37,6 +37,5 @@ public class RecycleViewModel extends ViewModel {
                 Log.v("QUICKSTART", "Successfully inserted newItem.");
             }
         });
-
     }
 }

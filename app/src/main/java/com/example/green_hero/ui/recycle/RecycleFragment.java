@@ -27,13 +27,14 @@
             View root;
             root = binding.getRoot();
 
-            recycleButton = root.findViewById(R.id.loginButton);
+            recycleButton = root.findViewById(R.id.signUpButton);
             recycleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClickRecycle();
                 }
             });
+
 
             return root;
         }

@@ -78,14 +78,14 @@
                     android:paddingVertical="10sp">
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/profileNextReward"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_bold_italic"
                         android:text="Hero of the week"
                         android:textAlignment="textStart"
                         android:textColor="@color/primaryPurple"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,13 +129,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_elements"
                 android:backgroundTint="@color/backgroundWhite"
                 android:orientation="vertical"
                 android:paddingHorizontal="20sp"
                 android:paddingVertical="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20">
 
@@ -162,11 +164,99 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:fontFamily="@font/open_sans_bold_italic"
                 android:text="Recycled Items"
+                android:textColor="@color/primaryPurple"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout6"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/open_sans_bold_italic"
+                android:text="Top Material"
+                android:textColor="@color/primaryPurple"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+                app:layout_constraintHorizontal_bias="0.184"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout7"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                style="@style/ContainerWithShadow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_elements"
+                android:backgroundTint="@color/backgroundWhite"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20sp"
+                android:paddingVertical="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/textView23">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingRight="10sp">
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="93dp"
+                        android:layout_height="79dp"
+                        app:srcCompat="@drawable/paper" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="92dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="@string/topMaterial"
+                        android:textAlignment="center"
+                        android:textColor="@color/primaryGreen"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingVertical="5sp">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="@string/topMaterialRecycle"
+                        android:textAlignment="center"
+                        android:textColor="@color/primaryPurple"
+                        android:textSize="45sp" />
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="@string/Recycles"
+                        android:textAlignment="center"
+                        android:textColor="@color/primaryPurple" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -27,6 +27,5 @@ public class MainViewModel extends ViewModel {
                 Log.v("QUICKSTART", "Successfully inserted user.");
             }
         });
-
     }
 }

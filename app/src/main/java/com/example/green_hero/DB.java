@@ -3,7 +3,9 @@ package com.example.green_hero;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.green_hero.model.Recycle.Item;
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Level;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
@@ -28,17 +30,13 @@ public class DB extends Application {
         Realm.init(this);
         AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
         app = new App(appConfig);
-        User user = loginSync(Credentials.emailPassword("dimsparagis@gmail.com", "123456"));
-        if (user != null) {
-            initializeRealm(user);
-        }
     }
 
     public static User loginSync(Credentials credentials) {
 
         app.loginAsync(credentials, it -> {
             if (it.isSuccess()) {
-                Log.v("QUICKSTART", "Successfully authenticated anonymously.");
+                Log.v("QUICKSTART", "Successfully authenticated.");
             } else {
                 Log.e("QUICKSTART", "Failed to log in. Error: " + it.getError().getErrorMessage());
             }
@@ -46,7 +44,18 @@ public class DB extends Application {
         return app.currentUser();
     }
 
-    private static void initializeRealm(User user) {
+    public static User signUpSync(String email, String password) {
+        app.getEmailPassword().registerUserAsync(email, password, it -> {
+            if (it.isSuccess()) {
+                Log.v("QUICKSTART", "Successfully registered user.");
+            } else {
+                Log.e("QUICKSTART", "Failed to register user: " + it.getError().getErrorMessage());
+            }
+        });
+        return app.currentUser();
+    }
+
+    static void initializeRealm(User user) {
         SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
             @Override
             public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
@@ -58,7 +67,7 @@ public class DB extends Application {
             }
         };
 
-        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(app.currentUser())
+        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(user)
                 .initialSubscriptions(handler)
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
