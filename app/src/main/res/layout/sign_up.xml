@@ -21,7 +21,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,12 +121,12 @@
                         android:layout_marginEnd="59dp"
                         android:background="@drawable/rounded_corners_edittext"
                         android:ems="10"
-                        android:hint="@string/username_or_email"
+                        android:hint="@string/username"
                         android:inputType="text"
                         android:minHeight="48dp"
                         android:paddingStart="50dp"
 
-                        android:textColor="@color/primaryGreen"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/secondaryGray"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -163,7 +163,7 @@
                         android:inputType="textEmailAddress"
                         android:minHeight="48dp"
                         android:paddingStart="50dp"
-                        android:textColor="@color/primaryGreen"
+                        android:textColor="@color/black"
 
                         android:textColorHint="@color/secondaryGray"
                         android:textSize="15sp"
@@ -201,7 +201,7 @@
                         android:inputType="textPassword"
                         android:minHeight="48dp"
                         android:paddingStart="50dp"
-                        android:textColor="@color/primaryGreen"
+                        android:textColor="@color/black"
 
                         android:textColorHint="@color/secondaryGray"
                         android:textSize="15sp"
@@ -227,7 +227,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="171dp">
+                    android:layout_height="182dp">
 
 
                     <Button
@@ -237,11 +237,13 @@
                         android:layout_height="57dp"
                         android:layout_marginStart="59dp"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="18sp"
                         android:layout_marginEnd="59dp"
+                        style="@style/TextViewWithShadow"
+                        android:textColor="@color/white"
                         android:layout_marginBottom="12dp"
                         android:background="@drawable/rounded_corners_button"
-                        android:backgroundTint="@color/primaryPurple"
+                        android:backgroundTint="@color/secondaryGreen"
                         android:onClick="onSignUpClick"
                         android:text="@string/sign_up"
                         android:textAlignment="center"
@@ -271,7 +273,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout6"
                         android:layout_width="wrap_content"
-                        android:layout_height="64dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="1dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.454"
@@ -280,28 +282,61 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout4"
-                            android:layout_width="290dp"
-                            android:layout_height="72dp"
-                            android:layout_marginTop="1dp"
+                            android:layout_width="299dp"
+                            android:layout_height="73dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="1dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <com.google.android.gms.common.SignInButton
-                                android:id="@+id/google_button"
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="262dp"
-                                android:layout_height="60dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:layout_marginStart="59dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="59dp"
-                                android:textSize="18sp"
+                                android:layout_height="57dp"
+                                android:layout_marginStart="3dp"
+                                android:layout_marginTop="3dp"
+                                android:background="@drawable/custom_button_background"
+                                android:gravity="center_vertical"
+                                android:padding="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.522"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/google_logo"
+                                    android:layout_width="48dp"
+                                    android:layout_height="37dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:src="@drawable/google_icon"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/sign_in_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="9dp"
+                                    android:layout_marginEnd="10dp"
+
+                                    android:layout_marginBottom="12dp"
+                                    android:layout_toEndOf="@+id/google_logo"
+                                    android:text="@string/sign_in_with_google"
+                                    android:textColor="@color/black"
+                                    android:textSize="17sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/google_logo"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

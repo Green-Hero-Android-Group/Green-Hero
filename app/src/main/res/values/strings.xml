@@ -42,4 +42,6 @@
     <string name="topMaterial">Paper\n</string>
     <string name="topMaterialRecycle">20</string>
     <string name="Recycles">Recycles</string>
+    <string name="username">Username</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
 </resources>
