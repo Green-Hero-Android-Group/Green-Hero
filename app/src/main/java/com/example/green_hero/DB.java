@@ -20,7 +20,7 @@ import io.realm.mongodb.sync.SyncConfiguration;
 public class DB extends Application {
     private String appID = "application-0-rexuosx";
     public static Realm realm;
-    private static App app;
+    public static App app;
 
     @Override
     public void onCreate() {
@@ -35,7 +35,6 @@ public class DB extends Application {
     }
 
     public static User loginSync(Credentials credentials) {
-
 
         app.loginAsync(credentials, it -> {
             if (it.isSuccess()) {
@@ -60,8 +59,10 @@ public class DB extends Application {
         };
 
         SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(app.currentUser())
-                .initialSubscriptions(handler).build();
-        Realm realm = Realm.getInstance(flexibleSyncConfig);
+                .initialSubscriptions(handler)
+                .allowQueriesOnUiThread(true)
+                .allowWritesOnUiThread(true)
+                .build();
 
         realm = Realm.getInstance(flexibleSyncConfig);
     }
