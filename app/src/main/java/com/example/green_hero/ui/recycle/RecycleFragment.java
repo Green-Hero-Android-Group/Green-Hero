@@ -35,9 +35,6 @@
                 }
             });
 
-            //DB
-            RecycleViewModel viewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
-            viewModel.insertEntry();
 
             return root;
         }
@@ -49,6 +46,8 @@
         }
 
         public void onClickRecycle() {
+            //DB
+            RecycleViewModel viewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
             EditText name = getView().findViewById(R.id.type_name_input);
             String typeName = name.getText().toString().trim();
             EditText qntInput = getView().findViewById(R.id.quantity);
@@ -75,6 +74,7 @@
                 }
                 Toast.makeText(getActivity(),
                         "You Recycled: " + selected + "\nName: " + typeName + "\nQuantity: " + qnt, Toast.LENGTH_SHORT).show();
+                viewModel.insertEntry();
             }
             name.getText().clear();
             qntInput.getText().clear();
