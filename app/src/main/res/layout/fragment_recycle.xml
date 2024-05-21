@@ -150,7 +150,7 @@
                 </RadioGroup>
 
                 <Button
-                    android:id="@+id/loginButton"
+                    android:id="@+id/signUpButton"
                     android:layout_width="163dp"
                     android:layout_height="50dp"
                     android:backgroundTint="@color/primaryGreen"

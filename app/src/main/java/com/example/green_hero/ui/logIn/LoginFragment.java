@@ -37,15 +37,15 @@ public class LoginFragment extends Fragment {
 
         usernameEditText = root.findViewById(R.id.type_name_input);
         passwordEditText = root.findViewById(R.id.type_text_password);
-        loginButton = root.findViewById(R.id.loginButton);
+        loginButton = root.findViewById(R.id.signUpButton);
 
         // Προσθήκη ακροατή για το κουμπί σύνδεσης
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+//        loginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                login();
+//            }
+//        });
 
         //DB
         LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);

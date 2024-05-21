@@ -13,6 +13,7 @@ public class Trophy extends RealmObject {
 
 
     public Trophy(String name, int index) {
+        this._id = new ObjectId();
         this.name = name;
         this.index=index;
     }

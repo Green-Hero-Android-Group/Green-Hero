@@ -1,25 +1,42 @@
 package com.example.green_hero.ui.profile;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.green_hero.databinding.FragmentHomeBinding;
 import com.example.green_hero.databinding.FragmentProfileBinding;
 import com.example.green_hero.R;
+import com.example.green_hero.databinding.TrophyLinearBinding;
+import com.example.green_hero.model.User.Trophy;
+
+import io.realm.RealmList;
 //import com.example.green_hero.ui.home.HomeViewModel;
 
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
+    private TextView name;
+    private TextView level;
+    private ProgressBar progressBar;
+    private TextView nextReward;
+    private LinearLayout trophiesLayout;
+    private LinearLayout v1;
+    private LinearLayout v2;
+    private TrophyLinearBinding trophyBinding;
+    private int trophyCount;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,6 +54,42 @@ public class ProfileFragment extends Fragment {
 
         //DB
         ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        viewModel.getClassicUser();
+//        viewModel.insertSampleEntries();
+
+        //UI
+        name = binding.profileName;
+        name.setText(viewModel.getClassicUser().getName());
+
+        level = binding.profileLevel;
+        System.out.println("Level: " + viewModel.getClassicUser().getLevel());
+//        level.setText("Level: " + Integer.toString(viewModel.getClassicUser().getLevel().getLevel()));
+
+        progressBar = binding.profileLevelBar;
+        progressBar.setProgress(viewModel.getClassicUser().getXp());
+
+        nextReward = binding.profileNextReward;
+        nextReward.setText("Paper Badge");
+
+        // Create trophy layout
+        RealmList<Trophy> trophies = viewModel.getClassicUser().getTrophies();
+        System.out.println(trophies.size());
+        for(Trophy trophy : trophies){
+            Log.v("QUICKSTART", "Trophy: " + trophy.getName());
+        }
+        trophiesLayout = binding.profileTrophiesLayout;
+        for (Trophy trophy : trophies) {
+            LinearLayout v1 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
+            v1.setId(View.generateViewId());
+            trophiesLayout.addView(v1);
+        }
+//        v1 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
+//        v1.setId(View.generateViewId());
+//        v2 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
+//        v2.setId(View.generateViewId());
+//        trophiesLayout.addView(v1);
+//        trophiesLayout.addView(v2);
+//        trophyCount = 0;
 
         return root;
     }
@@ -46,5 +99,4 @@ public class ProfileFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

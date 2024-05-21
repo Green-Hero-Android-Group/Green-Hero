@@ -33,6 +33,5 @@ public class AppActivity extends AppCompatActivity {
 
         //DB
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.insertEntry();
     }
 }

@@ -39,4 +39,7 @@
     <string name="Manage">Manage\n</string>
     <string name="stats">Stats</string>
     <string name="recycledcount">34</string>
+    <string name="topMaterial">Paper\n</string>
+    <string name="topMaterialRecycle">20</string>
+    <string name="Recycles">Recycles</string>
 </resources>
