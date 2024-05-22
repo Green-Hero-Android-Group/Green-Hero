@@ -71,24 +71,25 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="@color/backgroundGreen"
                 app:cardCornerRadius="40dp"
                 app:cardElevation="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.538"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView9">
 
                 <LinearLayout
 
                     android:id="@+id/linearLayout"
-                    android:layout_width="299dp"
-                    android:layout_height="433dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="32dp"
@@ -114,7 +115,7 @@
                         android:id="@+id/textView7"
                         style="@style/TextViewWithShadow"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/reduce_reuse_recycle_for_a_greener_world"
                         android:textAlignment="center"
@@ -125,7 +126,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="64dp">
+                        android:layout_height="wrap_content">
 
                         <EditText
 
@@ -134,19 +135,21 @@
                             android:layout_height="48dp"
 
                             android:layout_marginStart="55dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="59dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@drawable/rounded_corners_edittext"
                             android:ems="10"
                             android:hint="@string/username"
                             android:inputType="text"
+
                             android:minHeight="48dp"
                             android:paddingStart="50dp"
-
                             android:textColor="@color/black"
                             android:textColorHint="@color/secondaryGray"
+
                             android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
-
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.48"
                             app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +168,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="64dp">
+                        android:layout_height="match_parent">
 
                         <EditText
                             android:id="@+id/type_text_email"
@@ -173,14 +176,15 @@
                             android:layout_height="48dp"
                             android:layout_marginStart="59dp"
                             android:layout_marginEnd="59dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@drawable/rounded_corners_edittext"
                             android:ems="10"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
                             android:minHeight="48dp"
                             android:paddingStart="50dp"
-                            android:textColor="@color/black"
 
+                            android:textColor="@color/black"
                             android:textColorHint="@color/secondaryGray"
                             android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -203,22 +207,23 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp">
+                        android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/type_text_password"
+                            android:id="@+id/type_text_passwords"
                             android:layout_width="262dp"
                             android:layout_height="48dp"
                             android:layout_marginStart="59dp"
                             android:layout_marginEnd="59dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@drawable/rounded_corners_edittext"
                             android:ems="10"
                             android:hint="@string/password_text"
                             android:inputType="textPassword"
                             android:minHeight="48dp"
                             android:paddingStart="50dp"
-                            android:textColor="@color/black"
 
+                            android:textColor="@color/black"
                             android:textColorHint="@color/secondaryGray"
                             android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -234,16 +239,58 @@
                             android:layout_marginStart="19dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/type_text_password"
-                            app:layout_constraintStart_toStartOf="@+id/type_text_password"
-                            app:layout_constraintTop_toTopOf="@+id/type_text_password"
+                            app:layout_constraintBottom_toBottomOf="@+id/type_text_passwords"
+                            app:layout_constraintStart_toStartOf="@+id/type_text_passwords"
+                            app:layout_constraintTop_toTopOf="@+id/type_text_passwords"
                             app:srcCompat="@drawable/password" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="182dp">
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:id="@+id/type_text_password2"
+                            android:layout_width="262dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="59dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="59dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rounded_corners_edittext"
+                            android:ems="10"
+                            android:hint="Confirm password"
+                            android:inputType="textPassword"
+                            android:minHeight="48dp"
+
+                            android:paddingStart="50dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/secondaryGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.326" />
+
+                        <ImageView
+                            android:id="@+id/imageView15"
+                            android:layout_width="27dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/type_text_password2"
+                            app:layout_constraintStart_toStartOf="@+id/type_text_password2"
+                            app:layout_constraintTop_toTopOf="@+id/type_text_password2"
+                            app:srcCompat="@drawable/password" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
                         <Button
@@ -253,7 +300,7 @@
                             android:layout_width="262dp"
                             android:layout_height="57dp"
                             android:layout_marginStart="59dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginEnd="59dp"
                             android:layout_marginBottom="12dp"
                             android:background="@drawable/rounded_corners_button"
