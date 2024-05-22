@@ -5,9 +5,11 @@ import static com.example.green_hero.DB.loginSync;
 import static com.example.green_hero.DB.signUpSync;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.green_hero.model.User.ClassicUser;
 import com.example.green_hero.model.User.Level;
@@ -114,18 +117,23 @@ public class AuthActivity extends AppCompatActivity {
                 TextView password = findViewById(R.id.type_text_password);
                 TextView email = findViewById(R.id.type_text_email);
 
-                User user = signUpSync(email.getText().toString(), password.getText().toString());
-                initializeRealm(user);
-                DB.realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        ClassicUser user = new ClassicUser("Maria", email.getText().toString(),
-                                password.getText().toString(), "user", new Level(0, 0), 0);
-                        realm.insert(user);
-                        Log.v("QUICKSTART", "Successfully inserted user.");
-                    }
-                });
-                System.out.println("Successfully signed up as: " + user.isLoggedIn());
+                String emailText = email.toString();
+
+                int passwordl=password.length();
+
+                if(testPassword(passwordl) && isValidEmail(emailText)){
+                    User user = signUpSync(email.getText().toString(), password.getText().toString());
+                    initializeRealm(user);
+                    DB.realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            ClassicUser user = new ClassicUser("Maria", email.getText().toString(),
+                                    password.getText().toString(), "user", new Level(0, 0), 0);
+                            realm.insert(user);
+                            Log.v("QUICKSTART", "Successfully inserted user.");
+                        }
+                    });
+                    System.out.println("Successfully signed up as: " + user.isLoggedIn());
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -134,7 +142,33 @@ public class AuthActivity extends AppCompatActivity {
                             finish();
                         }
                     }, 1000);
+                } else if (!isValidEmail(emailText)) {
+                        showRedToast("Invalid email address");
+                        email.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+
+                } else {
+                    Log.e("QUICKSTART", "Password smaller than 6 characters");
+                    showRedToast("Password must be more than 6 characters");
+                    password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+
+                }
+
+
             }
         });
+    }
+
+    private boolean testPassword(int password) {
+        return password >= 6;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+    private void showRedToast(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        View view = toast.getView();
+        toast.show();
     }
 }

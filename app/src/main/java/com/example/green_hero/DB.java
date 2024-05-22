@@ -64,6 +64,11 @@ public class DB extends Application {
                                 realm.where(ClassicUser.class)
                         )
                 );
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(Level.class)
+                        )
+                );
             }
         };
 

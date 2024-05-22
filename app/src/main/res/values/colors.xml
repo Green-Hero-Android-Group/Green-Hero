@@ -17,4 +17,5 @@
     <color name="shadowGray">#686363</color>
     <color name="backgroundGreen">#DCFBF6</color>
     <color name="secondaryGray">#858380</color>
+    <color name="redLight">#E8A7A2</color>
 </resources>
