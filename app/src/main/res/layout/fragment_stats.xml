@@ -52,6 +52,7 @@
                     android:layout_marginStart="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/header"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/stats_page" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -129,13 +130,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_elements"
                 android:backgroundTint="@color/backgroundWhite"
                 android:orientation="vertical"
                 android:paddingHorizontal="20sp"
                 android:paddingVertical="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -163,13 +162,14 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/open_sans_bold_italic"
                 android:text="Recycled Items"
                 android:textColor="@color/primaryPurple"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
+                app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout6"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
@@ -177,14 +177,14 @@
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/open_sans_bold_italic"
                 android:text="Top Material"
                 android:textColor="@color/primaryPurple"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
-                app:layout_constraintHorizontal_bias="0.184"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout7"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
@@ -200,7 +200,6 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="20sp"
                 android:paddingVertical="13sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout6"
@@ -257,6 +256,108 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <TableLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_corners_button"
+                android:backgroundTint="@color/secondaryGreen"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+
+                    <TextView
+                        style="@style/TextViewWithShadow"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="Leaderboard"
+                        android:textColor="@color/primaryYellow"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:paddingBottom="10dp"/>
+
+                <!-- First Row -->
+                <TableRow android:paddingBottom="10dp">
+
+                    <TextView
+                        android:layout_width="124dp"
+                        android:layout_height="match_parent"
+
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="Hero"
+                        android:textColor="@color/primaryGreen"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="92dp"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="@string/Recycles"
+                        android:textAlignment="center"
+                        android:textColor="@color/primaryGreen"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="122dp"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="Rank"
+                        android:textAlignment="center"
+                        android:textColor="@color/primaryGreen"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow android:paddingBottom="5dp">
+
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="Dimitris"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="101dp"
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="20"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="Dimitris"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/open_sans_bold_italic"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+                <!-- Add more rows as needed -->
+            </TableLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

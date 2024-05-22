@@ -329,7 +329,7 @@
                                     android:layout_marginBottom="12dp"
                                     android:layout_toEndOf="@+id/google_logo"
                                     android:text="@string/sign_in_with_google"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/secondaryGreen"
                                     android:textSize="17sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
