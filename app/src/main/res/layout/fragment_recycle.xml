@@ -21,11 +21,10 @@
                 android:id="@+id/constraintLayout2"
                 android:layout_width="389dp"
                 android:layout_height="98dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.04000002"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -89,6 +88,7 @@
                     android:text="@string/add_item"
                     android:textColor="@color/backgroundWhite"
                     android:textSize="50sp"
+                    style="@style/TextViewWithShadow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.503"
@@ -101,50 +101,49 @@
                     android:id="@+id/type_name_input"
                     android:layout_width="163dp"
                     android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
                     android:autofillHints=""
+                    android:background="@drawable/rounded_corners_white"
                     android:ems="10"
                     android:hint="@string/type_name"
                     android:inputType="text"
                     android:minHeight="48dp"
+                    android:paddingStart="10dp"
                     android:textColor="@color/backgroundWhite"
                     android:textColorHint="@color/backgroundWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toStartOf="@+id/quantity"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.308" />
+                    app:layout_constraintTop_toBottomOf="@+id/add_item_head" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="130dp"
-                    android:layout_height="144dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.72"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/type_name_input"
+                    app:layout_constraintTop_toBottomOf="@+id/type_name_input"
                     tools:ignore="MissingConstraints,TextSizeCheck">
 
                     <RadioButton
                         android:id="@+id/paper_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
                         android:text="@string/paper"
                         android:textColor="@color/backgroundWhite" />
 
                     <RadioButton
                         android:id="@+id/plastic_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
+
                         android:text="@string/plastic"
                         android:textColor="@color/backgroundWhite" />
 
                     <RadioButton
                         android:id="@+id/glass_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
+                        android:layout_height="38dp"
                         android:text="@string/glass"
                         android:textColor="@color/backgroundWhite" />
 
@@ -152,33 +151,38 @@
 
                 <Button
                     android:id="@+id/signUpButton"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="163dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_corners_button"
                     android:backgroundTint="@color/primaryGreen"
                     android:text="@string/recycle"
+                    android:textAllCaps="false"
                     android:textColor="@color/primaryWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                 <EditText
                     android:id="@+id/quantity"
                     android:layout_width="100dp"
                     android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
                     android:autofillHints=""
+                    android:background="@drawable/rounded_corners_white"
                     android:ems="10"
+                    android:textSize="15sp"
                     android:hint="@string/quantity"
                     android:inputType="numberSigned"
+                    android:paddingStart="10dp"
                     android:textColorHint="@color/primaryWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/type_name_input"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.31" />
+                    app:layout_constraintTop_toBottomOf="@+id/add_item_head" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
