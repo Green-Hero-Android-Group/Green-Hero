@@ -51,29 +51,29 @@ public class AuthActivity extends AppCompatActivity {
                 if (username.getText().toString().equals("admin")) {
                     routeClass = AdminActivity.class;
                 } else {
-                    User user = loginSync(Credentials.emailPassword(username.getText().toString(),
-                            password.getText().toString()));
-                    if (user != null) {
-                        System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                        found = true;
-                        initializeRealm(user);
-                    } else {
-                        Log.e("QUICKSTART", "Failed to log in.");
-                    }
-                    if (!found) {
-                        Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-                    }
-                    routeClass = AppActivity.class;
-                }
-                if (found) {
-                    new Handler().postDelayed(new Runnable() {
+                    loginSync(Credentials.emailPassword(username.getText().toString(),
+                            password.getText().toString()), new DB.OnUserLoginCallback() {
                         @Override
-                        public void run() {
-                            Intent intent = new Intent(AuthActivity.this, routeClass);
-                            startActivity(intent);
-                            finish();
+                        public void onUserLoggedIn(User user) {
+                            if (user != null) {
+                                System.out.println("Successfully logged in as: " + user.isLoggedIn());
+                                initializeRealm(user);
+                                routeClass = AppActivity.class;
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(AuthActivity.this, routeClass);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 0);
+                            } else {
+                                Log.e("QUICKSTART", "Failed to log in.");
+                                Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }, 1000);
+                    });
+                    routeClass = AppActivity.class;
                 }
             }
         });
@@ -133,23 +133,8 @@ public class AuthActivity extends AppCompatActivity {
                     Log.e("QUICKSTART", "Password smaller than 6 characters");
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
-//                } else if (!pass1.equals(pass2)) {
-//                    showRedToast("Please enter the same password");
-//                    password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else {
                     User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString());
-
-//                    initializeRealmSignIn(Credentials.emailPassword(email.getText().toString(), password.getText().toString()));
-//                    DB.realm.executeTransaction(new Realm.Transaction() {
-//                        @Override
-//                        public void execute(Realm realm) {
-//                            ClassicUser user = new ClassicUser("Kostas", email.getText().toString(),
-//                                    password.getText().toString(), "user", new Level(0, 0), 0);
-//                            realm.insert(user);
-//                            Log.v("QUICKSTART", "Successfully inserted user.");
-//                        }
-//                    });
-//                    System.out.println("Successfully signed up as: " + user.isLoggedIn());
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
