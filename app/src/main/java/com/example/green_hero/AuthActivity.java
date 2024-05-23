@@ -1,6 +1,7 @@
 package com.example.green_hero;
 
 import static com.example.green_hero.DB.initializeRealm;
+//import static com.example.green_hero.DB.initializeRealmSignIn;
 import static com.example.green_hero.DB.loginSync;
 import static com.example.green_hero.DB.signUpSync;
 
@@ -136,28 +137,27 @@ public class AuthActivity extends AppCompatActivity {
 //                    showRedToast("Please enter the same password");
 //                    password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else {
-                    User user = signUpSync(email.getText().toString(), password.getText().toString());
+                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString());
 
-
-                        initializeRealm(user);
-                        DB.realm.executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                                ClassicUser user = new ClassicUser("Maria", email.getText().toString(),
-                                        password.getText().toString(), "user", new Level(0, 0), 0);
-                                realm.insert(user);
-                                Log.v("QUICKSTART", "Successfully inserted user.");
-                            }
-                        });
-                        System.out.println("Successfully signed up as: " + user.isLoggedIn());
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }, 1000);
+//                    initializeRealmSignIn(Credentials.emailPassword(email.getText().toString(), password.getText().toString()));
+//                    DB.realm.executeTransaction(new Realm.Transaction() {
+//                        @Override
+//                        public void execute(Realm realm) {
+//                            ClassicUser user = new ClassicUser("Kostas", email.getText().toString(),
+//                                    password.getText().toString(), "user", new Level(0, 0), 0);
+//                            realm.insert(user);
+//                            Log.v("QUICKSTART", "Successfully inserted user.");
+//                        }
+//                    });
+//                    System.out.println("Successfully signed up as: " + user.isLoggedIn());
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, 1000);
 
                 }
             }
@@ -165,16 +165,15 @@ public class AuthActivity extends AppCompatActivity {
     }
 
 
+    private boolean isValidEmail(String email) {
 
-
-        private boolean isValidEmail(String email){
-
-            String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-            return email.matches(emailPattern);
-        }
-        private void showRedToast (String message){
-            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-            View view = toast.getView();
-            toast.show();
-        }
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailPattern);
     }
+
+    private void showRedToast(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        View view = toast.getView();
+        toast.show();
+    }
+}
