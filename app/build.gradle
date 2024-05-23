@@ -50,4 +50,13 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
+    implementation "androidx.credentials:credentials:1.2.2"
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    implementation "androidx.credentials:credentials-play-services-auth:1.2.2"
+//    implementation "com.google.android.libraries.identity.googleid:1.1.0"
 }

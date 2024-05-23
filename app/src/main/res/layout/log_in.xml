@@ -261,6 +261,7 @@
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="262dp"
+                                    android:id="@+id/google_sign_in"
                                     android:layout_height="57dp"
                                     android:background="@drawable/custom_button_background"
                                     android:gravity="center_vertical"
