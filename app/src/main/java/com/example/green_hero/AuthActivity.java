@@ -6,11 +6,9 @@ import static com.example.green_hero.DB.loginSync;
 import static com.example.green_hero.DB.signUpSync;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +19,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.green_hero.model.User.ClassicUser;
-import com.example.green_hero.model.User.Level;
-
-import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 
@@ -134,7 +128,7 @@ public class AuthActivity extends AppCompatActivity {
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else {
-                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), new DB.OnUserLoginCallback() {
+                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), AuthActivity.this,new DB.OnUserLoginCallback() {
                         @Override
                         public void onUserLoggedIn(User user) {
                             new Handler().postDelayed(new Runnable() {

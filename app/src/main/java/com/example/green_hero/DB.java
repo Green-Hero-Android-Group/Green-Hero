@@ -5,18 +5,16 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.green_hero.model.User.ClassicUser;
-import com.example.green_hero.model.User.Level;
 import com.example.green_hero.model.User.Trophy;
 
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -47,6 +45,10 @@ public class DB extends Application {
         Realm.removeDefaultConfiguration();
         AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
         app = new App(appConfig);
+        trophies.add(new Trophy("Welcome Hero", 0));
+        trophies.add(new Trophy("Reached Level 1", 1));
+        trophies.add(new Trophy("Reached Level 5", 5));
+        trophies.add(new Trophy("Recycled 5 items", 5));
     }
 
     public static User loginSync(Credentials credentials, OnUserLoginCallback callback) {
@@ -67,59 +69,69 @@ public class DB extends Application {
         void onUserLoggedIn(User user);
     }
 
-    public static User signUpSync(String name, String email, String password, OnUserLoginCallback callback) {
-        app.getEmailPassword().registerUserAsync(email, password, it -> {
+
+    public static User signUpSync(String name, String email, String password, Context c,OnUserLoginCallback callback) {
+        Credentials credentials1 = Credentials.emailPassword(email, password);
+        app.loginAsync(credentials1, it -> {
             if (it.isSuccess()) {
-                Log.v("QUICKSTART", "Successfully registered user.");
+                Toast.makeText(c, "User already exists", Toast.LENGTH_SHORT).show();
             } else {
-                Log.e("QUICKSTART", "Failed to register user: " + it.getError().getErrorMessage());
-            }
-            Credentials credentials = Credentials.emailPassword(email, password);
-            app.loginAsync(credentials, it2 -> {
-                if (it2.isSuccess()) {
-                    Log.v("QUICKSTART", "Successfully authenticated.");
-                } else {
-                    Log.e("QUICKSTART", "Failed to log in. Error: " + it2.getError().getErrorMessage());
-                }
-                User loggedInUser = app.currentUser();
-                SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
-                    @Override
-                    public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
-                        subscriptions.addOrUpdate(
-                                Subscription.create(
-                                        realm.where(ClassicUser.class)
-                                )
-                        );
-                        subscriptions.addOrUpdate(
-                                Subscription.create(
-                                        realm.where(Level.class)
-                                )
-                        );
+                app.getEmailPassword().registerUserAsync(email, password, it2 -> {
+                    if (it2.isSuccess()) {
+                        Log.v("QUICKSTART", "Successfully registered user.");
+                    } else {
+                        Log.e("QUICKSTART", "Failed to register user: " + it2.getError().getErrorMessage());
                     }
-                };
+                    Credentials credentials = Credentials.emailPassword(email, password);
+                    app.loginAsync(credentials, it3 -> {
+                        if (it3.isSuccess()) {
+                            Log.v("QUICKSTART", "Successfully authenticated.");
+                        } else {
+                            Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
+                        }
+                        User loggedInUser = app.currentUser();
+                        SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+                            @Override
+                            public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(ClassicUser.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Trophy.class)
+                                        )
+                                );
+                            }
+                        };
 
-                SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
-                        .initialSubscriptions(handler)
-                        .allowQueriesOnUiThread(true)
-                        .allowWritesOnUiThread(true)
-                        .build();
+                        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
+                                .initialSubscriptions(handler)
+                                .allowQueriesOnUiThread(true)
+                                .allowWritesOnUiThread(true)
+                                .build();
 
-                realm = Realm.getInstance(flexibleSyncConfig);
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        ClassicUser user = new ClassicUser(name, email,
-                                password, "user", new Level(1, 0), 0);
-                        realm.insert(user);
-                        Log.v("QUICKSTART", "Successfully inserted user.");
-                    }
+                        realm = Realm.getInstance(flexibleSyncConfig);
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                ClassicUser user = new ClassicUser(name, email,
+                                        password, "user", 1, 0);
+                                realm.insert(user);
+                                Log.v("QUICKSTART", "Successfully inserted user.");
+                            }
+                        });
+                        System.out.println("Successfully signed up as: " + loggedInUser.isLoggedIn());
+                        callback.onUserLoggedIn(loggedInUser);
+                    });
                 });
-                System.out.println("Successfully signed up as: " + loggedInUser.isLoggedIn());
-                callback.onUserLoggedIn(loggedInUser);
-            });
+            }
         });
+
         return app.currentUser();
     }
+
 
     public static ClassicUser getClassicUser() {
 //        subscribeToClassicUser();
@@ -143,11 +155,6 @@ public class DB extends Application {
                 );
                 subscriptions.addOrUpdate(
                         Subscription.create(
-                                realm.where(Level.class)
-                        )
-                );
-                subscriptions.addOrUpdate(
-                        Subscription.create(
                                 realm.where(Trophy.class)
                         )
                 );
@@ -162,8 +169,11 @@ public class DB extends Application {
 
         realm = Realm.getInstance(flexibleSyncConfig);
     }
+    public interface OnGetTrophiesCallback {
+        void OnGetTrophies();
+    }
 
-    public static void getTrophies() {
+    public static void getTrophies(OnGetTrophiesCallback callback) {
         User user = app.currentUser();
         MongoClient mongoClient = user.getMongoClient("mongodb-atlas");
         MongoDatabase mongoDatabase =
@@ -186,6 +196,7 @@ public class DB extends Application {
             } else {
                 Log.e("QUICKSTART", "failed to find documents with: ", task.getError());
             }
+            callback.OnGetTrophies();
         });
     }
 }
