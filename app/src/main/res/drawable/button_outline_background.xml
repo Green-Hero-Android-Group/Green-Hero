@@ -2,7 +2,7 @@
     <!-- Bottom layer: Custom background -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="24dp" /> <!-- Adjust the corner radius as needed -->
+            <corners android:radius="15dp" /> <!-- Adjust the corner radius as needed -->
             <stroke
                 android:width="5dp"
                 android:color="@color/primaryPurple" />
