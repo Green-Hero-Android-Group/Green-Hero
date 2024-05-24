@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getName());
 
         level = binding.profileLevel;
-        System.out.println("Level: " + user.getLevel());
+        level.setText("Level " + user.getLevel().getLevel());
 
         progressBar = binding.profileLevelBar;
         progressBar.setProgress(user.getXp());
