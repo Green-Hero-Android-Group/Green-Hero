@@ -49,9 +49,11 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.log_in);
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("294412243304-ibh44r1rrsl6p6vdjcc0v7nptaciajnd.apps.googleusercontent.com")
+                .requestIdToken("294412243304-si6ebf7lnsfvus6ifehvbabp6497alqt.apps.googleusercontent.com")
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
+        Log.d("AUTH", "GoogleSignInClient configured successfully: " + googleSignInClient.toString());
+
 
         // Register ActivityResultLauncher in onCreate
         resultLauncher = registerForActivityResult(
@@ -85,7 +87,7 @@ public class AuthActivity extends AppCompatActivity {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
                                 initializeRealm(user);
-                                routeClass = AppActivity.class;
+                                routeClass = AdminActivity.class;
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -160,6 +162,12 @@ public class AuthActivity extends AppCompatActivity {
                     Log.e("QUICKSTART", "Password smaller than 6 characters");
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                } else if (!pass1.equals(pass2)) {
+                        Log.e("QUICKSTART", "Different passwords");
+                        showRedToast("Please type the same password");
+                        password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+
+
                 } else {
                     User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), new DB.OnUserLoginCallback() {
                         @Override

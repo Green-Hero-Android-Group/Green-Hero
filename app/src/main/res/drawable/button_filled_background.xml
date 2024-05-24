@@ -3,7 +3,7 @@
     <!-- Bottom layer: Custom background -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="24dp" /> <!-- Adjust the corner radius as needed -->
+            <corners android:radius="15dp" /> <!-- Adjust the corner radius as needed -->
             <solid android:color="@color/primaryPurple" /> <!-- Adjust the fill color -->
         </shape>
     </item>

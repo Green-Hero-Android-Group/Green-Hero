@@ -1,337 +1,496 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
+    android:backgroundTint="@color/primaryWhite">
+
+
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/primaryBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:layout_editor_absoluteY="58dp">
 
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingBottom="20dp">
 
-            <!-- Horizontal LinearLayout for Manage Users and Image -->
-            <LinearLayout
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+
+                android:layout_margin="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/cardview_light_background"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="31dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <Button
+                                android:id="@+id/button6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_filled_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Approve"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/button8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_outline_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Reject"
+                                android:textAllCaps="false"
+                                android:textColor="@color/primaryPurple"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/box1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rounded_elements"
+                        android:backgroundTint="@color/cardview_light_background"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/box1_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:paddingStart="24dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="24dp"
+                            android:paddingBottom="12dp"
+                            android:text="Dimitris has recycled"
+                            android:textColor="@color/primaryPurple"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/box1_check4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 1"
+                            android:textColor="@color/primaryGreen" />
+
+
+                        <CheckBox
+                            android:id="@+id/box1_check5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 2"
+                            android:textColor="@color/primaryGreen" />
+
+                        <CheckBox
+                            android:id="@+id/box1_check6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 3"
+                            android:textColor="@color/primaryGreen" />
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/cardview_light_background"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView6">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="31dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <Button
+                                android:id="@+id/button9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_filled_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Approve"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/button10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_outline_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Reject"
+                                android:textAllCaps="false"
+                                android:textColor="@color/primaryPurple"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/box2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rounded_elements"
+                        android:backgroundTint="@color/cardview_light_background"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/box2_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:paddingStart="24dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="24dp"
+                            android:paddingBottom="12dp"
+                            android:text="Dimitris has recycled"
+                            android:textColor="@color/primaryPurple"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/box2_check1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 1"
+                            android:textColor="@color/primaryGreen" />
+
+
+                        <CheckBox
+                            android:id="@+id/box2_check2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 2"
+                            android:textColor="@color/primaryGreen" />
+
+                        <CheckBox
+                            android:id="@+id/box2_check3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 3"
+                            android:textColor="@color/primaryGreen" />
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/cardview_light_background"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="31dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_filled_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Approve"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/button4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/button_outline_background"
+                                android:fontFamily="@font/open_sans_bold_italic"
+                                android:text="Reject"
+                                android:textAllCaps="false"
+                                android:textColor="@color/primaryPurple"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/box3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/rounded_elements"
+                        android:backgroundTint="@color/cardview_light_background"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/box3_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:paddingStart="24dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="24dp"
+                            android:paddingBottom="12dp"
+                            android:text="Dimitris has recycled"
+                            android:textColor="@color/primaryPurple"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/box1_check1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 1"
+                            android:textColor="@color/primaryGreen" />
+
+
+                        <CheckBox
+                            android:id="@+id/box1_check2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 2"
+                            android:textColor="@color/primaryGreen" />
+
+                        <CheckBox
+                            android:id="@+id/box1_check3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+
+                            android:layout_marginEnd="24dp"
+                            android:buttonTint="@color/primaryPurple"
+                            android:text="Check 3"
+                            android:textColor="@color/primaryGreen" />
+
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="220dp"
+                android:fontFamily="@font/open_sans_bold_italic"
+                android:text="3 requests"
+                android:textColor="@color/primaryPurple"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/manage_head"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
+                    android:id="@+id/textView3"
+                    style="@style/TextViewWithShadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="17dp"
                     android:fontFamily="@font/open_sans_bold_italic"
-                    android:shadowColor="@color/black"
-                    android:shadowDy="10"
-                    android:shadowRadius="16"
+                    android:paddingHorizontal="20sp"
+                    android:paddingVertical="20sp"
                     android:text="Manage Users"
                     android:textColor="@color/primaryPurple"
-                    android:textSize="35sp"
-                    tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck" />
+                    android:textSize="34sp"
+                    app:layout_constraintEnd_toStartOf="@+id/manage_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/manage_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginEnd="28dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/description"
                     android:maxWidth="100dp"
                     android:maxHeight="100dp"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/users_list"
-                    tools:ignore="MissingConstraints,ImageContrastCheck" />
-            </LinearLayout>
-
-            <!-- box1 -->
-            <LinearLayout
-                android:id="@+id/box1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/rounded_elements"
-                android:backgroundTint="@color/backgroundWhite"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/box1_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold_italic"
-                    android:paddingStart="24dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="24dp"
-                    android:paddingBottom="12dp"
-                    android:text="Dimitris has recycled"
-                    android:textColor="@color/primaryPurple"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/box1_check1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 1"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <CheckBox
-                    android:id="@+id/box1_check2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 2"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <CheckBox
-                    android:id="@+id/box1_check3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 3"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <!-- Horizontal LinearLayout for Buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button11"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_filled_background"
-                        android:text="Approve"
-                        android:textColor="@android:color/white" />
-
-                    <Button
-                        android:id="@+id/button12"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_outline_background"
-                        android:text="Reject"
-                        android:textColor="@color/primaryPurple" />
-                </LinearLayout>
-            </LinearLayout>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/users_list" />
 
 
-            <!-- box2 -->
-            <LinearLayout
-                android:id="@+id/box2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/rounded_elements"
-                android:backgroundTint="@color/backgroundWhite"
-                android:orientation="vertical">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/box2_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold_italic"
-                    android:paddingStart="24dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="24dp"
-                    android:paddingBottom="12dp"
-                    android:text="Dimitris has recycled"
-                    android:textColor="@color/primaryPurple"
-                    android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/box2_check1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 1"
-                    android:textColor="@android:color/holo_green_dark" />
 
-                <CheckBox
-                    android:id="@+id/box2_check2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 2"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <CheckBox
-                    android:id="@+id/box2_check3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 3"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <!-- Horizontal LinearLayout for Buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button21"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_filled_background"
-                        android:text="Approve"
-                        android:textColor="@android:color/white" />
-
-                    <Button
-                        android:id="@+id/button22"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_outline_background"
-                        android:text="Reject"
-                        android:textColor="@color/primaryPurple" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- box3 -->
-            <LinearLayout
-                android:id="@+id/box3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/rounded_elements"
-                android:backgroundTint="@color/backgroundWhite"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/box3_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold_italic"
-                    android:paddingStart="24dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="24dp"
-                    android:paddingBottom="12dp"
-                    android:text="Dimitris has recycled"
-                    android:textColor="@color/primaryPurple"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/box3_check1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 1"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <CheckBox
-                    android:id="@+id/box3_check2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 2"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <CheckBox
-                    android:id="@+id/box3_check3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:buttonTint="@color/primaryPurple"
-                    android:text="Check 3"
-                    android:textColor="@android:color/holo_green_dark" />
-
-                <!-- Horizontal LinearLayout for Buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button31"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_filled_background"
-                        android:text="Approve"
-                        android:textColor="@android:color/white" />
-
-                    <Button
-                        android:id="@+id/button32"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_outline_background"
-                        android:text="Reject"
-                        android:textColor="@color/primaryPurple" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
