@@ -42,17 +42,25 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         ClassicUser user = DB.getClassicUser();
+
         Trophy firstTrophy = null;
         for (Trophy trophy : trophies) {
-            if(trophy.getName().equals("Welcome Hero")){
+            System.out.println(trophy.getName());
+            if (trophy.getName().equals("Welcome Hero")) {
                 firstTrophy = trophy;
             }
         }
-
-//        DB.getTrophies();
-//        Trophy finalFirstTrophy = firstTrophy;
-//        Transactions.updateUserTrophies(finalFirstTrophy);
-        Actions.trophyToast(getContext());
+        for (Trophy trophy : user.getTrophies()) {
+            System.out.println(trophy.getName());
+            if (trophy.getName().equals("Welcome Hero")) {
+                firstTrophy = null;
+            }
+        }
+        if (firstTrophy != null) {
+            Trophy finalFirstTrophy = firstTrophy;
+            Transactions.updateUserTrophies(finalFirstTrophy);
+            Actions.trophyToast(getContext());
+        }
 
         //Updating the UI
         //Update user's name in Hello message

@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getName());
 
         level = binding.profileLevel;
-        level.setText("Level " + user.getLevel().getLevel());
+        level.setText("Level " + user.getLevel());
 
         progressBar = binding.profileLevelBar;
         progressBar.setProgress(user.getXp());
@@ -80,6 +80,9 @@ public class ProfileFragment extends Fragment {
         trophiesLayout = binding.profileTrophiesLayout;
         for (Trophy trophy : trophies) {
             LinearLayout v1 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
+            TextView trophyName = v1.findViewById(R.id.profileTrophyTitle);
+//            TextView trophy
+            trophyName.setText(trophy.getName());
             v1.setId(View.generateViewId());
             trophiesLayout.addView(v1);
         }
