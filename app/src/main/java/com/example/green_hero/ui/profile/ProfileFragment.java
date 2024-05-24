@@ -17,9 +17,11 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.green_hero.DB;
 import com.example.green_hero.databinding.FragmentProfileBinding;
 import com.example.green_hero.R;
 import com.example.green_hero.databinding.TrophyLinearBinding;
+import com.example.green_hero.model.User.ClassicUser;
 import com.example.green_hero.model.User.Trophy;
 
 import io.realm.RealmList;
@@ -54,25 +56,23 @@ public class ProfileFragment extends Fragment {
 
         //DB
         ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        viewModel.getClassicUser();
-//        viewModel.insertSampleEntries();
+        ClassicUser user = DB.getClassicUser();
 
         //UI
         name = binding.profileName;
-        name.setText(viewModel.getClassicUser().getName());
+        name.setText(user.getName());
 
         level = binding.profileLevel;
-        System.out.println("Level: " + viewModel.getClassicUser().getLevel());
-//        level.setText("Level: " + Integer.toString(viewModel.getClassicUser().getLevel().getLevel()));
+        level.setText("Level " + user.getLevel().getLevel());
 
         progressBar = binding.profileLevelBar;
-        progressBar.setProgress(viewModel.getClassicUser().getXp());
+        progressBar.setProgress(user.getXp());
 
         nextReward = binding.profileNextReward;
         nextReward.setText("Paper Badge");
 
         // Create trophy layout
-        RealmList<Trophy> trophies = viewModel.getClassicUser().getTrophies();
+        RealmList<Trophy> trophies = user.getTrophies();
         System.out.println(trophies.size());
         for(Trophy trophy : trophies){
             Log.v("QUICKSTART", "Trophy: " + trophy.getName());
@@ -83,13 +83,6 @@ public class ProfileFragment extends Fragment {
             v1.setId(View.generateViewId());
             trophiesLayout.addView(v1);
         }
-//        v1 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
-//        v1.setId(View.generateViewId());
-//        v2 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
-//        v2.setId(View.generateViewId());
-//        trophiesLayout.addView(v1);
-//        trophiesLayout.addView(v2);
-//        trophyCount = 0;
 
         return root;
     }

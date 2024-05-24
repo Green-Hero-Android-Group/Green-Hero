@@ -30,7 +30,7 @@ public class ClassicUser extends RealmObject {
         this.role = role;
         this.level = level;
         this.xp = xp;
-        this.trophies = new RealmList<>();
+        this.trophies = new RealmList<Trophy>();
     }
 
     public ObjectId get_id() {

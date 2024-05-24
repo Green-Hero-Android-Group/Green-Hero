@@ -164,6 +164,7 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
@@ -204,202 +205,218 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent">-->
+                        <!--                            <androidx.constraintlayout.widget.ConstraintLayout-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="match_parent">-->
 
-<!--                                <ImageView-->
-<!--                                    android:id="@+id/trophy1"-->
-<!--                                    android:layout_width="102dp"-->
-<!--                                    android:layout_height="49dp"-->
-<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                                    app:srcCompat="@drawable/trophy" />-->
+                        <!--                                <ImageView-->
+                        <!--                                    android:id="@+id/trophy1"-->
+                        <!--                                    android:layout_width="102dp"-->
+                        <!--                                    android:layout_height="49dp"-->
+                        <!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                                    app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                                    app:layout_constraintTop_toTopOf="parent"-->
+                        <!--                                    app:srcCompat="@drawable/trophy" />-->
 
-<!--                                <TextView-->
-<!--                                    android:id="@+id/profileTrophyIndex"-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                    android:text="10"-->
-<!--                                    android:textColor="@color/backgroundWhite"-->
-<!--                                    android:textSize="16sp"-->
-<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                                    app:layout_constraintTop_toTopOf="@+id/trophy1" />-->
+                        <!--                                <TextView-->
+                        <!--                                    android:id="@+id/profileTrophyIndex"-->
+                        <!--                                    android:layout_width="wrap_content"-->
+                        <!--                                    android:layout_height="wrap_content"-->
+                        <!--                                    android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                    android:text="10"-->
+                        <!--                                    android:textColor="@color/backgroundWhite"-->
+                        <!--                                    android:textSize="16sp"-->
+                        <!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                                    app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                                    app:layout_constraintTop_toTopOf="@+id/trophy1" />-->
 
-<!--                                <TextView-->
-<!--                                    android:id="@+id/profileTrophyTitle"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="0dp"-->
-<!--                                    android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                    android:text="Trophy Title"-->
-<!--                                    android:textSize="16sp"-->
-<!--                                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                                    app:layout_constraintTop_toBottomOf="@+id/trophy1" />-->
-<!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+                        <!--                                <TextView-->
+                        <!--                                    android:id="@+id/profileTrophyTitle"-->
+                        <!--                                    android:layout_width="match_parent"-->
+                        <!--                                    android:layout_height="0dp"-->
+                        <!--                                    android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                    android:text="Trophy Title"-->
+                        <!--                                    android:textSize="16sp"-->
+                        <!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                                    app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                                    app:layout_constraintTop_toBottomOf="@+id/trophy1" />-->
+                        <!--                            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-<!--                        </LinearLayout>-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy2"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy2"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle2"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle2"-->
+                        <!--                                android:layout_width="wrap_content"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy3"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy3"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle3"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle3"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy4"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy4"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle4"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle4"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy5"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy5"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle5"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle5"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy6"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy6"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle6"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle6"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="102dp"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginStart="32dp"-->
-<!--                            android:layout_marginTop="32dp"-->
-<!--                            android:layout_marginBottom="16dp"-->
-<!--                            android:orientation="vertical"-->
-<!--                            app:flow_verticalAlign="center">-->
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="102dp"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginStart="32dp"-->
+                        <!--                            android:layout_marginTop="32dp"-->
+                        <!--                            android:layout_marginBottom="16dp"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            app:flow_verticalAlign="center">-->
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/trophy7"-->
-<!--                                android:layout_width="102dp"-->
-<!--                                android:layout_height="49dp"-->
-<!--                                app:srcCompat="@drawable/trophy" />-->
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/trophy7"-->
+                        <!--                                android:layout_width="102dp"-->
+                        <!--                                android:layout_height="49dp"-->
+                        <!--                                app:srcCompat="@drawable/trophy" />-->
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/trophyTitle7"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/open_sans_bold_italic"-->
-<!--                                android:text="Trophy Title"-->
-<!--                                android:textSize="16sp" />-->
-<!--                        </LinearLayout>-->
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/trophyTitle7"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:fontFamily="@font/open_sans_bold_italic"-->
+                        <!--                                android:text="Trophy Title"-->
+                        <!--                                android:textSize="16sp" />-->
+                        <!--                        </LinearLayout>-->
 
                     </LinearLayout>
                 </HorizontalScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/TextViewWithShadow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/open_sans_bold_italic"
+                android:text="Your Trophies"
+                android:textColor="@color/primaryYellow"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

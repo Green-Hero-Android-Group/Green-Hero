@@ -44,6 +44,7 @@ public class DB extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
+        Realm.removeDefaultConfiguration();
         AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
         app = new App(appConfig);
     }
@@ -66,7 +67,7 @@ public class DB extends Application {
         void onUserLoggedIn(User user);
     }
 
-    public static User signUpSync(String name, String email, String password) {
+    public static User signUpSync(String name, String email, String password, OnUserLoginCallback callback) {
         app.getEmailPassword().registerUserAsync(email, password, it -> {
             if (it.isSuccess()) {
                 Log.v("QUICKSTART", "Successfully registered user.");
@@ -114,6 +115,7 @@ public class DB extends Application {
                     }
                 });
                 System.out.println("Successfully signed up as: " + loggedInUser.isLoggedIn());
+                callback.onUserLoggedIn(loggedInUser);
             });
         });
         return app.currentUser();

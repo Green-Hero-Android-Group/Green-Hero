@@ -1,5 +1,8 @@
 package com.example.green_hero.ui.home;
 
+import static com.example.green_hero.DB.app;
+import static com.example.green_hero.DB.trophies;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,9 @@ import com.example.green_hero.DB;
 import com.example.green_hero.R;
 import com.example.green_hero.databinding.FragmentHomeBinding;
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Trophy;
+import com.example.green_hero.utils.Actions;
+import com.example.green_hero.utils.Transactions;
 
 import org.bson.types.ObjectId;
 
@@ -36,7 +42,17 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         ClassicUser user = DB.getClassicUser();
+        Trophy firstTrophy = null;
+        for (Trophy trophy : trophies) {
+            if(trophy.getName().equals("Welcome Hero")){
+                firstTrophy = trophy;
+            }
+        }
 
+//        DB.getTrophies();
+//        Trophy finalFirstTrophy = firstTrophy;
+//        Transactions.updateUserTrophies(finalFirstTrophy);
+        Actions.trophyToast(getContext());
 
         //Updating the UI
         //Update user's name in Hello message

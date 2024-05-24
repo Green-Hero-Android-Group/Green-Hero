@@ -161,15 +161,19 @@ public class AuthActivity extends AppCompatActivity {
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else {
-                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString());
-                    new Handler().postDelayed(new Runnable() {
+                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), new DB.OnUserLoginCallback() {
                         @Override
-                        public void run() {
-                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                            startActivity(intent);
-                            finish();
+                        public void onUserLoggedIn(User user) {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 0);
                         }
-                    }, 1000);
+                    });
 
                 }
             }
