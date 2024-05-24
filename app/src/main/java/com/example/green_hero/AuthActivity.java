@@ -1,5 +1,6 @@
 package com.example.green_hero;
 
+import static com.example.green_hero.DB.app;
 import static com.example.green_hero.DB.initializeRealm;
 //import static com.example.green_hero.DB.initializeRealmSignIn;
 import static com.example.green_hero.DB.loginSync;
@@ -16,19 +17,51 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Level;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+
+import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
+import io.realm.mongodb.auth.GoogleAuthType;
 
 public class AuthActivity extends AppCompatActivity {
+    private GoogleSignInClient googleSignInClient;
+    private ActivityResultLauncher<Intent> resultLauncher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.log_in);
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("294412243304-si6ebf7lnsfvus6ifehvbabp6497alqt.apps.googleusercontent.com")
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        Log.d("AUTH", "GoogleSignInClient configured successfully: " + googleSignInClient.toString());
+
+
+        // Register ActivityResultLauncher in onCreate
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                    handleSignInResult(task);
+                }
+        );
+
     }
 
     public void onLogInClicked(View v) {
@@ -52,7 +85,7 @@ public class AuthActivity extends AppCompatActivity {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
                                 initializeRealm(user);
-                                routeClass = AppActivity.class;
+                                routeClass = AdminActivity.class;
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -127,6 +160,12 @@ public class AuthActivity extends AppCompatActivity {
                     Log.e("QUICKSTART", "Password smaller than 6 characters");
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                } else if (!pass1.equals(pass2)) {
+                        Log.e("QUICKSTART", "Different passwords");
+                        showRedToast("Please type the same password");
+                        password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+
+
                 } else {
                     User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), AuthActivity.this,new DB.OnUserLoginCallback() {
                         @Override
@@ -146,6 +185,45 @@ public class AuthActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onSignUpWithGoogle(View v) {
+        signInWithGoogle();
+    }
+
+    private void signInWithGoogle() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        resultLauncher.launch(signInIntent);
+    }
+
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            if (completedTask.isSuccessful()) {
+                GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+                String token = account.getIdToken();
+                Credentials googleCredentials =
+                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
+                app.loginAsync(googleCredentials, it -> {
+                    if (it.isSuccess()) {
+                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                        startActivity(intent);
+
+                        Log.v("AUTH",
+                                "Successfully logged in to MongoDB Realm using Google OAuth.");
+                    } else {
+                        Log.e("AUTH",
+                                "Failed to log in to MongoDB Realm: ", it.getError());
+                    }
+                });
+            } else {
+                Log.e("AUTH", "Google Auth failed: "
+                        + completedTask.getException().toString());
+            }
+        } catch (ApiException e) {
+            Log.w("AUTH", "Failed to log in with Google OAuth: " + e.getMessage());
+        }
+    }
+
 
 
     private boolean isValidEmail(String email) {
