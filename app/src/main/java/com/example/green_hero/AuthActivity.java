@@ -7,11 +7,9 @@ import static com.example.green_hero.DB.loginSync;
 import static com.example.green_hero.DB.signUpSync;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -169,7 +167,7 @@ public class AuthActivity extends AppCompatActivity {
 
 
                 } else {
-                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), new DB.OnUserLoginCallback() {
+                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), AuthActivity.this,new DB.OnUserLoginCallback() {
                         @Override
                         public void onUserLoggedIn(User user) {
                             new Handler().postDelayed(new Runnable() {
