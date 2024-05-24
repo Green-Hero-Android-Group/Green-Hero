@@ -17,12 +17,12 @@ public class ClassicUser extends RealmObject {
     private String email;
     private String password;
     private String role;
-    private Level level;
+    private int level;
     private int xp;
     private RealmList<Trophy> trophies;
     private RealmList<Recycle> recycles;
 
-    public ClassicUser(String name,String email,String password,String role, Level level, int xp) {
+    public ClassicUser(String name,String email,String password,String role, int level, int xp) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -73,11 +73,11 @@ public class ClassicUser extends RealmObject {
         this.role = role;
     }
 
-    public Level getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 

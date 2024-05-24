@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.green_hero.DB;
 import com.example.green_hero.model.User.ClassicUser;
-import com.example.green_hero.model.User.Level;
 import com.example.green_hero.model.User.Trophy;
 
 import io.realm.Realm;
@@ -34,12 +33,6 @@ public class Subscriptions {
                                 realm.where(Trophy.class)
                         )
                 );
-                subscriptions.addOrUpdate(
-                        Subscription.create(
-                                realm.where(Level.class)
-                        )
-                );
-
             }
         });
     }
