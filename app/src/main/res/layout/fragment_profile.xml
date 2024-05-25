@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/primaryPurple">
+        android:backgroundTint="@color/secondaryGreen">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryPurple"
+            android:backgroundTint="@color/secondaryGreen"
             android:paddingTop="20sp"
             app:flow_horizontalAlign="center"
             app:flow_verticalAlign="center">
@@ -45,15 +45,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primaryPurple"
-                    android:text="@string/button"
+                <ImageButton
+                    android:id="@+id/logOutButton"
+                    android:layout_width="104dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/secondaryGreen"
+                    android:onClick="onLogOut"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logoutbtnv2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -95,22 +98,22 @@
                         app:layout_constraintVertical_bias="0.026" />
 
                     <ImageButton
-                        android:id="@+id/imageButton3"
+                        android:id="@+id/profileEditName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/backgroundWhite"
+                        android:backgroundTint="@color/secondaryGreen"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/profileName"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@android:drawable/ic_menu_edit" />
+                        app:srcCompat="@drawable/editnamev4" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                style="@style/ContainerWithShadow"
                 android:id="@+id/linearLayout5"
+                style="@style/ContainerWithShadow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -134,14 +137,12 @@
                     android:textSize="24sp" />
 
                 <ProgressBar
-                    android:id="@+id/profileLevelBar"
+                    android:id="@+id/profileLevelBar2"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/progress_bar_border"
-                    android:indeterminateDrawable="@color/primaryPurple"
-                    android:paddingVertical="5sp"
-                    android:progressDrawable="@color/primaryGreen" />
+                    android:progressBackgroundTint="@color/primaryGreen"
+                    android:progressTint="@color/primaryPurple" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -158,7 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold_italic"
-                    android:text="Paper Badge"
+                    android:text="@string/profileNextReward"
                     android:textColor="@color/primaryPurple"
                     android:textSize="34sp" />
             </LinearLayout>
@@ -174,22 +175,6 @@
                 app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    style="@style/TextViewWithShadow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="202dp"
-                    android:fontFamily="@font/open_sans_bold_italic"
-                    android:text="Your Trophies"
-                    android:textColor="@color/primaryYellow"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <HorizontalScrollView
                     android:id="@+id/horizontalScrollView2"
@@ -409,7 +394,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginBottom="30dp"
                 android:fontFamily="@font/open_sans_bold_italic"
                 android:text="Your Trophies"
                 android:textColor="@color/primaryYellow"

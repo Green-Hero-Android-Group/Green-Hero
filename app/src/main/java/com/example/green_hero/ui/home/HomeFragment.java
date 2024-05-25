@@ -44,10 +44,14 @@ public class HomeFragment extends Fragment {
         ClassicUser user = DB.getClassicUser();
 
         Trophy firstTrophy = null;
+        Trophy secondTrophy = null;
         for (Trophy trophy : trophies) {
             System.out.println(trophy.getName());
             if (trophy.getName().equals("Welcome Hero")) {
                 firstTrophy = trophy;
+            }
+            if (trophy.getName().equals("Reached Level 2")) {
+                secondTrophy = trophy;
             }
         }
         for (Trophy trophy : user.getTrophies()) {
@@ -56,9 +60,12 @@ public class HomeFragment extends Fragment {
                 firstTrophy = null;
             }
         }
+
         if (firstTrophy != null) {
-            Trophy finalFirstTrophy = firstTrophy;
-            Transactions.updateUserTrophies(finalFirstTrophy);
+            Transactions.updateUserTrophies(firstTrophy);
+            Actions.trophyToast(getContext());
+        } else {
+            Transactions.updateUserTrophies(secondTrophy);
             Actions.trophyToast(getContext());
         }
 

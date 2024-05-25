@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Collectible;
 import com.example.green_hero.model.User.Trophy;
 
 import org.bson.Document;
@@ -33,10 +34,12 @@ import io.realm.mongodb.sync.Subscription;
 import io.realm.mongodb.sync.SyncConfiguration;
 
 public class DB extends Application {
-    private String appID = "application-0-rexuosx";
+    private static String appID = "application-0-rexuosx";
     public static Realm realm;
     public static App app;
     public static ArrayList<Trophy> trophies = new ArrayList<>();
+    public static ArrayList<Collectible> rewards = new ArrayList<>();
+
 
     @Override
     public void onCreate() {
@@ -45,10 +48,32 @@ public class DB extends Application {
         Realm.removeDefaultConfiguration();
         AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
         app = new App(appConfig);
-        trophies.add(new Trophy("Welcome Hero", 0));
-        trophies.add(new Trophy("Reached Level 1", 1));
+        trophies.add(new Trophy("Welcome Hero", 1));
+        trophies.add(new Trophy("Reached Level 2", 2));
+        trophies.add(new Trophy("Reached Level 3", 3));
+        trophies.add(new Trophy("Reached Level 4", 4));
         trophies.add(new Trophy("Reached Level 5", 5));
+        trophies.add(new Trophy("Reached Level 6", 6));
+        trophies.add(new Trophy("Reached Level 7", 7));
+        trophies.add(new Trophy("Reached Level 8", 8));
+        trophies.add(new Trophy("Reached Level 9", 9));
+        trophies.add(new Trophy("Reached Level 10", 10));
+        trophies.add(new Trophy("Recycled 1 item", 1));
+        trophies.add(new Trophy("Recycled 2 items", 2));
+        trophies.add(new Trophy("Recycled 3 items", 3));
+        trophies.add(new Trophy("Recycled 4 items", 4));
         trophies.add(new Trophy("Recycled 5 items", 5));
+
+        rewards.add(new Collectible("Recycling Rookie", 1));
+        rewards.add(new Collectible("Eco-Warrior", 2));
+        rewards.add(new Collectible("Paper Badge", 3));
+        rewards.add(new Collectible("Glass Badge", 4));
+    }
+
+    public static void onCreateAfterLogOut() {
+        Realm.removeDefaultConfiguration();
+        AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
+        app = new App(appConfig);
     }
 
     public static User loginSync(Credentials credentials, OnUserLoginCallback callback) {

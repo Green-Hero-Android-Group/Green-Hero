@@ -35,7 +35,7 @@ import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
 
-public class AuthActivity extends AppCompatActivity {
+public class Auth2Activity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
     private ActivityResultLauncher<Intent> resultLauncher;
     @Override
@@ -83,19 +83,18 @@ public class AuthActivity extends AppCompatActivity {
                         public void onUserLoggedIn(User user) {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                                initializeRealm(user);
                                 routeClass = AppActivity.class;
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent intent = new Intent(AuthActivity.this, routeClass);
+                                        Intent intent = new Intent(Auth2Activity.this, routeClass);
                                         startActivity(intent);
                                         finish();
                                     }
                                 }, 0);
                             } else {
                                 Log.e("QUICKSTART", "Failed to log in.");
-                                Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Auth2Activity.this, "User not found", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -154,25 +153,25 @@ public class AuthActivity extends AppCompatActivity {
 
                 if (!isValidEmail(emailText)) {
                     showRedToast("Invalid email address");
-                    email.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                    email.setBackground(ContextCompat.getDrawable(Auth2Activity.this, R.drawable.red_border));
                 } else if (passwordLength < 6) {
                     Log.e("QUICKSTART", "Password smaller than 6 characters");
                     showRedToast("Password must be more than 6 characters");
-                    password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                    password.setBackground(ContextCompat.getDrawable(Auth2Activity.this, R.drawable.red_border));
                 } else if (!pass1.equals(pass2)) {
-                        Log.e("QUICKSTART", "Different passwords");
-                        showRedToast("Please type the same password");
-                        password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                    Log.e("QUICKSTART", "Different passwords");
+                    showRedToast("Please type the same password");
+                    password2.setBackground(ContextCompat.getDrawable(Auth2Activity.this, R.drawable.red_border));
 
 
                 } else {
-                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), AuthActivity.this,new DB.OnUserLoginCallback() {
+                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), Auth2Activity.this,new DB.OnUserLoginCallback() {
                         @Override
                         public void onUserLoggedIn(User user) {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                                    Intent intent = new Intent(Auth2Activity.this, AppActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -204,7 +203,7 @@ public class AuthActivity extends AppCompatActivity {
                         Credentials.google(token, GoogleAuthType.ID_TOKEN);
                 app.loginAsync(googleCredentials, it -> {
                     if (it.isSuccess()) {
-                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                        Intent intent = new Intent(Auth2Activity.this, AppActivity.class);
                         startActivity(intent);
 
                         Log.v("AUTH",
