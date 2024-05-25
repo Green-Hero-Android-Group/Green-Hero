@@ -15,7 +15,8 @@
 
     import com.example.green_hero.R;
     import com.example.green_hero.databinding.FragmentRecycleBinding;
-    
+    import com.example.green_hero.model.Recycle.Item;
+
     public class RecycleFragment extends Fragment {
         private FragmentRecycleBinding binding;
         private Button recycleButton;
@@ -72,9 +73,10 @@
                         selected = "Glass";
                         break;
                 }
+                Item newItem = new Item(selected, qnt, typeName);
                 Toast.makeText(getActivity(),
-                        "You Recycled: " + selected + "\nName: " + typeName + "\nQuantity: " + qnt, Toast.LENGTH_SHORT).show();
-                viewModel.insertEntry();
+                        "You Recycled: " + newItem.getType() + "\nName: " + newItem.getName() + "\nQuantity: " + newItem.getQuantity(), Toast.LENGTH_SHORT).show();
+                viewModel.insertItem(newItem);
             }
             name.getText().clear();
             qntInput.getText().clear();

@@ -9,6 +9,9 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.green_hero.model.Admin.RecycleRequest;
+import com.example.green_hero.model.Admin.Request;
+import com.example.green_hero.model.Recycle.Item;
 import com.example.green_hero.model.User.ClassicUser;
 import com.example.green_hero.model.User.Collectible;
 import com.example.green_hero.model.User.Trophy;
@@ -181,6 +184,21 @@ public class DB extends Application {
                 subscriptions.addOrUpdate(
                         Subscription.create(
                                 realm.where(Trophy.class)
+                        )
+                );
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(Item.class)
+                        )
+                );
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(RecycleRequest.class)
+                        )
+                );
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(Request.class)
                         )
                 );
             }
