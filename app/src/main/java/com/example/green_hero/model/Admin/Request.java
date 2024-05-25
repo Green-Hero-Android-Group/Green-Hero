@@ -25,6 +25,13 @@ public class Request extends RealmObject {
         this.recycle = recycle;
     }
 
+    public Request(ClassicUser user, boolean status, RecycleRequest recycle) {
+        this._id = new ObjectId();
+        this.user = user;
+        this.status = status;
+        this.recycle = recycle;
+    }
+
     public ObjectId get_id() {
         return _id;
     }

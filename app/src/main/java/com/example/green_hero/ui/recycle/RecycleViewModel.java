@@ -30,10 +30,10 @@ public class RecycleViewModel extends ViewModel {
                 Item newItem = new Item(aItem.getName(), aItem.getQuantity(), aItem.getType()); //future refactor -> I can just do realm.insert(aItem);
                 LocalDate date = LocalDate.now();
                 Log.v("QUICKSTART", "Successfully inserted new Item.");
+
                 RecycleRequest recycleReq = new RecycleRequest(date.toString(), newItem);
-                realm.insert(recycleReq);
-//                Request request = new Request(user, false, recycleReq);
-//                realm.insert(request);
+                Request request = new Request(DB.getClassicUser(), false, recycleReq);
+                realm.insert(request);
             }
         });
     }
