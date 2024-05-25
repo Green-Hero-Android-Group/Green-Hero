@@ -1,6 +1,10 @@
 package com.example.green_hero;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +16,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.green_hero.databinding.ActivityAppBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import io.realm.mongodb.App;
+import io.realm.mongodb.User;
 
 public class AppActivity extends AppCompatActivity {
     private ActivityAppBinding binding;
@@ -33,5 +40,19 @@ public class AppActivity extends AppCompatActivity {
 
         //DB
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    }
+
+    public void onLogOut(View view) {
+        ImageButton logOutButton = findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(v -> {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(AppActivity.this, Auth2Activity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 0);
+        });
     }
 }
