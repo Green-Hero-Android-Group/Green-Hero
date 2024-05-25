@@ -16,7 +16,7 @@ public class Item extends RealmObject {
     }
 
     public Item(String name, int quantity, String type) {
-        this._id = _id;
+        this._id = new ObjectId();
         this.name = name;
         this.quantity = quantity;
         this.type = type;

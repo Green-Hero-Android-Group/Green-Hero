@@ -17,6 +17,7 @@ public class RecycleRequest extends RealmObject {
     }
 
     public RecycleRequest(String date, Item item) {
+        this._id = new ObjectId();
         this.date = date;
         this.item = item;
     }
