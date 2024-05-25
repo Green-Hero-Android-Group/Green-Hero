@@ -76,7 +76,7 @@
                 Item newItem = new Item(selected, qnt, typeName);
                 Toast.makeText(getActivity(),
                         "You Recycled: " + newItem.getType() + "\nName: " + newItem.getName() + "\nQuantity: " + newItem.getQuantity(), Toast.LENGTH_SHORT).show();
-                viewModel.insertEntry(newItem);
+                viewModel.insertItem(newItem);
             }
             name.getText().clear();
             qntInput.getText().clear();
