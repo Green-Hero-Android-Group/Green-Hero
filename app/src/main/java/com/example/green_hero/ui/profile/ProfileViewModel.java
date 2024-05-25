@@ -12,19 +12,14 @@ import io.realm.Realm;
 public class ProfileViewModel extends ViewModel{
     private Realm realm = DB.realm;
 
-    public void insertEntry() {
+    public void changeName(String name) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");
             return;
         }
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                ClassicUser user = new ClassicUser("Dimitris", "dimsparagis@gmail.com",
-                        "1234", "user", 0, 0);
-                realm.insert(user);
-                Log.v("QUICKSTART", "Successfully inserted user.");
-            }
+        ClassicUser user = DB.getClassicUser();
+        realm.executeTransaction(r -> {
+            user.setName(name);
         });
     }
 }
