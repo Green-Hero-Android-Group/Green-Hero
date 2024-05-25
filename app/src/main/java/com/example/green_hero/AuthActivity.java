@@ -28,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
@@ -45,12 +47,14 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.log_in);
+
+        checkGooglePlayServicesAvailability();
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("294412243304-si6ebf7lnsfvus6ifehvbabp6497alqt.apps.googleusercontent.com")
+                .requestIdToken("294412243304-svsmddbef1cdkctqr1thjueql4e6svks.apps.googleusercontent.com")
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-        Log.d("AUTH", "GoogleSignInClient configured successfully: " + googleSignInClient.toString());
+        Log.d("AUTH", "GoogleSignInClient configured: " + googleSignInClient);
 
 
         // Register ActivityResultLauncher in onCreate
@@ -58,9 +62,13 @@ public class AuthActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                    Log.d("AUTH", "task"+ task.toString());
                     handleSignInResult(task);
                 }
+
         );
+
+
 
     }
 
@@ -190,39 +198,39 @@ public class AuthActivity extends AppCompatActivity {
         signInWithGoogle();
     }
 
-    private void signInWithGoogle() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        resultLauncher.launch(signInIntent);
-    }
+//    private void signInWithGoogle() {
+//        Intent signInIntent = googleSignInClient.getSignInIntent();
+//        resultLauncher.launch(signInIntent);
+//    }
 
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            if (completedTask.isSuccessful()) {
-                GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-                String token = account.getIdToken();
-                Credentials googleCredentials =
-                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
-                app.loginAsync(googleCredentials, it -> {
-                    if (it.isSuccess()) {
-                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                        startActivity(intent);
-
-                        Log.v("AUTH",
-                                "Successfully logged in to MongoDB Realm using Google OAuth.");
-                    } else {
-                        Log.e("AUTH",
-                                "Failed to log in to MongoDB Realm: ", it.getError());
-                    }
-                });
-            } else {
-                Log.e("AUTH", "Google Auth failed: "
-                        + completedTask.getException().toString());
-            }
-        } catch (ApiException e) {
-            Log.w("AUTH", "Failed to log in with Google OAuth: " + e.getMessage());
-        }
-    }
+//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+//        try {
+//            if (completedTask.isSuccessful()) {
+//                GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+//                String token = account.getIdToken();
+//                Credentials googleCredentials =
+//                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
+//                app.loginAsync(googleCredentials, it -> {
+//                    if (it.isSuccess()) {
+//                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+//                        startActivity(intent);
+//
+//                        Log.v("AUTH",
+//                                "Successfully logged in to MongoDB Realm using Google OAuth.");
+//                    } else {
+//                        Log.e("AUTH",
+//                                "Failed to log in to MongoDB Realm: ", it.getError());
+//                    }
+//                });
+//            } else {
+//                Log.e("AUTH", "Google Auth failed: "
+//                        + completedTask.getException().toString());
+//            }
+//        } catch (ApiException e) {
+//            Log.w("AUTH", "Failed to log in with Google OAuth: " + e.getMessage());
+//        }
+//    }
 
 
 
@@ -236,5 +244,63 @@ public class AuthActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         View view = toast.getView();
         toast.show();
+    }
+
+
+
+
+    private void checkGooglePlayServicesAvailability() {
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(this);
+
+        if (resultCode == ConnectionResult.SUCCESS) {
+            // Google Play Services is available
+            Log.d("GooglePlayServices", "Google Play Services is available.");
+        } else {
+            // Google Play Services is not available
+            if (googleApiAvailability.isUserResolvableError(resultCode)) {
+                // There's an error that can be resolved by the user
+                googleApiAvailability.getErrorDialog(this, resultCode, 9001).show();
+            } else {
+                // The error cannot be resolved by the user
+                Log.e("GooglePlayServices", "Google Play Services is not available. Error code: " + resultCode);
+            }
+        }
+    }
+
+    private static final String TAG = "GoogleSignInDebug";
+
+    private void signInWithGoogle() {
+        Log.d(TAG, "Attempting Google sign-in");
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        resultLauncher.launch(signInIntent);
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Log.d(TAG, "Handling Google sign-in result");
+        Log.d(TAG, "Result"+ completedTask.isSuccessful());
+
+        try {
+            if (completedTask.isSuccessful()) {
+                Log.d(TAG, "Google sign-in successful");
+                GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+                String token = account.getIdToken();
+                Credentials googleCredentials =
+                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
+                app.loginAsync(googleCredentials, it -> {
+                    if (it.isSuccess()) {
+                        Log.d(TAG, "Successfully logged in to MongoDB Realm using Google OAuth.");
+                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Log.e(TAG, "Failed to log in to MongoDB Realm: " + it.getError());
+                    }
+                });
+            } else {
+                Log.e(TAG, "Google sign-in failed: " + completedTask.getException().toString());
+            }
+        } catch (ApiException e) {
+            Log.w(TAG, "Failed to handle Google sign-in result: " + e.getMessage());
+        }
     }
 }
