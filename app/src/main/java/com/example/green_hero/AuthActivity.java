@@ -75,7 +75,29 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean found = false;
-                if (username.getText().toString().equals("admin")) {
+                if (username.getText().toString().equals("admin@gh.com")) {
+                    loginSync(Credentials.emailPassword(username.getText().toString(),
+                            password.getText().toString()), new DB.OnUserLoginCallback() {
+                        @Override
+                        public void onUserLoggedIn(User user) {
+                            if (user != null) {
+                                System.out.println("Successfully logged in as: " + user.isLoggedIn());
+                                initializeRealm(user);
+                                routeClass = AdminActivity.class;
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(AuthActivity.this, routeClass);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 0);
+                            } else {
+                                Log.e("QUICKSTART", "Failed to log in.");
+                                Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                     routeClass = AdminActivity.class;
                 } else {
                     loginSync(Credentials.emailPassword(username.getText().toString(),
