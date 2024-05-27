@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -22,6 +24,7 @@ import com.example.green_hero.databinding.FragmentProfileBinding;
 import com.example.green_hero.R;
 import com.example.green_hero.databinding.TrophyLinearBinding;
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Collectible;
 import com.example.green_hero.model.User.Trophy;
 
 import io.realm.RealmList;
@@ -34,7 +37,10 @@ public class ProfileFragment extends Fragment {
     private TextView level;
     private ProgressBar progressBar;
     private TextView nextReward;
+    private TextView nextRewardTitle;
     private LinearLayout trophiesLayout;
+    private ImageButton editName;
+    private EditText editText;
     private LinearLayout v1;
     private LinearLayout v2;
     private TrophyLinearBinding trophyBinding;
@@ -63,13 +69,20 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getName());
 
         level = binding.profileLevel;
+        System.out.println("Current Level" + user.getLevel());
         level.setText("Level " + user.getLevel());
 
-        progressBar = binding.profileLevelBar;
-        progressBar.setProgress(user.getXp());
+        nextRewardTitle = binding.profileNextReward;
+        for (Collectible reward : DB.rewards) {
+            if (user.getLevel() == reward.getIndex()) {
+                nextRewardTitle.setText(reward.getName());
+                break;
+            }
+        }
 
-        nextReward = binding.profileNextReward;
-        nextReward.setText("Paper Badge");
+        progressBar = binding.profileLevelBar2;
+        progressBar.setProgress(user.getXp());
+//        progressBar.setProgress(20); Uncomment this line to test the progress bar
 
         // Create trophy layout
         RealmList<Trophy> trophies = user.getTrophies();
@@ -80,13 +93,39 @@ public class ProfileFragment extends Fragment {
         trophiesLayout = binding.profileTrophiesLayout;
         for (Trophy trophy : trophies) {
             LinearLayout v1 = (LinearLayout) inflater.inflate(R.layout.trophy_linear, container, false);
-            TextView trophyName = v1.findViewById(R.id.profileTrophyTitle);
-//            TextView trophy
-            trophyName.setText(trophy.getName());
+            TextView trophyTitle = v1.findViewById(R.id.profileTrophyTitle);
+            TextView trophyIndex = v1.findViewById(R.id.profileTrophyIndex);
+            trophyTitle.setText(trophy.getName());
+            trophyIndex.setText(Integer.toString(trophy.getIndex()));
             v1.setId(View.generateViewId());
             trophiesLayout.addView(v1);
         }
 
+        editName = binding.profileEditName;
+        editName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public  void onClick(View v) {
+                if (name.getVisibility() == View.VISIBLE) {
+                    // TextView is visible, replace it with EditText
+                    name.setVisibility(View.GONE);
+                    ((ViewGroup) name.getParent()).removeView(name); // Remove TextView from parent
+                    editText = (EditText) inflater.inflate(R.layout.edit_text_profile, container, false);// Create new EditText
+                    ((ViewGroup) editName.getParent()).addView(editText); // Add EditText to parent (assuming same parent)
+                    editText.setText(name.getText().toString()); // Set initial text in EditText
+                    editText.requestFocus(); // Request focus for keyboard
+                } else {
+                    //add an enter click listener
+                    // EditText is visible, replace it with TextView
+                    name.setVisibility(View.VISIBLE);
+                    ((ViewGroup) editText.getParent()).removeView(editText); // Remove EditText from parent
+                    name = binding.profileName; // Create new TextView
+                    ((ViewGroup) editName.getParent()).addView(name); // Add TextView to parent (assuming same parent)
+                    name.setText(editText.getText().toString()); // Set initial text in TextView
+                    System.out.println("New name: " + name.getText().toString());
+                    viewModel.changeName(name.getText().toString());
+                }
+            }
+        });
         return root;
     }
 

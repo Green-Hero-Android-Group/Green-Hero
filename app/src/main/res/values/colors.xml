@@ -18,4 +18,5 @@
     <color name="backgroundGreen">#DCFBF6</color>
     <color name="secondaryGray">#858380</color>
     <color name="redLight">#E8A7A2</color>
+    <color name="backgroundWhiteTransparent">#30FFFFFF</color>
 </resources>

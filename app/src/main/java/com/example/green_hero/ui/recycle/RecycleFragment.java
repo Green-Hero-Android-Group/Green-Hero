@@ -17,6 +17,10 @@
     import com.example.green_hero.databinding.FragmentRecycleBinding;
     import com.example.green_hero.model.Recycle.Item;
 
+    import org.bson.BSON;
+    import org.bson.BsonNumber;
+    import org.bson.codecs.IntegerCodec;
+
     public class RecycleFragment extends Fragment {
         private FragmentRecycleBinding binding;
         private Button recycleButton;
@@ -73,10 +77,12 @@
                         selected = "Glass";
                         break;
                 }
-                Item newItem = new Item(selected, qnt, typeName);
+
+                Item newItem = new Item(typeName, qnt, selected);
+
                 Toast.makeText(getActivity(),
                         "You Recycled: " + newItem.getType() + "\nName: " + newItem.getName() + "\nQuantity: " + newItem.getQuantity(), Toast.LENGTH_SHORT).show();
-                viewModel.insertEntry(newItem);
+                viewModel.insertItem(newItem);
             }
             name.getText().clear();
             qntInput.getText().clear();
