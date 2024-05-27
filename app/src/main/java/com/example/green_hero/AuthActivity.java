@@ -34,6 +34,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import io.realm.Realm;
+import io.realm.mongodb.App;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
@@ -276,31 +277,35 @@ public class AuthActivity extends AppCompatActivity {
         resultLauncher.launch(signInIntent);
     }
 
+    // Handle sign-in result
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        Log.d(TAG, "Handling Google sign-in result");
-        Log.d(TAG, "Result"+ completedTask.isSuccessful());
-
         try {
-            if (completedTask.isSuccessful()) {
-                Log.d(TAG, "Google sign-in successful");
-                GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-                String token = account.getIdToken();
-                Credentials googleCredentials =
-                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
-                app.loginAsync(googleCredentials, it -> {
-                    if (it.isSuccess()) {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String idToken = account.getIdToken();
+
+            // Create Google OAuth credentials
+            Credentials googleCredentials = Credentials.google(idToken);
+
+            // Authenticate with MongoDB Realm
+            app.loginAsync(googleCredentials, new App.Callback<User>() {
+                @Override
+                public void onResult(App.Result<User> result) {
+                    if (result.isSuccess()) {
+                        // Successfully logged in to MongoDB Realm
                         Log.d(TAG, "Successfully logged in to MongoDB Realm using Google OAuth.");
-                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                        startActivity(intent);
+                        // Proceed with your app logic
                     } else {
-                        Log.e(TAG, "Failed to log in to MongoDB Realm: " + it.getError());
+                        // Failed to log in to MongoDB Realm
+                        Log.e(TAG, "Failed to log in to MongoDB Realm: " + result.getError().toString());
+                        // Handle error
                     }
-                });
-            } else {
-                Log.e(TAG, "Google sign-in failed: " + completedTask.getException().toString());
-            }
+                }
+            });
+
         } catch (ApiException e) {
-            Log.w(TAG, "Failed to handle Google sign-in result: " + e.getMessage());
+            // Sign in failed, handle error
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
 }
