@@ -197,9 +197,9 @@ public class AuthActivity extends AppCompatActivity {
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else if (!pass1.equals(pass2)) {
-                        Log.e("QUICKSTART", "Different passwords");
-                        showRedToast("Please type the same password");
-                        password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                    Log.e("QUICKSTART", "Different passwords");
+                    showRedToast("Please type the same password");
+                    password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
 
 
                 } else {
@@ -313,6 +313,12 @@ public class AuthActivity extends AppCompatActivity {
                 Log.d(TAG, "Google sign-in successful");
                 GoogleSignInAccount account = completedTask.getResult(ApiException.class);
                 String token = account.getIdToken();
+                String email=account.getEmail();
+                String name= account.getDisplayName();
+
+                Log.e(TAG,"Name"+name);
+                Log.e(TAG,"Email"+email);
+
                 Credentials googleCredentials =
                         Credentials.google(token, GoogleAuthType.ID_TOKEN);
                 app.loginAsync(googleCredentials, it -> {
