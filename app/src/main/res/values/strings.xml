@@ -45,4 +45,6 @@
     <string name="username">Username</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="profileNextReward">Test</string>
+    <string name="collection_text">Recycle to add more items to your collection!</string>
+    <string name="collection_title">Collection</string>
 </resources>
