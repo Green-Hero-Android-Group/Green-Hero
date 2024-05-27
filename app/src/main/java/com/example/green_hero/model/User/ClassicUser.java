@@ -5,8 +5,12 @@ import com.example.green_hero.model.Recycle.Recycle;
 
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 public class ClassicUser extends RealmObject {
@@ -31,6 +35,20 @@ public class ClassicUser extends RealmObject {
         this.level = level;
         this.xp = xp;
         this.trophies = new RealmList<Trophy>();
+        this.recycles = new RealmList<Recycle>();
+    }
+
+    public ClassicUser(ObjectId _id,String name,String email,String password,String role, int level,
+                       int xp, RealmList<Trophy> trophies, RealmList<Recycle> recycles) {
+        this._id = _id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.level = level;
+        this.xp = xp;
+        this.trophies =  trophies;
+        this.recycles =  recycles;
     }
 
     public ObjectId get_id() {
