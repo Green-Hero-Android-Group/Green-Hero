@@ -14,6 +14,7 @@ public class Request extends RealmObject {
     private ClassicUser user;
     private boolean status;
     private RecycleRequest recycle;
+    private ObjectId userId;
 
     public Request() {
     }
@@ -30,6 +31,21 @@ public class Request extends RealmObject {
         this.user = user;
         this.status = status;
         this.recycle = recycle;
+    }
+
+    public Request(ObjectId _id, ObjectId userId, boolean status, RecycleRequest recycleRequest) {
+        this._id = _id;
+        this.userId = userId;
+        this.status = status;
+        this.recycle = recycleRequest;
+    }
+
+    public ObjectId getUserId() {
+        return userId;
+    }
+
+    public void setUserId(ObjectId userId) {
+        this.userId = userId;
     }
 
     public ObjectId get_id() {

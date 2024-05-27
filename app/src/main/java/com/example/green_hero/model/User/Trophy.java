@@ -18,6 +18,12 @@ public class Trophy extends RealmObject {
         this.index=index;
     }
 
+    public Trophy(ObjectId _id, String name, int index) {
+        this._id = _id;
+        this.name = name;
+        this.index=index;
+    }
+
     public String getName() {
         return name;
     }
@@ -32,6 +38,14 @@ public class Trophy extends RealmObject {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
     }
 
     public Trophy() {

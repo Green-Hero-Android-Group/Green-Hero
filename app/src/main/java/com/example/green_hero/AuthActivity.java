@@ -32,6 +32,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
@@ -84,14 +85,19 @@ public class AuthActivity extends AppCompatActivity {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
                                 initializeRealm(user);
                                 routeClass = AdminActivity.class;
-                                new Handler().postDelayed(new Runnable() {
+                                DB.getRequests(new DB.OnGetDataCallback() {
                                     @Override
-                                    public void run() {
-                                        Intent intent = new Intent(AuthActivity.this, routeClass);
-                                        startActivity(intent);
-                                        finish();
+                                    public void OnGetData() {
+                                        new Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent intent = new Intent(AuthActivity.this, routeClass);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }, 0);
                                     }
-                                }, 0);
+                                });
                             } else {
                                 Log.e("QUICKSTART", "Failed to log in.");
                                 Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
