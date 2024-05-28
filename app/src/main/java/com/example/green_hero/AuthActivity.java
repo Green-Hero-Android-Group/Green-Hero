@@ -53,6 +53,8 @@ public class AuthActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("294412243304-svsmddbef1cdkctqr1thjueql4e6svks.apps.googleusercontent.com")
+                .requestEmail()
+                .requestProfile()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         Log.d("AUTH", "GoogleSignInClient configured: " + googleSignInClient);
@@ -316,8 +318,8 @@ public class AuthActivity extends AppCompatActivity {
                 String email=account.getEmail();
                 String name= account.getDisplayName();
 
-                Log.e(TAG,"Name"+name);
-                Log.e(TAG,"Email"+email);
+                Log.v(TAG,"Name "+name);
+                Log.v(TAG,"Email "+email);
 
                 Credentials googleCredentials =
                         Credentials.google(token, GoogleAuthType.ID_TOKEN);
