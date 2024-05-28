@@ -311,7 +311,7 @@ public class AuthActivity extends AppCompatActivity {
         Log.d(TAG, "Result"+ completedTask.isSuccessful());
 
         try {
-            if (true) {
+            if (completedTask.isSuccessful()) {
                 Log.d(TAG, "Google sign-in successful");
                 GoogleSignInAccount account = completedTask.getResult(ApiException.class);
                 String token = account.getIdToken();
@@ -326,8 +326,7 @@ public class AuthActivity extends AppCompatActivity {
                 app.loginAsync(googleCredentials, it -> {
                     if (it.isSuccess()) {
                         Log.d(TAG, "Successfully logged in to MongoDB Realm using Google OAuth.");
-                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                        startActivity(intent);
+
                     } else {
                         Log.e(TAG, "Failed to log in to MongoDB Realm: " + it.getError());
                     }
