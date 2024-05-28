@@ -311,7 +311,7 @@ public class AuthActivity extends AppCompatActivity {
         Log.d(TAG, "Result"+ completedTask.isSuccessful());
 
         try {
-            if (completedTask.isSuccessful()) {
+            if (true) {
                 Log.d(TAG, "Google sign-in successful");
                 GoogleSignInAccount account = completedTask.getResult(ApiException.class);
                 String token = account.getIdToken();
