@@ -47,4 +47,5 @@
     <string name="profileNextReward">Test</string>
     <string name="collection_text">Recycle to add more items to your collection!</string>
     <string name="collection_title">Collection</string>
+    <string name="quantity_collection">Quantity: </string>
 </resources>
