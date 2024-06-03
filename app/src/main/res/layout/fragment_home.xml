@@ -82,7 +82,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView19"
+                            android:id="@+id/xpTillNext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_bold_italic"
@@ -209,7 +209,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textView17"
+                                android:id="@+id/topMaterial"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="30dp"
@@ -245,7 +245,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textView18"
+                                android:id="@+id/hotwName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="30dp"
