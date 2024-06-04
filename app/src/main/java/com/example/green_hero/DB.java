@@ -141,6 +141,26 @@ public class DB extends Application {
                                                 realm.where(Trophy.class)
                                         )
                                 );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Item.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Recycle.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(RecycleRequest.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Request.class)
+                                        )
+                                );
                             }
                         };
 
@@ -410,6 +430,16 @@ public class DB extends Application {
                             });
 
                             callback.OnGetData();
+                            for (ClassicUser r : users) {
+                                Log.v("QUICKSTART", "User: " + r.getName());
+                                for (Recycle recycle : r.getRecycles()) {
+                                    Log.v("QUICKSTART", "Recycle: " + recycle.get_id());
+                                }
+                            }
+                            for(Request r : requests){
+                                Log.v("QUICKSTART", "Request: " + r.getRecycle().get_id());
+                                Log.v("QUICKSTART", "Request: " + r.getUser().getName());
+                            }
                         });
                     });
                 });

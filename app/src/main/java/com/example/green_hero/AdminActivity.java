@@ -103,12 +103,14 @@ public class AdminActivity extends AppCompatActivity {
                 }
                 // Find the request that the user corresponds to
                 for (Request request : requests.get(approvedUser)) {
-                    for (RecycleRequest recycleRequest : DB.recycleRequests) {
-                        if (recycleRequest.get_id().equals(request.getRecycle().get_id())) {
-                            if (approvedItem.get_id().equals(recycleRequest.getItem().get_id())) {
-                                System.out.println("Approved Request: " + request.get_id().toString());
-                                approvedRequest = request;
-                                break;
+                    if (!request.isStatus()) {
+                        for (RecycleRequest recycleRequest : DB.recycleRequests) {
+                            if (recycleRequest.get_id().equals(request.getRecycle().get_id())) {
+                                if (approvedItem.get_id().equals(recycleRequest.getItem().get_id())) {
+                                    System.out.println("Approved Request: " + request.get_id().toString());
+                                    approvedRequest = request;
+                                    break;
+                                }
                             }
                         }
                     }

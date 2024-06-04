@@ -36,6 +36,7 @@ public class AdminViewModel extends ViewModel {
 
                 for(RecycleRequest recycleRequest : recycleRequests){
                     if(recycleRequest.get_id().equals(request.getRecycle().get_id())){
+                        System.out.println("Admin Approval:" + recycleRequest.get_id());
                         System.out.println(recycleRequest.getDate());
                         System.out.println(recycleRequest.getItem().getName());
                         recycle.set_id(new ObjectId());
