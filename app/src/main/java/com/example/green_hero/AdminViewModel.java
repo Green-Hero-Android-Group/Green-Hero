@@ -15,6 +15,7 @@ import org.bson.types.ObjectId;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class AdminViewModel extends ViewModel {
     private Realm realm = DB.realm;
@@ -32,7 +33,7 @@ public class AdminViewModel extends ViewModel {
                 realm.copyToRealmOrUpdate(request);
 
                 //Creating a new Recycle object
-                RealmList<RecycleRequest> recycleRequests = DB.recycleRequests;
+                RealmResults<RecycleRequest> recycleRequests = DB.realm.where(RecycleRequest.class).findAll();
 
                 for(RecycleRequest recycleRequest : recycleRequests){
                     if(recycleRequest.get_id().equals(request.getRecycle().get_id())){
