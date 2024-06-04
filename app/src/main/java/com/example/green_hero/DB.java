@@ -1,9 +1,6 @@
 
 package com.example.green_hero;
 
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -141,6 +138,26 @@ public class DB extends Application {
                                                 realm.where(Trophy.class)
                                         )
                                 );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Item.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Recycle.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(RecycleRequest.class)
+                                        )
+                                );
+                                subscriptions.addOrUpdate(
+                                        Subscription.create(
+                                                realm.where(Request.class)
+                                        )
+                                );
                             }
                         };
 
@@ -172,7 +189,6 @@ public class DB extends Application {
 
 
     public static ClassicUser getClassicUser() {
-//        subscribeToClassicUser();
         RealmResults<ClassicUser> users = realm.where(ClassicUser.class).findAll();
         for (ClassicUser user : users) {
             if (user.getEmail().equals(DB.app.currentUser().getProfile().getEmail())) {
@@ -226,198 +242,5 @@ public class DB extends Application {
                 .build();
 
         realm = Realm.getInstance(flexibleSyncConfig);
-    }
-
-    public interface OnGetTrophiesCallback {
-        void OnGetTrophies();
-    }
-
-    public static void getTrophies(OnGetTrophiesCallback callback) {
-        User user = app.currentUser();
-        MongoClient mongoClient = user.getMongoClient("mongodb-atlas");
-        MongoDatabase mongoDatabase =
-                mongoClient.getDatabase("todo");
-        // registry to handle POJOs (Plain Old Java Objects)
-        MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("Trophy"); // Replace with your actual collection name
-
-        FindIterable<Document> allDocuments = mongoCollection.find();
-        RealmResultTask<MongoCursor<Document>> items = allDocuments.iterator();
-        items.getAsync(task -> {
-            if (task.isSuccess()) {
-                MongoCursor<Document> results = task.get();
-                while (results.hasNext()) {
-                    Document trophy = results.next();
-                    trophies.add(new Trophy(trophy.getString("name"), trophy.getInteger("index")));
-                }
-                for (Trophy trophy : trophies) {
-                    Log.v("QUICKSTART", "Trophy: " + trophy.getName());
-                }
-            } else {
-                Log.e("QUICKSTART", "failed to find documents with: ", task.getError());
-            }
-            callback.OnGetTrophies();
-        });
-    }
-
-
-    public static void getRequests(OnGetDataCallback callback) {
-        User user = app.currentUser();
-        MongoClient mongoClient = user.getMongoClient("mongodb-atlas");
-        MongoDatabase mongoDatabase =
-                mongoClient.getDatabase("todo");
-        // registry to handle POJOs (Plain Old Java Objects)
-        MongoCollection<Document> classicUserMongoCollection = mongoDatabase.getCollection("ClassicUser");
-        MongoCollection<Document> recycleRequestCollection = mongoDatabase.getCollection("RecycleRequest");
-        MongoCollection<Document> requestCollection = mongoDatabase.getCollection("Request");
-        MongoCollection<Document> trophyMongoCollection = mongoDatabase.getCollection("Trophy");
-        MongoCollection<Document> recycleMongoCollection = mongoDatabase.getCollection("Recycle");
-
-        users = new RealmList<>();
-        recycleRequests = new RealmList<>();
-        requests = new RealmList<>();
-        items = new RealmList<>();
-        recycles = new RealmList<>();
-        trophiesAll = new RealmList<>();
-
-
-        FindIterable<Document> allUsers = classicUserMongoCollection.find();
-        FindIterable<Document> allRecycleRequests = recycleRequestCollection.find();
-        FindIterable<Document> allRequests = requestCollection.find();
-        FindIterable<Document> allItems = mongoDatabase.getCollection("Item").find();
-        FindIterable<Document> allRecycles = recycleMongoCollection.find();
-        FindIterable<Document> allTrophies = trophyMongoCollection.find();
-
-        RealmResultTask<MongoCursor<Document>> userItems = allUsers.iterator();
-        RealmResultTask<MongoCursor<Document>> recycleRequestItems = allRecycleRequests.iterator();
-        RealmResultTask<MongoCursor<Document>> requestItems = allRequests.iterator();
-        RealmResultTask<MongoCursor<Document>> itemItems = allItems.iterator();
-        RealmResultTask<MongoCursor<Document>> recycleItems = allRecycles.iterator();
-        RealmResultTask<MongoCursor<Document>> trophyItems = allTrophies.iterator();
-
-        //Fetch all users
-        trophyItems.getAsync(task5 -> {
-            if (task5.isSuccess()) {
-                MongoCursor<Document> results = task5.get();
-                while (results.hasNext()) {
-                    Document resultTrophy = results.next();
-                    trophiesAll.add(new Trophy(resultTrophy.getObjectId("_id"),
-                            resultTrophy.getString("name"),
-                            Math.toIntExact(resultTrophy.getLong("index"))));
-                }
-                for (Trophy t : trophiesAll) {
-                    Log.v("QUICKSTART", "Trophy: " + t.get_id());
-                }
-            } else {
-                Log.e("QUICKSTART", "failed to find trophies with: ", task5.getError());
-            }
-            itemItems.getAsync(task3 -> {
-                if (task3.isSuccess()) {
-                    MongoCursor<Document> results = task3.get();
-                    while (results.hasNext()) {
-                        Document resultItem = results.next();
-                        items.add(new Item(resultItem.getObjectId("_id"),
-                                resultItem.getString("name"),
-                                Math.toIntExact(resultItem.getLong("quantity")),
-                                resultItem.getString("type")));
-                    }
-                    for (Item r : items) {
-                        Log.v("QUICKSTART", "Item: " + r.get_id());
-                    }
-                } else {
-                    Log.e("QUICKSTART", "failed to find items with: ", task3.getError());
-                }
-                recycleItems.getAsync(task4 -> {
-                    if (task4.isSuccess()) {
-                        MongoCursor<Document> results = task4.get();
-                        RealmList<Item> recycleItemsAll = new RealmList<>();
-                        while (results.hasNext()) {
-                            Document resultRecycle = results.next();
-                            for (Item items : items) {
-                                if (items.get_id().equals(resultRecycle.getObjectId("item"))) {
-                                    recycles.add(new Recycle(resultRecycle.getObjectId("_id"),
-                                            resultRecycle.getString("date"),
-                                            items));
-                                }
-                            }
-                        }
-                        for (Recycle r : recycles) {
-                            Log.v("QUICKSTART", "Recycle: " + r.getItem().getName());
-                        }
-                    } else {
-                        Log.e("QUICKSTART", "failed to find recycles with: ", task4.getError());
-                    }
-                    userItems.getAsync(task -> {
-                        if (task.isSuccess()) {
-                            MongoCursor<Document> results = task.get();
-                            while (results.hasNext()) {
-                                Document resultUser = results.next();
-                                System.out.println("UserISSS: " + resultUser.getObjectId("_id"));
-                                users.add(new ClassicUser(resultUser.getObjectId("_id"), resultUser.getString("name"),
-                                        resultUser.getString("email"),
-                                        resultUser.getString("password"), resultUser.getString("role"),
-                                        Math.toIntExact(resultUser.getLong("level")),
-                                        Math.toIntExact(resultUser.getLong("xp")),
-                                        trophiesAll,
-                                        recycles
-                                ));
-
-                            }
-                            for (ClassicUser r : users) {
-                                Log.v("QUICKSTART", "User: " + r.get_id());
-                            }
-                        } else {
-                            Log.e("QUICKSTART", "failed to find users with: ", task.getError());
-                        }
-                        recycleRequestItems.getAsync(task1 -> {
-                            if (task1.isSuccess()) {
-                                MongoCursor<Document> results = task1.get();
-                                while (results.hasNext()) {
-                                    Document resultRecycleRequest = results.next();
-                                    for (Item items : items) {
-                                        if (items.get_id().equals(resultRecycleRequest.getObjectId("item"))) {
-                                            recycleRequests.add(new RecycleRequest(resultRecycleRequest.getObjectId("_id"),
-                                                    resultRecycleRequest.getString("date"),
-                                                    items));
-                                        }
-                                    }
-                                }
-                                for (RecycleRequest r : recycleRequests) {
-                                    Log.v("QUICKSTART", "RecycleRequest: " + r.getDate());
-                                }
-                            } else {
-                                Log.e("QUICKSTART", "failed to find recycleRequests with: ", task1.getError());
-                            }
-                            requestItems.getAsync(task2 -> {
-                                if (task2.isSuccess()) {
-                                    MongoCursor<Document> results = task2.get();
-                                    while (results.hasNext()) {
-                                        Document resultRequest = results.next();
-                                        for (RecycleRequest recycleRequest : recycleRequests) {
-                                            if (recycleRequest.get_id().equals(resultRequest.getObjectId("recycle"))) {
-                                                requests.add(new Request(resultRequest.getObjectId("_id"),
-                                                        resultRequest.getObjectId("user"),
-                                                        resultRequest.getBoolean("status"),
-                                                        recycleRequest));
-                                            }
-                                        }
-                                    }
-                                    for (Request r : requests) {
-                                        Log.v("QUICKSTART", "Request: " + r.getRecycle().get_id());
-                                    }
-                                } else {
-                                    Log.e("QUICKSTART", "failed to find requests with: ", task2.getError());
-                                }
-                            });
-
-                            callback.OnGetData();
-                        });
-                    });
-                });
-            });
-        });
-    }
-
-    public interface OnGetDataCallback {
-        void OnGetData();
     }
 }

@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.realm.RealmList;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class ManageFragment extends Fragment {
 
@@ -60,10 +62,13 @@ public class ManageFragment extends Fragment {
 
         //DB
         ManageViewModel viewModel = new ManageViewModel();
-        RealmList<Request> requests = DB.requests;
-        RealmList<ClassicUser> users = DB.users;
-        RealmList<RecycleRequest> recycleRequests = DB.recycleRequests;
-        RealmList<Item> items = DB.items;
+        RealmResults<Request> requests = DB.realm.where(Request.class).findAll();
+        RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
+        RealmResults<RecycleRequest> recycleRequests = DB.realm.where(RecycleRequest.class).findAll();
+        RealmResults<Item> items = DB.realm.where(Item.class).findAll();
+
+        System.out.println("Requests: " + requests);
+        System.out.println("Users: " + users);
 
         for (Request request : requests) {
             System.out.println("Manage: " + request);
@@ -81,76 +86,78 @@ public class ManageFragment extends Fragment {
 
         requestList = binding.requestsLinearLayout;
 
-        for (ClassicUser user : users) {
-            System.out.println("User: " + user.getName() + " ID: " + user.get_id());
-            ClassicUser requestUser = null;
-            for (Request request : requests) {
-                if (!request.isStatus()) {
-                    System.out.println("Request: " + request.get_id() + " Status: " + request.isStatus());
-                }
-                if (user.get_id().equals(request.getUserId())) {
-                    requestUser = user;
-                    break;
-                }
-            }
-            if (requestUser != null) {
-                System.out.println("Request User: " + requestUser.getName());
-                CardView cardView = (CardView) inflater.inflate(R.layout.request_card, container, false);
-                TextView requestText = cardView.findViewById(R.id.requestTitle);
-                LinearLayout checkBoxes = cardView.findViewById(R.id.checkBoxContainer);
-                requestText.setText(requestUser.getName() + " has recycled");
-                ArrayList<CheckBox> currentCheckBoxes = new ArrayList<>();
-                ArrayList<Item> currentItems = new ArrayList<>();
-                ArrayList<Request> currentRequests = new ArrayList<>();
+        if(!requests.isEmpty()){
+            for (ClassicUser user : users) {
+                System.out.println("User: " + user.getName() + " ID: " + user.get_id());
+                ClassicUser requestUser = null;
                 for (Request request : requests) {
-                    if (!request.isStatus()){
-                        if (request.getUserId().equals(requestUser.get_id())) {
-                            currentRequests.add(request);
-
-                            cardView.setTag(requestUser.get_id());
-                            for(RecycleRequest recycleRequest : recycleRequests){
-                                if(recycleRequest.get_id().equals(request.getRecycle().get_id())){
-                                    for(Item item : items){
-                                        if(item.get_id().equals(recycleRequest.getItem().get_id())){
-                                            currentItems.add(item);
-                                            CheckBox checkBox = (CheckBox) inflater.inflate(R.layout.request_checkbox, cardView, false);
-                                            checkBox.setTag(item.get_id().toString());
-                                            System.out.println("Tag: " + checkBox.getTag());
-                                            checkBox.setId(View.generateViewId());
-                                            userCheckBoxes.put(checkBox.getTag().toString(), item.get_id().toString());
-                                            System.out.println("ID: " + checkBox.getId());
-                                            checkBox.setText(item.getName());
-                                            checkBoxes.addView(checkBox);
-                                            currentCheckBoxes.add(checkBox);
-                                            System.out.println("CheckBoxes: " + checkBox);
+                    if (!request.isStatus()) {
+                        System.out.println("Request: " + request.get_id() + " Status: " + request.isStatus());
+                    }
+                    if (user.get_id().equals(request.getUser().get_id())) {
+                        requestUser = user;
+                        break;
+                    }
+                }
+                if (requestUser != null) {
+                    System.out.println("Request User: " + requestUser.getName());
+                    CardView cardView = (CardView) inflater.inflate(R.layout.request_card, container, false);
+                    TextView requestText = cardView.findViewById(R.id.requestTitle);
+                    LinearLayout checkBoxes = cardView.findViewById(R.id.checkBoxContainer);
+                    requestText.setText(requestUser.getName() + " has recycled");
+                    ArrayList<CheckBox> currentCheckBoxes = new ArrayList<>();
+                    ArrayList<Item> currentItems = new ArrayList<>();
+                    ArrayList<Request> currentRequests = new ArrayList<>();
+                    for (Request request : requests) {
+                        if (!request.isStatus()){
+                            if (request.getUser().get_id().equals(requestUser.get_id())) {
+                                currentRequests.add(request);
+                                cardView.setTag(requestUser.get_id());
+                                for(RecycleRequest recycleRequest : recycleRequests){
+                                    if(recycleRequest.get_id().equals(request.getRecycle().get_id())){
+                                        for(Item item : items){
+                                            if(item.get_id().equals(recycleRequest.getItem().get_id())){
+                                                currentItems.add(item);
+                                                CheckBox checkBox = (CheckBox) inflater.inflate(R.layout.request_checkbox, cardView, false);
+                                                checkBox.setTag(item.get_id().toString());
+                                                System.out.println("Tag: " + checkBox.getTag());
+                                                checkBox.setId(View.generateViewId());
+                                                userCheckBoxes.put(checkBox.getTag().toString(), item.get_id().toString());
+                                                System.out.println("ID: " + checkBox.getId());
+                                                checkBox.setText(item.getName());
+                                                checkBoxes.addView(checkBox);
+                                                currentCheckBoxes.add(checkBox);
+                                                System.out.println("CheckBoxes: " + checkBox);
+                                            }
                                         }
                                     }
                                 }
+                                cardViewCheckBoxes.put(cardView, currentCheckBoxes);
+                                userItems.put(requestUser, currentItems);
+                                userRequests.put(requestUser, currentRequests);
                             }
-                            cardViewCheckBoxes.put(cardView, currentCheckBoxes);
-                            userItems.put(requestUser, currentItems);
-                            userRequests.put(requestUser, currentRequests);
                         }
                     }
-                }
-                //print all the hashmaps
-                for (ClassicUser user1 : userRequests.keySet()) {
-                    for (Request request : userRequests.get(user1)) {
-                        System.out.println("User: " + user1.getName() + " Request: " + request.get_id());
+                    //print all the hashmaps
+                    for (ClassicUser user1 : userRequests.keySet()) {
+                        for (Request request : userRequests.get(user1)) {
+                            System.out.println("User: " + user1.getName() + " Request: " + request.get_id());
+                        }
                     }
+                    for(ClassicUser user1 : userItems.keySet()){
+                        System.out.println("User: " + user1.getName() + " Items: " + userItems.get(user1));
+                    }
+                    for (String string : userCheckBoxes.keySet()) {
+                        System.out.println("CheckBox: " + string + " Item: " + userCheckBoxes.get(string));
+                    }
+                    for (CardView cardView1 : cardViewCheckBoxes.keySet()) {
+                        System.out.println("CardView: " + cardView1.getTag() + " CheckBoxes: " + cardViewCheckBoxes.get(cardView1));
+                    }
+                    requestList.addView(cardView);
                 }
-                for(ClassicUser user1 : userItems.keySet()){
-                    System.out.println("User: " + user1.getName() + " Items: " + userItems.get(user1));
-                }
-                for (String string : userCheckBoxes.keySet()) {
-                    System.out.println("CheckBox: " + string + " Item: " + userCheckBoxes.get(string));
-                }
-                for (CardView cardView1 : cardViewCheckBoxes.keySet()) {
-                    System.out.println("CardView: " + cardView1.getTag() + " CheckBoxes: " + cardViewCheckBoxes.get(cardView1));
-                }
-                requestList.addView(cardView);
             }
         }
+
         return root;
     }
 }
