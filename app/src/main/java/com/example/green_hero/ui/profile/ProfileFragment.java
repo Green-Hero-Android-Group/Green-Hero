@@ -82,7 +82,6 @@ public class ProfileFragment extends Fragment {
 
         progressBar = binding.profileLevelBar2;
         progressBar.setProgress(user.getXp());
-//        progressBar.setProgress(20); Uncomment this line to test the progress bar
 
         // Create trophy layout
         RealmList<Trophy> trophies = user.getTrophies();
