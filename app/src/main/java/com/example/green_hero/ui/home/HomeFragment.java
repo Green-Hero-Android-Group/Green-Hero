@@ -64,11 +64,7 @@ public class HomeFragment extends Fragment {
         if (firstTrophy != null) {
             Transactions.updateUserTrophies(firstTrophy);
             Actions.trophyToast(getContext());
-        } else {
-            Transactions.updateUserTrophies(secondTrophy);
-            Actions.trophyToast(getContext());
         }
-
         //Updating the UI
         //Update user's name in Hello message
         helloMessage = binding.helloMessage;
