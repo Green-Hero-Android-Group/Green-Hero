@@ -107,7 +107,9 @@ public class AuthActivity extends AppCompatActivity {
                         public void onUserLoggedIn(User user) {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                                initializeRealm(user);
+                                if (DB.realm == null) {
+                                    initializeRealm(user);
+                                }
                                 routeClass = AppActivity.class;
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
