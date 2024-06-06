@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.example.green_hero.R;
 import com.example.green_hero.databinding.FragmentHomeBinding;
 import com.example.green_hero.model.Recycle.Recycle;
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Collectible;
 import com.example.green_hero.model.User.Trophy;
 import com.example.green_hero.utils.Actions;
 import com.example.green_hero.utils.Transactions;
@@ -27,6 +29,7 @@ import org.w3c.dom.Text;
 
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import io.realm.mongodb.sync.Progress;
 
 public class HomeFragment extends Fragment {
 
@@ -36,6 +39,10 @@ public class HomeFragment extends Fragment {
     private TextView historyDate2;
     private TextView historyRecycle1;
     private TextView historyRecycle2;
+    private TextView level;
+    private TextView nextReward;
+    private TextView xpUntilNextLevel;
+    private ProgressBar progressBar;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -98,6 +105,24 @@ public class HomeFragment extends Fragment {
             historyRecycle1.setText(Integer.toString(twoRecycles.get(1).getItem().getQuantity()) + " " + twoRecycles.get(1).getItem().getName());
             historyRecycle2.setText(Integer.toString(twoRecycles.get(0).getItem().getQuantity()) + " " + twoRecycles.get(0).getItem().getName());
         }
+
+        //Updating level container
+        level = binding.lvlHome;
+        xpUntilNextLevel = binding.xpTillNext;
+        nextReward = binding.nextRewardHome;
+        progressBar = binding.homeLevelBar;
+
+        level.setText(Integer.toString(user.getLevel()));
+        int xpUntilNextLevelNumber = 100 - user.getXp();
+        xpUntilNextLevel.setText(xpUntilNextLevelNumber + " xp until next level");
+        for(Collectible collectible : DB.rewards) {
+            if (collectible.getIndex() == user.getLevel()) {
+                nextReward.setText(collectible.getName());
+                break;
+            }
+        }
+
+        progressBar.setProgress(user.getXp());
 
 
         return root;
