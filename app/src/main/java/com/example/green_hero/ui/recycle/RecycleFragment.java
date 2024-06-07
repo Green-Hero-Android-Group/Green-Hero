@@ -56,15 +56,18 @@
             EditText name = getView().findViewById(R.id.type_name_input);
             String typeName = name.getText().toString().trim();
             EditText qntInput = getView().findViewById(R.id.quantity);
-            int qnt = Integer.parseInt(qntInput.getText().toString());
+            int qnt = 0;
+            if (!qntInput.getText().toString().isEmpty()) {
+                qnt = Integer.parseInt(qntInput.getText().toString());
+            }
 
             RadioGroup rg = getView().findViewById(R.id.radioGroup);
             int checkedButton = rg.getCheckedRadioButtonId();
 
-            if(checkedButton == -1 || typeName.isEmpty() || qnt<=0){
+            if(checkedButton == -1 || typeName.isEmpty() || qntInput.getText().toString().isEmpty()){
                 Toast.makeText(getActivity(),
                         "Please fill all the fields", Toast.LENGTH_SHORT).show();
-            }else{
+            } else{
                 String selected = "";
                 switch (checkedButton){
                     case R.id.paper_button:
@@ -83,10 +86,12 @@
                 Toast.makeText(getActivity(),
                         "You Recycled: " + newItem.getType() + "\nName: " + newItem.getName() + "\nQuantity: " + newItem.getQuantity(), Toast.LENGTH_SHORT).show();
                 viewModel.insertItem(newItem);
+                System.out.println("Type Name" + typeName.isEmpty());
+                System.out.println("Quantity" + qntInput.getText().toString().isEmpty());
+                name.getText().clear();
+                qntInput.getText().clear();
+                rg.clearCheck();
             }
-            name.getText().clear();
-            qntInput.getText().clear();
-            rg.clearCheck();
         }
     }
 
