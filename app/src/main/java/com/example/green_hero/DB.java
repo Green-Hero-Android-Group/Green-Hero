@@ -44,12 +44,6 @@ public class DB extends Application {
     public static App app;
     public static ArrayList<Trophy> trophies = new ArrayList<>();
     public static ArrayList<Collectible> rewards = new ArrayList<>();
-    public static RealmList<ClassicUser> users;
-    public static RealmList<RecycleRequest> recycleRequests;
-    public static RealmList<Request> requests;
-    public static RealmList<Item> items;
-    public static RealmList<Recycle> recycles;
-    public static RealmList<Trophy> trophiesAll;
 
     @Override
     public void onCreate() {
@@ -58,6 +52,10 @@ public class DB extends Application {
         Realm.removeDefaultConfiguration();
         AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
         app = new App(appConfig);
+        createStaticData();
+    }
+
+    public void createStaticData() {
         trophies.add(new Trophy("Welcome Hero", 1));
         trophies.add(new Trophy("Reached Level 2", 2));
         trophies.add(new Trophy("Reached Level 3", 3));
@@ -80,12 +78,6 @@ public class DB extends Application {
         rewards.add(new Collectible("Glass Badge", 4));
     }
 
-    public static void onCreateAfterLogOut() {
-        Realm.removeDefaultConfiguration();
-        AppConfiguration appConfig = new AppConfiguration.Builder(appID).build();
-        app = new App(appConfig);
-    }
-
     public static User loginSync(Credentials credentials, OnUserLoginCallback callback) {
         app.loginAsync(credentials, it -> {
             if (it.isSuccess()) {
@@ -95,7 +87,6 @@ public class DB extends Application {
                 Log.e("QUICKSTART", "Failed to log in. Error: " + it.getError().getErrorMessage());
                 callback.onUserLoggedIn(null);
             }
-//            getTrophies();
         });
         return app.currentUser();
     }
@@ -125,41 +116,8 @@ public class DB extends Application {
                             Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
                         }
                         User loggedInUser = app.currentUser();
-                        SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
-                            @Override
-                            public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(ClassicUser.class)
-                                        )
-                                );
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(Trophy.class)
-                                        )
-                                );
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(Item.class)
-                                        )
-                                );
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(Recycle.class)
-                                        )
-                                );
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(RecycleRequest.class)
-                                        )
-                                );
-                                subscriptions.addOrUpdate(
-                                        Subscription.create(
-                                                realm.where(Request.class)
-                                        )
-                                );
-                            }
-                        };
+                        SyncConfiguration.InitialFlexibleSyncSubscriptions
+                                handler = subscribeOnStart();
 
                         SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
                                 .initialSubscriptions(handler)
@@ -187,18 +145,7 @@ public class DB extends Application {
         return app.currentUser();
     }
 
-
-    public static ClassicUser getClassicUser() {
-        RealmResults<ClassicUser> users = realm.where(ClassicUser.class).findAll();
-        for (ClassicUser user : users) {
-            if (user.getEmail().equals(DB.app.currentUser().getProfile().getEmail())) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    static void initializeRealm(User user) {
+    public static SyncConfiguration.InitialFlexibleSyncSubscriptions subscribeOnStart() {
         SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
             @Override
             public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
@@ -234,6 +181,21 @@ public class DB extends Application {
                 );
             }
         };
+        return handler;
+    }
+
+    public static ClassicUser getClassicUser() {
+        RealmResults<ClassicUser> users = realm.where(ClassicUser.class).findAll();
+        for (ClassicUser user : users) {
+            if (user.getEmail().equals(DB.app.currentUser().getProfile().getEmail())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    static void initializeRealm(User user) {
+        SyncConfiguration.InitialFlexibleSyncSubscriptions handler = subscribeOnStart();
 
         SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(user)
                 .initialSubscriptions(handler)
