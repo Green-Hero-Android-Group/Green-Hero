@@ -37,9 +37,6 @@ public class AppActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_app);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        //DB
-        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
     }
 
     public void onLogOut(View view) {
