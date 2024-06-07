@@ -1,9 +1,12 @@
 package com.example.green_hero;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -146,5 +149,19 @@ public class AdminActivity extends AppCompatActivity {
                 cardView1.setVisibility(View.GONE);
             }
         }
+    }
+
+    public void onLogOut(View view) {
+        ImageButton logOutButton = findViewById(R.id.logOutButtonAdmin);
+        logOutButton.setOnClickListener(v -> {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(AdminActivity.this, AuthActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 0);
+        });
     }
 }

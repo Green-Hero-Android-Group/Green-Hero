@@ -14,6 +14,12 @@
     <fragment
         android:id="@+id/navigation_manage"
         android:name="com.example.green_hero.ui.manage.ManageFragment"
-        android:label="Manager"
+        android:label="Manage"
         tools:layout="@layout/fragment_manage" />
+    <fragment
+        android:id="@+id/navigation_profile_admin"
+        android:name="com.example.green_hero.ui.profile_admin.ProfileAdminFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_admin"
+        />
 </navigation>
