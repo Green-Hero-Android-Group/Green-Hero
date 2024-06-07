@@ -17,6 +17,7 @@ import com.example.green_hero.databinding.FragmentCollectionBinding;
 import com.example.green_hero.databinding.FragmentRecycleBinding;
 import com.example.green_hero.model.Recycle.Recycle;
 import com.example.green_hero.model.User.ClassicUser;
+import com.example.green_hero.model.User.Collectible;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +56,7 @@ public class CollectionFragment extends Fragment {
         for (String recycleName : uniqueRecycleMap.keySet()) {
             System.out.println("Recycle Name: " + recycleName + " Quantity: " + uniqueRecycleMap.get(recycleName));
         }
+        //Updating the recycle collection
         LinearLayout itemsCollectionLinearLayout = binding.itemsCollectionLinearLayout;
         for(String recycleName : uniqueRecycleMap.keySet()){
             LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_row_collection, container, false);
@@ -63,6 +65,19 @@ public class CollectionFragment extends Fragment {
             itemName.setText(recycleName);
             itemQuantity.setText("Quantity: " + Integer.toString(uniqueRecycleMap.get(recycleName)));
             itemsCollectionLinearLayout.addView(row);
+        }
+
+        //Updating the rewards collection
+        LinearLayout rewardsCollectionLinearLayout = binding.rewardsCollectionLayout;
+        for (Collectible reward: DB.rewards) {
+            if (reward.getIndex() < user.getLevel()) {
+                LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_row_collection, container, false);
+                TextView itemName = row.findViewById(R.id.collectionItemName);
+                TextView itemQuantity = row.findViewById(R.id.collectionItemQuantity);
+                itemName.setText(reward.getName());
+                itemQuantity.setText("");
+                rewardsCollectionLinearLayout.addView(row);
+            }
         }
 
 

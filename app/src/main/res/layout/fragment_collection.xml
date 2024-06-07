@@ -111,41 +111,62 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
+                        android:layout_marginEnd="104dp"
                         android:backgroundTint="@color/backgroundWhite"
                         android:editable="false"
                         android:ems="4"
                         android:fontFamily="@font/open_sans_bold_italic"
                         android:inputType="text"
-                        android:text="Items"
+                        android:text="Rewards"
                         android:textAlignment="center"
                         android:textColor="@color/secondaryGreen"
                         android:textSize="28sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/rewardsImageCollection"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout16" />
 
                     <ImageView
                         android:id="@+id/rewardsImageCollection"
                         android:layout_width="62dp"
                         android:layout_height="74dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginTop="32dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rewardsCollection"
                         app:layout_constraintEnd_toStartOf="@+id/rewardsCollection"
-                        tools:srcCompat="@drawable/itemsicon" />
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16"
+                        tools:srcCompat="@drawable/rewardsiconv2" />
 
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintBottom_toTopOf="parent"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout17"
+                        android:layout_width="290dp"
+                        android:layout_height="221dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@drawable/collection_background2"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toBottomOf="@+id/rewardsCollection">
 
-                        <LinearLayout
-                            android:id="@+id/rewardsCollectionLayout"
+                        <ScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"></LinearLayout>
-                    </ScrollView>
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:id="@+id/rewardsCollectionLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"></LinearLayout>
+                        </ScrollView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
