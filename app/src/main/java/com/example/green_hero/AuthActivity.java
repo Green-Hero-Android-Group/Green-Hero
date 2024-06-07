@@ -96,9 +96,6 @@ public class AuthActivity extends AppCompatActivity {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
                                 initializeRealm(user);
                                 routeClass = AdminActivity.class;
-                                DB.getRequests(new DB.OnGetDataCallback() {
-                                    @Override
-                                    public void OnGetData() {
                                         new Handler().postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
@@ -107,8 +104,6 @@ public class AuthActivity extends AppCompatActivity {
                                                 finish();
                                             }
                                         }, 0);
-                                    }
-                                });
                             } else {
                                 Log.e("QUICKSTART", "Failed to log in.");
                                 Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -123,7 +118,9 @@ public class AuthActivity extends AppCompatActivity {
                         public void onUserLoggedIn(User user) {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                                initializeRealm(user);
+                                if (DB.realm == null) {
+                                    initializeRealm(user);
+                                }
                                 routeClass = AppActivity.class;
                                 new Handler().postDelayed(new Runnable() {
                                     @Override

@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import io.realm.RealmResults;
+
 public class AdminActivity extends AppCompatActivity {
     private ActivityAdminBinding binding;
     private AdminViewModel viewModel;
@@ -54,7 +56,6 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void onApproveRequest(View view) {
-        CardView cardView;
         ArrayList<CheckBox> checkBoxes = new ArrayList<>();
         ArrayList<Item> currentItems = new ArrayList<>();
         HashMap<ClassicUser, ArrayList<Request>> requests = ManageFragment.userRequests;
@@ -70,7 +71,8 @@ public class AdminActivity extends AppCompatActivity {
         for (CardView cardView1 : cardViewCheckBoxes.keySet()) {
             ArrayList<CheckBox> checkedCheckBoxes = new ArrayList<>();
             checkBoxes = cardViewCheckBoxes.get(cardView1);
-            for (ClassicUser user : DB.users) {
+            RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
+            for (ClassicUser user : users) {
                 if (user.get_id().toString().equals(cardView1.getTag().toString())) {
                     System.out.println("User: " + user.getName());
                     currentItems = items.get(user);
@@ -79,7 +81,7 @@ public class AdminActivity extends AppCompatActivity {
             }
 
             System.out.println("CheckBoxes Size: " + checkBoxes.size());
-
+            LinearLayout requestList = findViewById(R.id.requestsLinearLayout);
             for (int j = 0; j < checkBoxes.size(); j++) {
                 CheckBox checkBox1 = checkBoxes.get(j);
                 String item = checkBoxesMap.get(checkBox1.getTag().toString());
@@ -102,13 +104,16 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 }
                 // Find the request that the user corresponds to
+                RealmResults<RecycleRequest> recycleRequests = DB.realm.where(RecycleRequest.class).findAll();
                 for (Request request : requests.get(approvedUser)) {
-                    for (RecycleRequest recycleRequest : DB.recycleRequests) {
-                        if (recycleRequest.get_id().equals(request.getRecycle().get_id())) {
-                            if (approvedItem.get_id().equals(recycleRequest.getItem().get_id())) {
-                                System.out.println("Approved Request: " + request.get_id().toString());
-                                approvedRequest = request;
-                                break;
+                    if (!request.isStatus()) {
+                        for (RecycleRequest recycleRequest : recycleRequests) {
+                            if (recycleRequest.get_id().equals(request.getRecycle().get_id())) {
+                                if (approvedItem.get_id().equals(recycleRequest.getItem().get_id())) {
+                                    System.out.println("Approved Request: " + request.get_id().toString());
+                                    approvedRequest = request;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -116,7 +121,7 @@ public class AdminActivity extends AppCompatActivity {
                 if (checkBox1.isChecked()) {
                     checkedCheckBoxes.add(checkBox1);
                 }
-                LinearLayout requestList = findViewById(R.id.requestsLinearLayout);
+
                 System.out.println("CheckBox Counter: " + checkBoxCounter);
                 for(int i = 0; i < checkedCheckBoxes.size(); i++){
                     CheckBox checkBox = checkedCheckBoxes.get(i);
@@ -131,13 +136,14 @@ public class AdminActivity extends AppCompatActivity {
                         int newRequestCount = checkBoxes.size();
                         TextView requestNumber = findViewById(R.id.requestNumber);
                         requestNumber.setText(newRequestCount + " requests");
+                        System.out.println("CheckBox count" + checkBoxes.size());
                     }
                 }
-                if (checkBoxes.size() == 0) {
-                    cardViewCheckBoxes.remove(cardView1);
-                    requestList.removeView(cardView1);
-                    cardView1.setVisibility(View.GONE);
-                }
+            }
+            if (checkBoxes.isEmpty()) {
+                cardViewCheckBoxes.remove(cardView1);
+                requestList.removeView(cardView1);
+                cardView1.setVisibility(View.GONE);
             }
         }
     }
