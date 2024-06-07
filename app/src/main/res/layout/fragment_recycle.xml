@@ -58,8 +58,8 @@
 
                 <ImageView
                     android:id="@+id/recycle_image"
-                    android:layout_width="223dp"
-                    android:layout_height="183dp"
+                    android:layout_width="196dp"
+                    android:layout_height="200dp"
                     android:contentDescription="@string/description"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -82,19 +82,17 @@
 
                 <TextView
                     android:id="@+id/add_item_head"
-                    android:layout_width="227dp"
+                    style="@style/TextViewWithShadow"
+                    android:layout_width="wrap_content"
                     android:layout_height="73dp"
-                    android:fontFamily="@font/open_sans_bold_italic"
+                    android:fontFamily="@font/source_sans_pro_extralight"
                     android:text="@string/add_item"
                     android:textColor="@color/backgroundWhite"
                     android:textSize="50sp"
-                    style="@style/TextViewWithShadow"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.029999971"
                     tools:ignore="TextSizeCheck" />
 
                 <EditText
@@ -107,6 +105,7 @@
                     android:ems="10"
                     android:hint="@string/type_name"
                     android:inputType="text"
+                    android:fontFamily="@font/source_sans_pro"
                     android:minHeight="48dp"
                     android:paddingStart="10dp"
                     android:textColor="@color/backgroundWhite"
@@ -121,6 +120,7 @@
                     android:id="@+id/radioGroup"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro"
                     app:layout_constraintStart_toStartOf="@+id/type_name_input"
                     app:layout_constraintTop_toBottomOf="@+id/type_name_input"
                     tools:ignore="MissingConstraints,TextSizeCheck">
@@ -149,22 +149,71 @@
 
                 </RadioGroup>
 
-                <Button
+                <!--                <Button-->
+<!--                    android:id="@+id/signUpButton"-->
+<!--                    style="@style/TextViewWithShadow"-->
+<!--                    android:layout_width="163dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/rounded_corners_button"-->
+<!--                    android:backgroundTint="@color/primaryGreen"-->
+<!--                    android:text="@string/recycle"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="@color/primaryWhite"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.502"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/signUpButton"
-                    style="@style/TextViewWithShadow"
-                    android:layout_width="163dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_corners_button"
-                    android:backgroundTint="@color/primaryGreen"
-                    android:text="@string/recycle"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primaryWhite"
-                    android:textSize="18sp"
+                    android:layout_width="200dp"
+                    android:layout_height="57dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/custom_button_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:onClick="onRecycle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintHorizontal_bias="0.481"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                    <ImageView
+                        android:id="@+id/recycle"
+                        android:layout_width="48dp"
+                        android:layout_height="37dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/recycle_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/sign_in_text"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:text="@string/recycle"
+
+                        android:textColor="@color/secondaryGreen"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/recycle"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
                     android:id="@+id/quantity"
@@ -175,6 +224,7 @@
                     android:background="@drawable/rounded_corners_white"
                     android:ems="10"
                     android:textSize="15sp"
+                    android:fontFamily="@font/source_sans_pro"
                     android:hint="@string/quantity"
                     android:inputType="numberSigned"
                     android:paddingStart="10dp"
