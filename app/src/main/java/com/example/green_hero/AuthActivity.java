@@ -1,6 +1,7 @@
 package com.example.green_hero;
 
 import static com.example.green_hero.DB.app;
+import static com.example.green_hero.DB.googleSignInSync;
 import static com.example.green_hero.DB.initializeRealm;
 //import static com.example.green_hero.DB.initializeRealmSignIn;
 import static com.example.green_hero.DB.loginSync;
@@ -323,12 +324,16 @@ public class AuthActivity extends AppCompatActivity {
 
                 Credentials googleCredentials =
                         Credentials.google(token, GoogleAuthType.ID_TOKEN);
-                app.loginAsync(googleCredentials, it -> {
-                    if (it.isSuccess()) {
-                        Log.d(TAG, "Successfully logged in to MongoDB Realm using Google OAuth.");
-
-                    } else {
-                        Log.e(TAG, "Failed to log in to MongoDB Realm: " + it.getError());
+                googleSignInSync(name, email, "123456", this, new DB.OnUserLoginCallback() {
+                    @Override
+                    public void onUserLoggedIn(User user) {
+                        if (user != null) {
+                            Log.v(TAG, "Successfully logged in to MongoDB Realm using Google OAuth.");
+                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Log.e(TAG, "Failed to log in to MongoDB Realm.");
+                        }
                     }
                 });
             } else {
