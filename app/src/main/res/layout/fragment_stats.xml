@@ -26,13 +26,13 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/header"
-                    style="@style/TextViewWithShadow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold_italic"
@@ -49,10 +49,10 @@
                     android:id="@+id/imageView12"
                     android:layout_width="96dp"
                     android:layout_height="87dp"
-                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/header"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/header"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/header"
                     app:srcCompat="@drawable/stats_page" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -79,7 +79,6 @@
                     android:paddingVertical="10sp">
 
                     <TextView
-                        android:id="@+id/profileNextReward"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_bold_italic"

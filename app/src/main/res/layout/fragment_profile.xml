@@ -12,7 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/secondaryGreen">
+        android:backgroundTint="@color/secondaryGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -138,11 +142,13 @@
 
                 <ProgressBar
                     android:id="@+id/profileLevelBar2"
-                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progressBackgroundTint="@color/primaryGreen"
-                    android:progressTint="@color/primaryPurple" />
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:background="@drawable/collection_background"
+                    android:progressBackgroundTintMode="src_in"
+                    android:progressTint="@color/primaryPurple"
+                    />
 
                 <TextView
                     android:id="@+id/textView4"
