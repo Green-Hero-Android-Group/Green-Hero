@@ -48,4 +48,6 @@
     <string name="collection_text">Recycle to add more items to your collection!</string>
     <string name="collection_title">Collection</string>
     <string name="quantity_collection">Quantity: </string>
+    <string name="Profile">Profile</string>
+    <string name="item_name">Item Name</string>
 </resources>

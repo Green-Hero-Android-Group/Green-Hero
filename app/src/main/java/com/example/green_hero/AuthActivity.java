@@ -40,6 +40,7 @@ import io.realm.mongodb.auth.GoogleAuthType;
 public class AuthActivity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
     private ActivityResultLauncher<Intent> resultLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
@@ -83,16 +84,18 @@ public class AuthActivity extends AppCompatActivity {
                         public void onUserLoggedIn(User user) {
                             if (user != null) {
                                 System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                                initializeRealm(user);
+                                if (DB.realm == null) {
+                                    initializeRealm(user);
+                                }
                                 routeClass = AdminActivity.class;
-                                        new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Intent intent = new Intent(AuthActivity.this, routeClass);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }, 0);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(AuthActivity.this, routeClass);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 0);
                             } else {
                                 Log.e("QUICKSTART", "Failed to log in.");
                                 Toast.makeText(AuthActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -186,13 +189,13 @@ public class AuthActivity extends AppCompatActivity {
                     showRedToast("Password must be more than 6 characters");
                     password.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
                 } else if (!pass1.equals(pass2)) {
-                        Log.e("QUICKSTART", "Different passwords");
-                        showRedToast("Please type the same password");
-                        password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
+                    Log.e("QUICKSTART", "Different passwords");
+                    showRedToast("Please type the same password");
+                    password2.setBackground(ContextCompat.getDrawable(AuthActivity.this, R.drawable.red_border));
 
 
                 } else {
-                    User user = signUpSync(username.getText().toString(),email.getText().toString(), password.getText().toString(), AuthActivity.this,new DB.OnUserLoginCallback() {
+                    User user = signUpSync(username.getText().toString(), email.getText().toString(), password.getText().toString(), AuthActivity.this, new DB.OnUserLoginCallback() {
                         @Override
                         public void onUserLoggedIn(User user) {
                             new Handler().postDelayed(new Runnable() {
@@ -248,7 +251,6 @@ public class AuthActivity extends AppCompatActivity {
             Log.w("AUTH", "Failed to log in with Google OAuth: " + e.getMessage());
         }
     }
-
 
 
     private boolean isValidEmail(String email) {

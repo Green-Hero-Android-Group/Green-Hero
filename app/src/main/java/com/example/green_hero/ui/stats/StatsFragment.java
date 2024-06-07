@@ -27,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import io.realm.RealmList;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.mongodb.User;
 
@@ -127,7 +128,7 @@ public class StatsFragment extends Fragment {
             topMaterialRecycles.setText(String.valueOf(max));
 
             tableLayout = binding.leaderboard;
-            RealmResults<ClassicUser> orderedUsers = DB.realm.where(ClassicUser.class).findAll();
+            RealmResults<ClassicUser> orderedUsers = DB.realm.where(ClassicUser.class).notEqualTo("name", "Admin").findAll();
             Comparator<ClassicUser> compareByRecycles = (user1, user2) -> Integer.compare(user2.getRecycles().size(),
                     user1.getRecycles().size());
 
@@ -142,15 +143,17 @@ public class StatsFragment extends Fragment {
                 System.out.println("User recycles: " + user.getRecycles().size());
             }
             for (ClassicUser user : sortedUsers) {
-                System.out.println(user.getName());
-                TableRow row = (TableRow) inflater.inflate(R.layout.leaderboard_row, container, false);
-                TextView name = row.findViewById(R.id.heroName);
-                TextView score = row.findViewById(R.id.heroScore);
-                TextView rank = row.findViewById(R.id.heroRank);
-                name.setText(user.getName());
-                score.setText(String.valueOf(user.getRecycles().size()));
-                rank.setText(String.valueOf(orderedUsers.indexOf(user) + 1));
-                tableLayout.addView(row);
+                if (!user.getName().equals("Admin")) {
+                    System.out.println(user.getName());
+                    TableRow row = (TableRow) inflater.inflate(R.layout.leaderboard_row, container, false);
+                    TextView name = row.findViewById(R.id.heroName);
+                    TextView score = row.findViewById(R.id.heroScore);
+                    TextView rank = row.findViewById(R.id.heroRank);
+                    name.setText(user.getName());
+                    score.setText(String.valueOf(user.getRecycles().size()));
+                    rank.setText(String.valueOf(orderedUsers.indexOf(user) + 1));
+                    tableLayout.addView(row);
+                }
             }
         }
 
