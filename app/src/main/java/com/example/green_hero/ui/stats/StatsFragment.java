@@ -140,7 +140,7 @@ public class StatsFragment extends Fragment {
 
             // Print the sorted users (users with most recycles first)
             for (ClassicUser user : sortedUsers) {
-                System.out.println("User recycles: " + user.getRecycles().size());
+                System.out.println("Sorted Users: " + user.getName());
             }
             for (ClassicUser user : sortedUsers) {
                 if (!user.getName().equals("Admin")) {
@@ -151,7 +151,7 @@ public class StatsFragment extends Fragment {
                     TextView rank = row.findViewById(R.id.heroRank);
                     name.setText(user.getName());
                     score.setText(String.valueOf(user.getRecycles().size()));
-                    rank.setText(String.valueOf(orderedUsers.indexOf(user) + 1));
+                    rank.setText(String.valueOf(sortedUsers.indexOf(user) + 1));
                     tableLayout.addView(row);
                 }
             }

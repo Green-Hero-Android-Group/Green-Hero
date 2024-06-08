@@ -40,16 +40,19 @@ public class AppActivity extends AppCompatActivity {
     }
 
     public void onLogOut(View view) {
-        ImageButton logOutButton = findViewById(R.id.logOutButton);
-        logOutButton.setOnClickListener(v -> {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(AppActivity.this, AuthActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }, 0);
-        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(AppActivity.this, AuthActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 0);
+    }
+
+    public void navigateToCollection(View view) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_app);
+        navController.popBackStack();
+        navController.navigate(R.id.navigation_collection);
     }
 }

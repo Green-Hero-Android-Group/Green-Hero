@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.green_hero.DB;
 import com.example.green_hero.R;
@@ -53,8 +55,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         //DB
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
         ClassicUser user = DB.getClassicUser();
 
         Trophy firstTrophy = null;
@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
         if (recycleSize == 1) {
             RealmList<Recycle> oneRecycle = new RealmList<>();
             oneRecycle.add(user.getRecycles().get(0));
-        } else if( recycleSize > 1) {
+        } else if (recycleSize > 1) {
             RealmList<Recycle> twoRecycles = new RealmList<>();
             twoRecycles.add(user.getRecycles().get(recycleSize - 1));
             twoRecycles.add(user.getRecycles().get(recycleSize - 2));
@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         level.setText(Integer.toString(user.getLevel()));
         int xpUntilNextLevelNumber = 100 - user.getXp();
         xpUntilNextLevel.setText(xpUntilNextLevelNumber + " xp until next level");
-        for(Collectible collectible : DB.rewards) {
+        for (Collectible collectible : DB.rewards) {
             if (collectible.getIndex() == user.getLevel()) {
                 nextReward.setText(collectible.getName());
                 break;

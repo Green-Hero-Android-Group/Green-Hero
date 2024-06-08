@@ -86,7 +86,7 @@ public class ProfileFragment extends Fragment {
         // Create trophy layout
         RealmList<Trophy> trophies = user.getTrophies();
         System.out.println(trophies.size());
-        for(Trophy trophy : trophies){
+        for (Trophy trophy : trophies) {
             Log.v("QUICKSTART", "Trophy: " + trophy.getName());
         }
         trophiesLayout = binding.profileTrophiesLayout;
@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment {
         editName = binding.profileEditName;
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v) {
+            public void onClick(View v) {
                 if (name.getVisibility() == View.VISIBLE) {
                     // TextView is visible, replace it with EditText
                     name.setVisibility(View.GONE);
