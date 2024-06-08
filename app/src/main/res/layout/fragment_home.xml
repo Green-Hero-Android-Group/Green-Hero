@@ -39,6 +39,7 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:onClick="navigateToCollection"
                     android:layout_marginEnd="29dp"
                     android:background="@drawable/rounded_corners_edittext"
                     android:backgroundTint="@color/cardview_light_background"
