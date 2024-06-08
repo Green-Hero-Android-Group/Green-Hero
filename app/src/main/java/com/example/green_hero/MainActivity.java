@@ -6,6 +6,7 @@ import android.os.Handler;
 import com.example.green_hero.databinding.SplashBinding;
 import androidx.appcompat.app.AppCompatActivity;
 
+// This class is responsible for the splash screen that appears when the app is launched and the navigation to the Authentication.
 public class MainActivity extends AppCompatActivity {
 
     private SplashBinding binding;

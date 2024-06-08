@@ -32,6 +32,8 @@ import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
 
+// This class is responsible for handling the authentication process.
+
 public class AuthActivity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
     private ActivityResultLauncher<Intent> resultLauncher;
@@ -61,8 +63,8 @@ public class AuthActivity extends AppCompatActivity {
 
     }
 
+    // This method is called when the user clicks the "Log in" button.
     public void onLogInClicked(View v) {
-        Button logInButton = findViewById(R.id.signUpButton);
         EditText email = findViewById(R.id.type_name_input);
         EditText password = findViewById(R.id.type_text_password);
 
@@ -72,21 +74,16 @@ public class AuthActivity extends AppCompatActivity {
         tv1.setText("login");
         tv2.setText("login");
         if (checkFieldValidation(tv1, email, password, tv2)) {
-            logInButton.setOnClickListener(new View.OnClickListener() {
-                Class routeClass;
-
-                @Override
-                public void onClick(View v) {
-                    if (email.getText().toString().equals("admin@gh.com")) {
-                        onLogInAdmin(email.getText().toString(), password.getText().toString());
-                    } else {
-                        onLogInClassicUser(email.getText().toString(), password.getText().toString());
-                    }
-                }
-            });
+            if (email.getText().toString().equals("admin@gh.com")) {
+                onLogInAdmin(email.getText().toString(), password.getText().toString());
+            } else {
+                onLogInClassicUser(email.getText().toString(), password.getText().toString());
+            }
         }
+
     }
 
+    // This method is called when a ClassicUser tries to log in.
     public void onLogInClassicUser(String username, String password) {
         loginSync(Credentials.emailPassword(username, password),
                 new DB.OnUserLoginCallback() {
@@ -113,6 +110,7 @@ public class AuthActivity extends AppCompatActivity {
                 });
     }
 
+    // This method is called when an Admin tries to log in.
     public void onLogInAdmin(String username, String password) {
         loginSync(Credentials.emailPassword(username, password),
                 new DB.OnUserLoginCallback() {
@@ -139,36 +137,27 @@ public class AuthActivity extends AppCompatActivity {
                 });
     }
 
+    // This method is called when the user is in the sign up screen and clicks the "Log In" button.
     public void navigateToLogIn(View v) {
-        TextView signInButton = findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContentView(R.layout.log_in);
-                    }
-                }, 300);
+            public void run() {
+                setContentView(R.layout.log_in);
             }
-        });
+        }, 300);
     }
 
+    // This method is called when the user is in the log in screen and clicks the "Register Here" button.
     public void navigateToSignUp(View v) {
-        Button registerButton = findViewById(R.id.signInButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContentView(R.layout.sign_up);
-                    }
-                }, 300);
+            public void run() {
+                setContentView(R.layout.sign_up);
             }
-        });
+        }, 300);
     }
 
+    // This method is called when the user is in the sign up screen and clicks the "Sign Up" button.
     public void signUp(View v) {
         TextView username = findViewById(R.id.type_name_input);
         TextView password = findViewById(R.id.type_text_passwords);
@@ -193,15 +182,18 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
 
+    // This method is called when the user clicks the "Sign Up with Google" button.
     public void onSignUpWithGoogle(View v) {
         signInWithGoogle();
     }
 
+    // Handling the sign-in process with Google
     private void signInWithGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         resultLauncher.launch(signInIntent);
     }
 
+    // Handling the result of the sign-in process with Google
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             if (completedTask.isSuccessful()) {
@@ -230,20 +222,25 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
 
+    // This method validates the email address with a regex.
     private boolean isValidEmail(String email) {
 
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(emailPattern);
     }
 
+    // This method turns invalid fields red.
     private void showRedToast(String message) {
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         View view = toast.getView();
         toast.show();
     }
 
+    // This method checks the validation of the fields in the sign up and log in screens.
     public boolean checkFieldValidation(TextView name, TextView email,
                                         TextView password, TextView password2) {
+        //If the user is logging in
+        //Else the user is signing up
         if (name.getText().toString().equals("login") && password2.getText().toString().equals("login")) {
             // Check validation for login fields
             if (!isValidEmail(email.getText().toString())) {

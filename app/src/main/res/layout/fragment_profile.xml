@@ -75,9 +75,9 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/hero" />
+                    android:layout_width="293dp"
+                    android:layout_height="217dp"
+                    app:srcCompat="@drawable/newheroprofile" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/linearLayout2"

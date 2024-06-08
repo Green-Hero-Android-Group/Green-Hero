@@ -12,6 +12,7 @@ import io.realm.Realm;
 public class ProfileViewModel extends ViewModel{
     private Realm realm = DB.realm;
 
+    //Function for the editName listener in ProfileFragment
     public void changeName(String name) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");

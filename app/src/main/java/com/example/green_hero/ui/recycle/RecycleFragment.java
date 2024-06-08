@@ -40,7 +40,6 @@
                 }
             });
 
-
             return root;
         }
     
@@ -50,6 +49,7 @@
             binding = null;
         }
 
+        //Click listener for the recycle button
         public void onClickRecycle() {
             //DB
             RecycleViewModel viewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
@@ -61,9 +61,11 @@
                 qnt = Integer.parseInt(qntInput.getText().toString());
             }
 
+            //Getting the selected radio button
             RadioGroup rg = getView().findViewById(R.id.radioGroup);
             int checkedButton = rg.getCheckedRadioButtonId();
 
+            //Checking if all fields are filled
             if(checkedButton == -1 || typeName.isEmpty() || qntInput.getText().toString().isEmpty()){
                 Toast.makeText(getActivity(),
                         "Please fill all the fields", Toast.LENGTH_SHORT).show();
@@ -81,13 +83,15 @@
                         break;
                 }
 
+                //Creating a new item
                 Item newItem = new Item(typeName, qnt, selected);
 
                 Toast.makeText(getActivity(),
                         "You Recycled: " + newItem.getType() + "\nName: " + newItem.getName() + "\nQuantity: " + newItem.getQuantity(), Toast.LENGTH_SHORT).show();
+                //Inserting the item into the database
                 viewModel.insertItem(newItem);
-                System.out.println("Type Name" + typeName.isEmpty());
-                System.out.println("Quantity" + qntInput.getText().toString().isEmpty());
+
+                //Clearing the fields
                 name.getText().clear();
                 qntInput.getText().clear();
                 rg.clearCheck();
