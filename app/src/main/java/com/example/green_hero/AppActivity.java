@@ -52,4 +52,10 @@ public class AppActivity extends AppCompatActivity {
             }, 0);
         });
     }
+
+    public void navigateToCollection(View view) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_app);
+        navController.popBackStack();
+        navController.navigate(R.id.navigation_collection);
+    }
 }
