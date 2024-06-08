@@ -81,7 +81,7 @@ public class AdminViewModel extends ViewModel {
         });
     }
 
-    public void rejectRequest(Request request) {
+    public void rejectRequest(Item item, ClassicUser user, Request request) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");
             return;
@@ -89,7 +89,7 @@ public class AdminViewModel extends ViewModel {
 
         realm.executeTransaction(realmTrans -> {
             //Clearing the status of the request to true
-            request.setStatus(false);
+            request.setStatus(true);
             realm.copyToRealmOrUpdate(request);
         });
     }
