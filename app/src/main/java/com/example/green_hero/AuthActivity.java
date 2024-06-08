@@ -215,8 +215,17 @@ public class AuthActivity extends AppCompatActivity {
                         if (user != null) {
                             Log.v("AUTH", "Successfully logged in to MongoDB Realm using Google OAuth.");
                             initializeRealm(user);
-//                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-//                            startActivity(intent);
+                            realm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm realm) {
+                                    ClassicUser user = new ClassicUser(name, email, "123456", "user", 1, 0);
+                                    realm.insert(user);
+                                    Log.v("QUICKSTART", "Successfully inserted user.");
+                                }
+                            });
+//                          Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+//                          startActivity(intent);
+                            setContentView(R.layout.fragment_home);
                             finish();
                         } else {
                             Log.e("AUTH", "Failed to log in to MongoDB Realm.");
