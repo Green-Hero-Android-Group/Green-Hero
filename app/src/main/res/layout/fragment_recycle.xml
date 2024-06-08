@@ -5,32 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_view">
+    android:background="@color/backgroundWhite"
+    android:backgroundTint="@color/primaryWhite"
+    android:paddingBottom="?attr/actionBarSize">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/secondaryGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryGreen"
+            android:paddingTop="20sp"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalAlign="center">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="389dp"
-                android:layout_height="98dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/recycle_head"
-                    android:layout_width="197dp"
-                    android:layout_height="78dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="58dp"
                     android:fontFamily="@font/open_sans_bold_italic"
                     android:shadowColor="@color/shadowGray"
                     android:shadowDx="0"
@@ -38,13 +50,10 @@
                     android:shadowRadius="15"
                     android:text="@string/recycle"
                     android:textColor="@color/primaryGreen"
-                    android:textSize="55sp"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.083"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,10 +80,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="348dp"
-                android:layout_height="333dp"
+                android:layout_width="265dp"
+                android:layout_height="321dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/primaryGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.515"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +93,13 @@
 
                 <TextView
                     android:id="@+id/add_item_head"
+                    style="@style/TextViewWithShadow"
                     android:layout_width="227dp"
                     android:layout_height="73dp"
                     android:fontFamily="@font/open_sans_bold_italic"
                     android:text="@string/add_item"
                     android:textColor="@color/backgroundWhite"
                     android:textSize="50sp"
-                    style="@style/TextViewWithShadow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.503"
@@ -154,17 +165,29 @@
                     style="@style/TextViewWithShadow"
                     android:layout_width="163dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/rounded_corners_button"
                     android:backgroundTint="@color/primaryGreen"
                     android:text="@string/recycle"
+                    android:paddingStart="10dp"
                     android:textAllCaps="false"
                     android:textColor="@color/primaryWhite"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/signUpButton"
+                    app:layout_constraintStart_toStartOf="@+id/signUpButton"
+                    app:layout_constraintTop_toTopOf="@+id/signUpButton"
+                    app:srcCompat="@drawable/recycle_icon" />
 
                 <EditText
                     android:id="@+id/quantity"
@@ -174,11 +197,11 @@
                     android:autofillHints=""
                     android:background="@drawable/rounded_corners_white"
                     android:ems="10"
-                    android:textSize="15sp"
                     android:hint="@string/quantity"
                     android:inputType="numberSigned"
                     android:paddingStart="10dp"
                     android:textColorHint="@color/primaryWhite"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/type_name_input"

@@ -35,14 +35,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/collectionButtonHome"
+                    android:id="@+id/constraintLayout8"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="29dp"
                     android:background="@drawable/rounded_corners_edittext"
                     android:backgroundTint="@color/cardview_light_background"
-                    android:onClick="navigateToCollection"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"
                     app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -73,8 +72,8 @@
                     android:backgroundTint="@color/cardview_light_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
-                    app:layout_constraintStart_toStartOf="@+id/collectionButtonHome"
-                    app:layout_constraintTop_toBottomOf="@+id/collectionButtonHome">
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout8"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
 
                     <LinearLayout

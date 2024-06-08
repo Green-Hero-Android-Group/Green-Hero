@@ -202,4 +202,125 @@ public class DB extends Application {
 
         realm = Realm.getInstance(flexibleSyncConfig);
     }
+
+    public static User googleSignInSync(String name, String email, Context c, OnUserLoginCallback callback) {
+        String tempPassword = "123456"; // Προσωρινός κωδικός πρόσβασης
+
+        // Δοκιμάζουμε να συνδεθούμε με email και προσωρινό κωδικό πρόσβασης
+        Credentials credentials = Credentials.emailPassword(email, tempPassword);
+        app.loginAsync(credentials, it -> {
+            if (it.isSuccess()) {
+                Log.v("QUICKSTART", "Successfully authenticated with email/password.");
+                User loggedInUser = app.currentUser();
+                setupRealmForUser(loggedInUser, name, email, tempPassword);
+                callback.onUserLoggedIn(loggedInUser);
+            } else {
+                Log.e("QUICKSTART", "Failed to log in with email/password. Error: " + it.getError().getErrorMessage());
+
+                // Αν η σύνδεση αποτύχει, προσπαθούμε να καταχωρίσουμε τον χρήστη
+                app.getEmailPassword().registerUserAsync(email, tempPassword, result -> {
+                    if (result.isSuccess()) {
+                        Log.v("QUICKSTART", "Successfully registered user.");
+
+                        // Προσπαθούμε να συνδεθούμε ξανά μετά την εγγραφή
+                        app.loginAsync(credentials, it2 -> {
+                            if (it2.isSuccess()) {
+                                Log.v("QUICKSTART", "Successfully authenticated after registration.");
+                                User loggedInUser = app.currentUser();
+                                setupRealmForUser(loggedInUser, name, email, tempPassword);
+                                callback.onUserLoggedIn(loggedInUser);
+                            } else {
+                                Log.e("QUICKSTART", "Failed to log in after registration. Error: " + it2.getError().getErrorMessage());
+                            }
+                        });
+                    } else {
+                        Log.e("QUICKSTART", "Failed to register user. Error: " + result.getError().getErrorMessage());
+                    }
+                });
+            }
+        });
+        return app.currentUser();
+    }
+
+    private static void setupRealmForUser(User loggedInUser, String name, String email, String password) {
+        SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+            @Override
+            public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(ClassicUser.class)
+                        )
+                );
+                subscriptions.addOrUpdate(
+                        Subscription.create(
+                                realm.where(Trophy.class)
+                        )
+                );
+            }
+        };
+        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
+                .initialSubscriptions(handler)
+                .allowQueriesOnUiThread(true)
+                .allowWritesOnUiThread(true)
+                .build();
+
+        realm = Realm.getInstance(flexibleSyncConfig);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ClassicUser user = new ClassicUser(name, email, password, "user", 1, 0);
+                realm.insert(user);
+                Log.v("QUICKSTART", "Successfully inserted user.");
+            }
+        });
+    }
+
+
+//    public static User googleSignInSync(String name, String email, String password, Context c, OnUserLoginCallback callback) {
+//        Credentials credentials1 = Credentials.emailPassword(email, password);
+//
+//
+//        app.loginAsync(credentials1, it3 -> {
+//            if (it3.isSuccess()) {
+//                Log.v("QUICKSTART", "Successfully authenticated Google.");
+//            } else {
+//                Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
+//            }
+//            User loggedInUser = app.currentUser();
+//            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+//                @Override
+//                public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+//                    subscriptions.addOrUpdate(
+//                            Subscription.create(
+//                                    realm.where(ClassicUser.class)
+//                            )
+//                    );
+//                    subscriptions.addOrUpdate(
+//                            Subscription.create(
+//                                    realm.where(Trophy.class)
+//                            )
+//                    );
+//                }
+//            };
+//            SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
+//                    .initialSubscriptions(handler)
+//                    .allowQueriesOnUiThread(true)
+//                    .allowWritesOnUiThread(true)
+//                    .build();
+//
+//            realm = Realm.getInstance(flexibleSyncConfig);
+//            realm.executeTransaction(new Realm.Transaction() {
+//                @Override
+//                public void execute(Realm realm) {
+//                    ClassicUser user = new ClassicUser(name, email,
+//                            password, "user", 1, 0);
+//                    realm.insert(user);
+//                    Log.v("QUICKSTART", "Successfully inserted user.");
+//                }
+//            });
+//            System.out.println("Successfully signed up as: " + loggedInUser.isLoggedIn());
+//            callback.onUserLoggedIn(loggedInUser);
+//        });
+//        return app.currentUser();
+//    }
 }
