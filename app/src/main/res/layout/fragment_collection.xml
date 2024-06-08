@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
 
             <HorizontalScrollView
@@ -30,43 +30,109 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"
+                app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="25dp"
+
                     android:layout_marginBottom="25dp"
                     android:background="@drawable/collection_background">
 
-                    <EditText
-                        android:id="@+id/editTextText"
+                    <LinearLayout
+                        android:id="@+id/linearLayout10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginEnd="104dp"
-                        android:backgroundTint="@color/backgroundWhite"
-                        android:editable="false"
-                        android:ems="4"
-                        android:fontFamily="@font/open_sans_bold_italic"
-                        android:inputType="text"
-                        android:text="Items"
-                        android:textAlignment="center"
-                        android:textColor="@color/secondaryGreen"
-                        android:textSize="28sp"
+                        android:layout_marginTop="25dp"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView17"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <!-- TextView for the text -->
+
+                        <!-- View for the underline -->
+
+
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:text="Items"
+                            android:textColor="@android:color/black"
+                            android:textSize="28sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@android:color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="104dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rewardsImageCollection"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
+
+                        <!-- TextView for the text -->
+                        <TextView
+                            android:id="@+id/textView45"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold_italic"
+                            android:text="Rewards"
+                            android:textColor="@android:color/black"
+                            android:textSize="28sp" />
+
+                        <!-- View for the underline -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@android:color/white" />
+
+                    </LinearLayout>
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/editTextText"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="32dp"-->
+                    <!--                        android:layout_marginEnd="104dp"-->
+                    <!--                        android:backgroundTint="@color/backgroundWhite"-->
+                    <!--                        android:editable="false"-->
+                    <!--                        android:ems="4"-->
+                    <!--                        android:fontFamily="@font/open_sans_bold_italic"-->
+                    <!--                        android:text="Items"-->
+                    <!--                        android:textAlignment="center"-->
+                    <!--                        android:textColor="@color/secondaryGreen"-->
+                    <!--                        android:textSize="28sp"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintStart_toEndOf="@+id/imageView17"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
                     <ImageView
                         android:id="@+id/imageView17"
                         android:layout_width="62dp"
                         android:layout_height="74dp"
                         android:layout_marginStart="48dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/editTextText"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="9dp"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
+                        app:layout_constraintEnd_toStartOf="@+id/linearLayout10"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@drawable/itemsicon" />
@@ -75,19 +141,20 @@
                         android:id="@+id/constraintLayout16"
                         android:layout_width="290dp"
                         android:layout_height="221dp"
+                        android:layout_marginTop="15dp"
                         android:background="@drawable/collection_background2"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.492"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextText">
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
                         <ScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -107,35 +174,34 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <EditText
-                        android:id="@+id/rewardsCollection"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginEnd="104dp"
-                        android:backgroundTint="@color/backgroundWhite"
-                        android:editable="false"
-                        android:ems="4"
-                        android:fontFamily="@font/open_sans_bold_italic"
-                        android:inputType="text"
-                        android:text="Rewards"
-                        android:textAlignment="center"
-                        android:textColor="@color/secondaryGreen"
-                        android:textSize="28sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/rewardsImageCollection"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16" />
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/rewardsCollection"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="20dp"-->
+                    <!--                        android:layout_marginEnd="104dp"-->
+                    <!--                        android:backgroundTint="@color/backgroundWhite"-->
+                    <!--                        android:editable="false"-->
+                    <!--                        android:ems="4"-->
+                    <!--                        android:fontFamily="@font/open_sans_bold_italic"-->
+                    <!--                        android:inputType="text"-->
+                    <!--                        android:text="Rewards"-->
+                    <!--                        android:textAlignment="center"-->
+                    <!--                        android:textColor="@color/secondaryGreen"-->
+                    <!--                        android:textSize="28sp"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintHorizontal_bias="0.5"-->
+                    <!--                        app:layout_constraintStart_toEndOf="@+id/rewardsImageCollection"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16" />-->
 
                     <ImageView
                         android:id="@+id/rewardsImageCollection"
                         android:layout_width="62dp"
                         android:layout_height="74dp"
                         android:layout_marginStart="48dp"
-                        android:layout_marginTop="32dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/rewardsCollection"
-                        app:layout_constraintEnd_toStartOf="@+id/rewardsCollection"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginBottom="9dp"
+                        app:layout_constraintBottom_toTopOf="@+id/constraintLayout17"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout16"
                         tools:srcCompat="@drawable/rewardsiconv2" />
@@ -144,17 +210,17 @@
                         android:id="@+id/constraintLayout17"
                         android:layout_width="290dp"
                         android:layout_height="221dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="32dp"
                         android:background="@drawable/collection_background2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rewardsCollection">
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
                         <ScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
                             android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
