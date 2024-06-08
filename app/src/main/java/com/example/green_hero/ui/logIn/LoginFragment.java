@@ -39,28 +39,7 @@ public class LoginFragment extends Fragment {
         passwordEditText = root.findViewById(R.id.type_text_password);
         loginButton = root.findViewById(R.id.signUpButton);
 
-        //DB
-        LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
         return root;
-
-    }
-
-    private void login() {
-
-        String username = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-
-        if (username.equals("example_user") && password.equals("example_password")) {
-            // Εάν η ταυτοποίηση είναι επιτυχής
-            Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
-            // Εδώ μπορείς να προχωρήσεις σε μια άλλη δραστηριότητα ή να εκτελέσεις κάποιες άλλες ενέργειες
-        } else {
-
-            Toast.makeText(getActivity(), "Invalid username or password", Toast.LENGTH_SHORT).show();
-        }
-
-
     }
 
     @Override

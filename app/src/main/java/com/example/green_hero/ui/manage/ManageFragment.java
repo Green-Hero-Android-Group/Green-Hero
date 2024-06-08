@@ -75,6 +75,7 @@ public class ManageFragment extends Fragment {
         }
 
         //Updating the UI
+        //Update the request number
         requestNumber = binding.requestNumber;
         requestCount = 0;
         for (Request request : requests) {
@@ -87,6 +88,7 @@ public class ManageFragment extends Fragment {
 
         requestList = binding.requestsLinearLayout;
 
+        //Create a card for each user that has one or multiple requests
         if(!requests.isEmpty()){
             for (ClassicUser user : users) {
                 System.out.println("User: " + user.getName() + " ID: " + user.get_id());
@@ -140,21 +142,6 @@ public class ManageFragment extends Fragment {
                                 }
                             }
                         }
-                        //print all the hashmaps
-                        for (ClassicUser user1 : userRequests.keySet()) {
-                            for (Request request : userRequests.get(user1)) {
-                                System.out.println("User: " + user1.getName() + " Request: " + request.get_id());
-                            }
-                        }
-                        for(ClassicUser user1 : userItems.keySet()){
-                            System.out.println("User: " + user1.getName() + " Items: " + userItems.get(user1));
-                        }
-                        for (String string : userCheckBoxes.keySet()) {
-                            System.out.println("CheckBox: " + string + " Item: " + userCheckBoxes.get(string));
-                        }
-                        for (CardView cardView1 : cardViewCheckBoxes.keySet()) {
-                            System.out.println("CardView: " + cardView1.getTag() + " CheckBoxes: " + cardViewCheckBoxes.get(cardView1));
-                        }
                         requestList.addView(cardView);
                     }
                 }
@@ -165,6 +152,7 @@ public class ManageFragment extends Fragment {
         return root;
     }
 
+    //Check if the user has any requests(Used to prevent creating a card for a user that has no requests
     public boolean userHasRequests(ClassicUser user, RealmResults<Request> requests) {
         for (Request request : requests) {
             if (!request.isStatus()) {

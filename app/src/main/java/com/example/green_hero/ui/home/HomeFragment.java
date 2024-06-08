@@ -55,17 +55,15 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         //DB
+        //Updating the UI
         ClassicUser user = DB.getClassicUser();
 
+        //Giving first trophy to a new user and checking if it's already given
         Trophy firstTrophy = null;
-        Trophy secondTrophy = null;
         for (Trophy trophy : trophies) {
             System.out.println(trophy.getName());
             if (trophy.getName().equals("Welcome Hero")) {
                 firstTrophy = trophy;
-            }
-            if (trophy.getName().equals("Reached Level 2")) {
-                secondTrophy = trophy;
             }
         }
         for (Trophy trophy : user.getTrophies()) {
@@ -79,7 +77,7 @@ public class HomeFragment extends Fragment {
             Transactions.updateUserTrophies(firstTrophy);
             Actions.trophyToast(getContext());
         }
-        //Updating the UI
+
         //Update user's name in Hello message
         helloMessage = binding.helloMessage;
         helloMessage.setText("Hello, " + user.getName() + "!");
@@ -123,7 +121,6 @@ public class HomeFragment extends Fragment {
         }
 
         progressBar.setProgress(user.getXp());
-
 
         return root;
     }

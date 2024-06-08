@@ -60,6 +60,8 @@ public class StatsFragment extends Fragment {
         topMaterial = binding.topMaterial;
         topMaterialRecycles = binding.topMaterialRecycles;
 
+        //Calculating the top user of the week
+        //Finding the recycles of the current week
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
         LocalDate monday = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
@@ -84,6 +86,8 @@ public class StatsFragment extends Fragment {
                 }
             }
         }
+        //If there are no users or recycles, display "No users" and "No recycles".
+        //Else display the top user of the week
         if (users.size() == 1 || recycles.isEmpty()) {
             topUser.setText("No users");
             topUserRecycles.setText("No recycles");
@@ -92,12 +96,14 @@ public class StatsFragment extends Fragment {
             topMaterialRecycles.setText("0");
         } else {
 
+            //Display the top user of the week
             topUser.setText(hero.getName().toString());
             topUserRecycles.setText("with " + String.valueOf(maxRecycles) + " recycles");
 
-
+            //Display the total number of recycles
             recycledItems.setText(String.valueOf(recycles.size()));
 
+            //Finding the top material
             for (Recycle recycle : recycles) {
                 if (recycle.getItem().getType().equals("Paper")) {
                     paperCounter++;
@@ -127,21 +133,18 @@ public class StatsFragment extends Fragment {
             topMaterial.setText(topMaterialString);
             topMaterialRecycles.setText(String.valueOf(max));
 
+            //Creating the leaderboard
             tableLayout = binding.leaderboard;
             RealmResults<ClassicUser> orderedUsers = DB.realm.where(ClassicUser.class).notEqualTo("name", "Admin").findAll();
             Comparator<ClassicUser> compareByRecycles = (user1, user2) -> Integer.compare(user2.getRecycles().size(),
                     user1.getRecycles().size());
 
-            // Create a new ArrayList to store sorted users
+            //Ordering the users by the number of recycles
             ArrayList<ClassicUser> sortedUsers = new ArrayList<>(orderedUsers);
 
-            // Sort the new ArrayList using the comparator
             Collections.sort(sortedUsers, compareByRecycles);
 
-            // Print the sorted users (users with most recycles first)
-            for (ClassicUser user : sortedUsers) {
-                System.out.println("Sorted Users: " + user.getName());
-            }
+            //Creating the leaderboard, by inflating the leaderboard_row layout for each user
             for (ClassicUser user : sortedUsers) {
                 if (!user.getName().equals("Admin")) {
                     System.out.println(user.getName());
