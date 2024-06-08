@@ -55,10 +55,19 @@ public class AdminViewModel extends ViewModel {
                     }
 
                     //Updating the user's XP and leveling up if necessary
-                    user.setXp(user.getXp() + 100 / user.getLevel());
+                    user.setXp(user.getXp() + (100 / user.getLevel()));
                     if (user.getXp() == 100) {
                         user.setLevel(user.getLevel() + 1);
                         user.setXp(0);
+                        for (Trophy trophy : DB.trophies) {
+                            if (trophy.getName().equals("Reached Level " + user.getLevel())) {
+                                user.getTrophies().add(trophy);
+                            }
+                        }
+                    } else if (user.getXp() > 100) {
+                        user.setLevel(user.getLevel() + 1);
+                        user.setXp(0);
+                        user.setXp(user.getXp() + (100 / user.getLevel()));
                         for (Trophy trophy : DB.trophies) {
                             if (trophy.getName().equals("Reached Level " + user.getLevel())) {
                                 user.getTrophies().add(trophy);

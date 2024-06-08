@@ -3,7 +3,6 @@ package com.example.green_hero;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -13,26 +12,21 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.green_hero.databinding.ActivityAdminBinding;
-import com.example.green_hero.databinding.ActivityAppBinding;
 import com.example.green_hero.model.Admin.RecycleRequest;
 import com.example.green_hero.model.Admin.Request;
 import com.example.green_hero.model.Recycle.Item;
 import com.example.green_hero.model.User.ClassicUser;
 import com.example.green_hero.ui.manage.ManageFragment;
-import com.example.green_hero.ui.manage.ManageViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
 
 import io.realm.RealmResults;
 
@@ -71,19 +65,18 @@ public class AdminActivity extends AppCompatActivity {
         ClassicUser approvedUser = null;
         Request approvedRequest = null;
         int checkBoxCounter = 0;
-        for (CardView cardView1 : cardViewCheckBoxes.keySet()) {
+        for (int k = 0; k < cardViewCheckBoxes.size(); k++) {
+            CardView cardView1 = (CardView) cardViewCheckBoxes.keySet().toArray()[k];
             ArrayList<CheckBox> checkedCheckBoxes = new ArrayList<>();
             checkBoxes = cardViewCheckBoxes.get(cardView1);
             RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
             for (ClassicUser user : users) {
                 if (user.get_id().toString().equals(cardView1.getTag().toString())) {
-                    System.out.println("User: " + user.getName());
                     currentItems = items.get(user);
                     break;
                 }
             }
 
-            System.out.println("CheckBoxes Size: " + checkBoxes.size());
             LinearLayout requestList = findViewById(R.id.requestsLinearLayout);
             for (int j = 0; j < checkBoxes.size(); j++) {
                 CheckBox checkBox1 = checkBoxes.get(j);
@@ -125,7 +118,6 @@ public class AdminActivity extends AppCompatActivity {
                     checkedCheckBoxes.add(checkBox1);
                 }
 
-                System.out.println("CheckBox Counter: " + checkBoxCounter);
                 for(int i = 0; i < checkedCheckBoxes.size(); i++){
                     CheckBox checkBox = checkedCheckBoxes.get(i);
                     if (checkBox.isChecked()) {
@@ -136,8 +128,9 @@ public class AdminActivity extends AppCompatActivity {
                         checkBoxCounter++;
                         checkBoxes.remove(checkBox);
                         checkedCheckBoxes.remove(checkBox);
-                        int newRequestCount = checkBoxes.size();
                         TextView requestNumber = findViewById(R.id.requestNumber);
+                        String[] request = requestNumber.getText().toString().split(" ");
+                        int newRequestCount = Integer.parseInt(request[0]) - 1;
                         requestNumber.setText(newRequestCount + " requests");
                         System.out.println("CheckBox count" + checkBoxes.size());
                     }
