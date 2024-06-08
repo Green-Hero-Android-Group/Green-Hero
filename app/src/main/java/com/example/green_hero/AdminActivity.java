@@ -52,24 +52,27 @@ public class AdminActivity extends AppCompatActivity {
         viewModel = new AdminViewModel();
     }
 
+    // Click listener for the reject request button
     public void onRejectRequest(View view) {
         ArrayList<CheckBox> checkBoxes = new ArrayList<>();
         ArrayList<Item> currentItems = new ArrayList<>();
         HashMap<ClassicUser, ArrayList<Request>> requests = ManageFragment.userRequests;
         HashMap<ClassicUser, ArrayList<Item>> items = ManageFragment.userItems;
         HashMap<String, String> checkBoxesMap = ManageFragment.userCheckBoxes;
+        //HashMap for the cardview and its checkboxes
         HashMap<CardView, ArrayList<CheckBox>> cardViewCheckBoxes = ManageFragment.cardViewCheckBoxes;
-
 
         Item approvedItem = null;
         ClassicUser approvedUser = null;
         Request approvedRequest = null;
         int checkBoxCounter = 0;
+        //Iterate through the cardviews and their checkboxes
         for (int k = 0; k < cardViewCheckBoxes.size(); k++) {
             CardView cardView1 = (CardView) cardViewCheckBoxes.keySet().toArray()[k];
             ArrayList<CheckBox> checkedCheckBoxes = new ArrayList<>();
             checkBoxes = cardViewCheckBoxes.get(cardView1);
             RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
+            //Find the user that the cardview corresponds to
             for (ClassicUser user : users) {
                 if (user.get_id().toString().equals(cardView1.getTag().toString())) {
                     currentItems = items.get(user);
@@ -77,7 +80,9 @@ public class AdminActivity extends AppCompatActivity {
                 }
             }
 
+
             LinearLayout requestList = findViewById(R.id.requestsLinearLayout);
+            //Iterate through the checkboxes
             for (int j = 0; j < checkBoxes.size(); j++) {
                 CheckBox checkBox1 = checkBoxes.get(j);
                 String item = checkBoxesMap.get(checkBox1.getTag().toString());
@@ -114,10 +119,12 @@ public class AdminActivity extends AppCompatActivity {
                         }
                     }
                 }
+                // Add the checkbox to the list of checked checkboxes
                 if (checkBox1.isChecked()) {
                     checkedCheckBoxes.add(checkBox1);
                 }
 
+                // Remove the checked checkboxes from the cardview
                 for(int i = 0; i < checkedCheckBoxes.size(); i++){
                     CheckBox checkBox = checkedCheckBoxes.get(i);
                     if (checkBox.isChecked()) {
@@ -136,6 +143,7 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 }
             }
+            // Remove the cardview if all checkboxes are removed
             if (checkBoxes.isEmpty()) {
                 cardViewCheckBoxes.remove(cardView1);
                 requestList.removeView(cardView1);
@@ -150,6 +158,7 @@ public class AdminActivity extends AppCompatActivity {
         HashMap<ClassicUser, ArrayList<Request>> requests = ManageFragment.userRequests;
         HashMap<ClassicUser, ArrayList<Item>> items = ManageFragment.userItems;
         HashMap<String, String> checkBoxesMap = ManageFragment.userCheckBoxes;
+        //HashMap for the cardview and its checkboxes
         HashMap<CardView, ArrayList<CheckBox>> cardViewCheckBoxes = ManageFragment.cardViewCheckBoxes;
 
 
@@ -157,11 +166,13 @@ public class AdminActivity extends AppCompatActivity {
         ClassicUser approvedUser = null;
         Request approvedRequest = null;
         int checkBoxCounter = 0;
+        //Iterate through the cardviews and their checkboxes
         for (int k = 0; k < cardViewCheckBoxes.size(); k++) {
             CardView cardView1 = (CardView) cardViewCheckBoxes.keySet().toArray()[k];
             ArrayList<CheckBox> checkedCheckBoxes = new ArrayList<>();
             checkBoxes = cardViewCheckBoxes.get(cardView1);
             RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
+            //Find the user that the cardview corresponds to
             for (ClassicUser user : users) {
                 if (user.get_id().toString().equals(cardView1.getTag().toString())) {
                     currentItems = items.get(user);
@@ -170,6 +181,7 @@ public class AdminActivity extends AppCompatActivity {
             }
 
             LinearLayout requestList = findViewById(R.id.requestsLinearLayout);
+            //Iterate through the checkboxes
             for (int j = 0; j < checkBoxes.size(); j++) {
                 CheckBox checkBox1 = checkBoxes.get(j);
                 String item = checkBoxesMap.get(checkBox1.getTag().toString());
@@ -206,10 +218,12 @@ public class AdminActivity extends AppCompatActivity {
                         }
                     }
                 }
+                // Add the checkbox to the list of checked checkboxes
                 if (checkBox1.isChecked()) {
                     checkedCheckBoxes.add(checkBox1);
                 }
 
+                // Remove the checked checkboxes from the cardview
                 for(int i = 0; i < checkedCheckBoxes.size(); i++){
                     CheckBox checkBox = checkedCheckBoxes.get(i);
                     if (checkBox.isChecked()) {
@@ -228,6 +242,7 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 }
             }
+            // Remove the cardview if all checkboxes are removed
             if (checkBoxes.isEmpty()) {
                 cardViewCheckBoxes.remove(cardView1);
                 requestList.removeView(cardView1);
@@ -236,6 +251,7 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    // Click listener for the log out button
     public void onLogOut(View view) {
         ImageButton logOutButton = findViewById(R.id.logOutButtonAdmin);
         logOutButton.setOnClickListener(v -> {

@@ -36,25 +36,20 @@ public class CollectionFragment extends Fragment {
         root = binding.getRoot();
 
         //DB
-        //Update the UI
+        //Updating the UI
         ClassicUser user = DB.getClassicUser();
         RealmList<Recycle> recycleList = user.getRecycles();
         ArrayList<String> uniqueRecycleList = new ArrayList<>();
         HashMap<String, Integer> uniqueRecycleMap = new HashMap<>();
+        //Iterating through the recycle list to get the unique items
         for (Recycle recycle : recycleList) {
-            System.out.println("Recycle Name: " + recycle.getItem().getName() + " Quantity: " + recycle.getItem().getQuantity());
-            System.out.println("Unique Recycle List: " + uniqueRecycleList.contains(recycle.getItem().getName()));
             if (!uniqueRecycleList.contains(recycle.getItem().getName())) {
                 uniqueRecycleMap.put(recycle.getItem().getName(), recycle.getItem().getQuantity());
                 uniqueRecycleList.add(recycle.getItem().getName());
             } else {
-                System.out.println("Found duplicate");
                 uniqueRecycleMap.put(recycle.getItem().getName(),
                         uniqueRecycleMap.get(recycle.getItem().getName()) + recycle.getItem().getQuantity());
             }
-        }
-        for (String recycleName : uniqueRecycleMap.keySet()) {
-            System.out.println("Recycle Name: " + recycleName + " Quantity: " + uniqueRecycleMap.get(recycleName));
         }
         //Updating the recycle collection
         LinearLayout itemsCollectionLinearLayout = binding.itemsCollectionLinearLayout;
@@ -79,7 +74,6 @@ public class CollectionFragment extends Fragment {
                 rewardsCollectionLinearLayout.addView(row);
             }
         }
-
 
         return root;
     }

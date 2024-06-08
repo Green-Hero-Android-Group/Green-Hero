@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.realm.mongodb.App;
 import io.realm.mongodb.User;
 
+// AppActivity is the main activity for the user. It contains the navigation bar and the main fragments.
 public class AppActivity extends AppCompatActivity {
     private ActivityAppBinding binding;
 
@@ -39,6 +40,7 @@ public class AppActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    // Log out the user and navigate to the AuthActivity
     public void onLogOut(View view) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -50,6 +52,7 @@ public class AppActivity extends AppCompatActivity {
         }, 0);
     }
 
+    // Navigate to the collection fragment
     public void navigateToCollection(View view) {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_app);
         navController.popBackStack();

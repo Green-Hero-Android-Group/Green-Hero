@@ -18,6 +18,7 @@ import io.realm.Realm;
 public class RecycleViewModel extends ViewModel {
     private Realm realm = DB.realm;
 
+    //Inserts a new item into the database
     public void insertItem(Item aItem) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");

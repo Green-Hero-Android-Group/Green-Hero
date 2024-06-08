@@ -21,30 +21,34 @@ import io.realm.RealmResults;
 public class AdminViewModel extends ViewModel {
     private Realm realm = DB.realm;
 
+    //Approving a request in DB
     public void approveRequest(Item item, ClassicUser user, Request request) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");
             return;
         }
 
+        //Creating a new Recycle object
         Recycle recycle = new Recycle();
         realm.executeTransaction(realmTrans -> {
-            //Clearing the status of the request to true
+            //Setting the status of the request to true
             request.setStatus(true);
             realm.copyToRealmOrUpdate(request);
 
-            //Creating a new Recycle object
             RealmResults<RecycleRequest> recycleRequests = DB.realm.where(RecycleRequest.class).findAll();
-
+            //Iterating through the recycle requests to find the one that matches the request
             for (RecycleRequest recycleRequest : recycleRequests) {
                 if (recycleRequest.get_id().equals(request.getRecycle().get_id())) {
                     System.out.println("Admin Approval:" + recycleRequest.get_id());
                     System.out.println(recycleRequest.getDate());
                     System.out.println(recycleRequest.getItem().getName());
+                    //Setting the request's recycle object to the new recycle object
                     recycle.set_id(new ObjectId());
                     recycle.setDate(recycleRequest.getDate());
                     recycle.setItem(item);
                     user.getRecycles().add(recycle);
+
+                    //Updating the user's trophies
                     for (Trophy trophy : DB.trophies) {
                         if (trophy.getName().equals("Recycled " + user.getRecycles().size() + " Item")) {
                             user.getTrophies().add(trophy);
@@ -81,6 +85,7 @@ public class AdminViewModel extends ViewModel {
         });
     }
 
+    //Rejecting a request in DB
     public void rejectRequest(Item item, ClassicUser user, Request request) {
         if (realm == null) {
             Log.e("QUICKSTART", "Realm is null. Did you forget to call DB.init()?");

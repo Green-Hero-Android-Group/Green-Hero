@@ -14,29 +14,19 @@ import com.example.green_hero.model.User.ClassicUser;
 import com.example.green_hero.model.User.Collectible;
 import com.example.green_hero.model.User.Trophy;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.Credentials;
-import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
-import io.realm.mongodb.mongo.MongoClient;
-import io.realm.mongodb.mongo.MongoCollection;
-import io.realm.mongodb.mongo.MongoDatabase;
-import io.realm.mongodb.mongo.iterable.FindIterable;
-import io.realm.mongodb.mongo.iterable.MongoCursor;
 import io.realm.mongodb.sync.MutableSubscriptionSet;
 import io.realm.mongodb.sync.Subscription;
 import io.realm.mongodb.sync.SyncConfiguration;
+
+// This class is used to manage the database connection, implement some functionality and store static data
 
 public class DB extends Application {
     private static String appID = "application-0-rexuosx";
@@ -55,6 +45,7 @@ public class DB extends Application {
         createStaticData();
     }
 
+    // This method is used to create some static data for the trophies and rewards
     public void createStaticData() {
         trophies.add(new Trophy("Welcome Hero", 1));
         trophies.add(new Trophy("Reached Level 2", 2));
@@ -78,6 +69,7 @@ public class DB extends Application {
         rewards.add(new Collectible("Glass Badge", 4));
     }
 
+    // This method is used to login a user
     public static User loginSync(Credentials credentials, OnUserLoginCallback callback) {
         app.loginAsync(credentials, it -> {
             if (it.isSuccess()) {
@@ -91,11 +83,12 @@ public class DB extends Application {
         return app.currentUser();
     }
 
+    // Callback for the Async login
     public interface OnUserLoginCallback {
         void onUserLoggedIn(User user);
     }
 
-
+    // This method is used to sign up a user
     public static User signUpSync(String name, String email, String password, Context c, OnUserLoginCallback callback) {
         Credentials credentials1 = Credentials.emailPassword(email, password);
         app.loginAsync(credentials1, it -> {
@@ -145,6 +138,8 @@ public class DB extends Application {
         return app.currentUser();
     }
 
+    // This method is used to create initial subscriptions for the database schema
+    // (If you don't have any subscriptions, you can't do transactions with the model objects)
     public static SyncConfiguration.InitialFlexibleSyncSubscriptions subscribeOnStart() {
         SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
             @Override
@@ -184,6 +179,7 @@ public class DB extends Application {
         return handler;
     }
 
+    // This method is used to get the current classic user
     public static ClassicUser getClassicUser() {
         RealmResults<ClassicUser> users = realm.where(ClassicUser.class).findAll();
         for (ClassicUser user : users) {
@@ -194,6 +190,7 @@ public class DB extends Application {
         return null;
     }
 
+    // This method is used to initialize the realm database
     static void initializeRealm(User user) {
         SyncConfiguration.InitialFlexibleSyncSubscriptions handler = subscribeOnStart();
 
