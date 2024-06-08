@@ -44,7 +44,7 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.log_in);
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("294412243304-si6ebf7lnsfvus6ifehvbabp6497alqt.apps.googleusercontent.com")
+                .requestIdToken("294412243304-svsmddbef1cdkctqr1thjueql4e6svks.apps.googleusercontent.com")
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         Log.d("AUTH", "GoogleSignInClient configured successfully: " + googleSignInClient.toString());
