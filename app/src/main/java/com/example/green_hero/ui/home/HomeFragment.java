@@ -55,8 +55,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         //DB
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
         ClassicUser user = DB.getClassicUser();
 
         Trophy firstTrophy = null;

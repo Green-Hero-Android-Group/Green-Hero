@@ -40,17 +40,14 @@ public class AppActivity extends AppCompatActivity {
     }
 
     public void onLogOut(View view) {
-        ImageButton logOutButton = findViewById(R.id.logOutButton);
-        logOutButton.setOnClickListener(v -> {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(AppActivity.this, AuthActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }, 0);
-        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(AppActivity.this, AuthActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 0);
     }
 
     public void navigateToCollection(View view) {

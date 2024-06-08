@@ -72,19 +72,13 @@ public class AuthActivity extends AppCompatActivity {
         tv1.setText("login");
         tv2.setText("login");
         if (checkFieldValidation(tv1, email, password, tv2)) {
-            logInButton.setOnClickListener(new View.OnClickListener() {
-                Class routeClass;
-
-                @Override
-                public void onClick(View v) {
-                    if (email.getText().toString().equals("admin@gh.com")) {
-                        onLogInAdmin(email.getText().toString(), password.getText().toString());
-                    } else {
-                        onLogInClassicUser(email.getText().toString(), password.getText().toString());
-                    }
-                }
-            });
+            if (email.getText().toString().equals("admin@gh.com")) {
+                onLogInAdmin(email.getText().toString(), password.getText().toString());
+            } else {
+                onLogInClassicUser(email.getText().toString(), password.getText().toString());
+            }
         }
+
     }
 
     public void onLogInClassicUser(String username, String password) {
@@ -140,33 +134,21 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void navigateToLogIn(View v) {
-        TextView signInButton = findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContentView(R.layout.log_in);
-                    }
-                }, 300);
+            public void run() {
+                setContentView(R.layout.log_in);
             }
-        });
+        }, 300);
     }
 
     public void navigateToSignUp(View v) {
-        Button registerButton = findViewById(R.id.signInButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContentView(R.layout.sign_up);
-                    }
-                }, 300);
+            public void run() {
+                setContentView(R.layout.sign_up);
             }
-        });
+        }, 300);
     }
 
     public void signUp(View v) {
