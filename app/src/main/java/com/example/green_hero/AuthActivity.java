@@ -1,8 +1,10 @@
 package com.example.green_hero;
 
 import static com.example.green_hero.DB.app;
+import static com.example.green_hero.DB.googleSignInSync;
 import static com.example.green_hero.DB.initializeRealm;
 import static com.example.green_hero.DB.loginSync;
+import static com.example.green_hero.DB.realm;
 import static com.example.green_hero.DB.signUpSync;
 
 import android.content.Intent;
@@ -21,6 +23,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.green_hero.model.User.ClassicUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,6 +31,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
@@ -46,7 +50,9 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.log_in);
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("294412243304-si6ebf7lnsfvus6ifehvbabp6497alqt.apps.googleusercontent.com")
+                .requestIdToken("294412243304-svsmddbef1cdkctqr1thjueql4e6svks.apps.googleusercontent.com")
+                .requestEmail()
+                .requestProfile()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         Log.d("AUTH", "GoogleSignInClient configured successfully: " + googleSignInClient.toString());
@@ -91,7 +97,7 @@ public class AuthActivity extends AppCompatActivity {
                     public void onUserLoggedIn(User user) {
                         if (user != null) {
                             System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                            if (DB.realm == null) {
+                            if (realm == null) {
                                 initializeRealm(user);
                             }
                             new Handler().postDelayed(new Runnable() {
@@ -118,7 +124,7 @@ public class AuthActivity extends AppCompatActivity {
                     public void onUserLoggedIn(User user) {
                         if (user != null) {
                             System.out.println("Successfully logged in as: " + user.isLoggedIn());
-                            if (DB.realm == null) {
+                            if (realm == null) {
                                 initializeRealm(user);
                             }
                             new Handler().postDelayed(new Runnable() {
@@ -199,28 +205,34 @@ public class AuthActivity extends AppCompatActivity {
             if (completedTask.isSuccessful()) {
                 GoogleSignInAccount account = completedTask.getResult(ApiException.class);
                 String token = account.getIdToken();
-                Credentials googleCredentials =
-                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
+                String email = account.getEmail();
+                String name = account.getDisplayName();
+
+                Credentials googleCredentials = Credentials.google(token, GoogleAuthType.ID_TOKEN);
                 app.loginAsync(googleCredentials, it -> {
                     if (it.isSuccess()) {
-                        Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-                        startActivity(intent);
-
-                        Log.v("AUTH",
-                                "Successfully logged in to MongoDB Realm using Google OAuth.");
+                        User user = app.currentUser();
+                        if (user != null) {
+                            Log.v("AUTH", "Successfully logged in to MongoDB Realm using Google OAuth.");
+                            initializeRealm(user);
+//                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+//                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.e("AUTH", "Failed to log in to MongoDB Realm.");
+                        }
                     } else {
-                        Log.e("AUTH",
-                                "Failed to log in to MongoDB Realm: ", it.getError());
+                        Log.e("AUTH", "Failed to log in to MongoDB Realm. Error: " + it.getError().toString());
                     }
                 });
             } else {
-                Log.e("AUTH", "Google Auth failed: "
-                        + completedTask.getException().toString());
+                Log.e("AUTH", "Google sign-in failed: " + completedTask.getException().toString());
             }
         } catch (ApiException e) {
-            Log.w("AUTH", "Failed to log in with Google OAuth: " + e.getMessage());
+            Log.w("AUTH", "Failed to handle Google sign-in result: " + e.getMessage());
         }
     }
+
 
     // This method validates the email address with a regex.
     private boolean isValidEmail(String email) {

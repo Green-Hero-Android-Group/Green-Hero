@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:backgroundTint="@color/backgroundWhite"
+    android:background="@color/backgroundGreen"
     android:paddingBottom="?attr/actionBarSize">
 
 
@@ -21,7 +21,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/backgroundGreen">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,14 +35,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/collectionButtonHome"
+                    android:id="@+id/constraintLayout8"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="29dp"
                     android:background="@drawable/rounded_corners_edittext"
                     android:backgroundTint="@color/cardview_light_background"
-                    android:onClick="navigateToCollection"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"
                     app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -68,19 +67,21 @@
                     android:layout_width="347dp"
                     android:layout_height="133dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="40dp"
                     android:background="@drawable/rounded_corners_edittext"
                     android:backgroundTint="@color/cardview_light_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
-                    app:layout_constraintStart_toStartOf="@+id/collectionButtonHome"
-                    app:layout_constraintTop_toBottomOf="@+id/collectionButtonHome">
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout8"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
                         <TextView
                             android:id="@+id/xpTillNext"
@@ -101,7 +102,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/profileLevelBar"
+                                app:layout_constraintEnd_toStartOf="@+id/homeLevelBar"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -138,9 +139,9 @@
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="37dp"
                                 android:background="@drawable/collection_background"
+                                android:paddingVertical="5sp"
                                 android:progressBackgroundTintMode="src_in"
                                 android:progressTint="@color/primaryPurple"
-                                android:paddingVertical="5sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toEndOf="@+id/constraintLayout13"
