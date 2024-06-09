@@ -43,7 +43,6 @@ public class StatsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentStatsBinding.inflate(inflater, container, false);
-
         View root = binding.getRoot();
 
 //        View bottomNavigationView = getActivity().findViewById(R.id.nav_view);
