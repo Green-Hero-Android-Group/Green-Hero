@@ -110,6 +110,8 @@ public class ProfileFragment extends Fragment {
                     ((ViewGroup) name.getParent()).removeView(name); // Remove TextView from parent
                     editText = (EditText) inflater.inflate(R.layout.edit_text_profile, container, false);// Create new EditText
                     ((ViewGroup) editName.getParent()).addView(editText); // Add EditText to parent (assuming same parent)
+                    editText.setPadding(0, 0, 0, 0);
+
                     editText.setText(name.getText().toString()); // Set initial text in EditText
                     editText.requestFocus(); // Request focus for keyboard
                 } else {
