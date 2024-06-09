@@ -98,21 +98,7 @@ public class DB extends Application {
                 Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
             }
             User loggedInUser = app.currentUser();
-            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
-                @Override
-                public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
-                    subscriptions.addOrUpdate(
-                            Subscription.create(
-                                    realm.where(ClassicUser.class)
-                            )
-                    );
-                    subscriptions.addOrUpdate(
-                            Subscription.create(
-                                    realm.where(Trophy.class)
-                            )
-                    );
-                }
-            };
+            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = subscribeOnStart();
             if(loggedInUser!=null) {
                 SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
                         .initialSubscriptions(handler)
