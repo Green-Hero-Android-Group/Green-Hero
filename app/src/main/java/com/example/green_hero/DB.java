@@ -88,7 +88,7 @@ public class DB extends Application {
         void onUserLoggedIn(User user);
     }
 
-    public static User googleSignInSync(Credentials cr, String name, String email, String password, Context c, OnUserLoginCallback callback) {
+    public static User googleSignInSync(Credentials cr,String name, String email, String password, Context c, OnUserLoginCallback callback) {
         Credentials credentials1 = Credentials.emailPassword(email, password);
 
         app.loginAsync(cr, it3 -> {
@@ -98,16 +98,29 @@ public class DB extends Application {
                 Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
             }
             User loggedInUser = app.currentUser();
-            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = subscribeOnStart();
-            if (loggedInUser != null) {
+            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+                @Override
+                public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+                    subscriptions.addOrUpdate(
+                            Subscription.create(
+                                    realm.where(ClassicUser.class)
+                            )
+                    );
+                    subscriptions.addOrUpdate(
+                            Subscription.create(
+                                    realm.where(Trophy.class)
+                            )
+                    );
+                }
+            };
+            if(loggedInUser!=null) {
                 SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
                         .initialSubscriptions(handler)
                         .allowQueriesOnUiThread(true)
                         .allowWritesOnUiThread(true)
                         .build();
 
-                realm = Realm.getInstance(flexibleSyncConfig);
-            }
+                realm = Realm.getInstance(flexibleSyncConfig);}
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
