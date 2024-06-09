@@ -35,6 +35,12 @@ public class CollectionFragment extends Fragment {
         View root;
         root = binding.getRoot();
 
+        View bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+        bottomNavigationView.post(() -> {
+            int height = bottomNavigationView.getHeight();
+            root.setPadding(root.getPaddingLeft(), root.getPaddingTop(), root.getPaddingRight(), height);
+        });
+
         //DB
         //Updating the UI
         ClassicUser user = DB.getClassicUser();
