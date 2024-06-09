@@ -5,7 +5,9 @@ import static com.example.green_hero.DB.googleSignInSync;
 import static com.example.green_hero.DB.initializeRealm;
 import static com.example.green_hero.DB.loginSync;
 import static com.example.green_hero.DB.realm;
+import static com.example.green_hero.DB.setupRealmForUser;
 import static com.example.green_hero.DB.signUpSync;
+import static com.example.green_hero.DB.subscribeOnStart;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 import io.realm.mongodb.auth.GoogleAuthType;
+import io.realm.mongodb.sync.SyncConfiguration;
 
 // This class is responsible for handling the authentication process.
 
@@ -201,38 +204,57 @@ public class AuthActivity extends AppCompatActivity {
 
     // Handling the result of the sign-in process with Google
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Log.d("AUTH", "Handling Google sign-in result");
+        Log.d("AUTH", "Result"+ completedTask.isSuccessful());
+
         try {
             if (completedTask.isSuccessful()) {
+                Log.d("AUTH", "Google sign-in successful");
                 GoogleSignInAccount account = completedTask.getResult(ApiException.class);
                 String token = account.getIdToken();
-                String email = account.getEmail();
-                String name = account.getDisplayName();
+                String email=account.getEmail();
+                String name= account.getDisplayName();
 
-                Credentials googleCredentials = Credentials.google(token, GoogleAuthType.ID_TOKEN);
-                app.loginAsync(googleCredentials, it -> {
-                    if (it.isSuccess()) {
-                        User user = app.currentUser();
+                Log.v("AUTH","Name "+name);
+                Log.v("AUTH","Email "+email);
+
+                Credentials googleCredentials =
+                        Credentials.google(token, GoogleAuthType.ID_TOKEN);
+                googleSignInSync(googleCredentials,name, email, "123456", this, new DB.OnUserLoginCallback() {
+
+
+                    @Override
+                    public void onUserLoggedIn(User user) {
                         if (user != null) {
                             Log.v("AUTH", "Successfully logged in to MongoDB Realm using Google OAuth.");
-                            initializeRealm(user);
-                            realm.executeTransaction(new Realm.Transaction() {
+//                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
+//                            startActivity(intent);
+                            AuthActivity.this.startActivity(new Intent(AuthActivity.this, AppActivity.class));
+
+                        } else {
+                            signUpSync(name, email, "123456", AuthActivity.this, new DB.OnUserLoginCallback() {
                                 @Override
-                                public void execute(Realm realm) {
-                                    ClassicUser user = new ClassicUser(name, email, "123456", "user", 1, 0);
-                                    realm.insert(user);
-                                    Log.v("QUICKSTART", "Successfully inserted user.");
+                                public void onUserLoggedIn(User newUser) {
+                                    if (newUser != null) {
+                                        SyncConfiguration.InitialFlexibleSyncSubscriptions
+                                                handler = subscribeOnStart();
+                                        // Εάν ο νέος χρήστης δημιουργήθηκε επιτυχώς, δημιουργήστε την SyncConfiguration
+                                        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(newUser)
+                                                .initialSubscriptions(handler)
+                                                .allowQueriesOnUiThread(true)
+                                                .allowWritesOnUiThread(true)
+                                                .build();
+                                        realm = Realm.getInstance(flexibleSyncConfig);
+                                        // Εκτελέστε τις απαιτούμενες εργασίες
+                                    } else {
+                                        Log.e("AUTH", "Failed to create new user.");
+                                        // Χειριστείτε την αποτυχία δημιουργίας νέου χρήστη
+                                    }
                                 }
                             });
-//                          Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-//                          startActivity(intent);
-                            setContentView(R.layout.fragment_home);
-                            finish();
-                        } else {
-                            Log.e("AUTH", "Failed to log in to MongoDB Realm.");
                         }
-                    } else {
-                        Log.e("AUTH", "Failed to log in to MongoDB Realm. Error: " + it.getError().toString());
                     }
+
                 });
             } else {
                 Log.e("AUTH", "Google sign-in failed: " + completedTask.getException().toString());
@@ -241,6 +263,8 @@ public class AuthActivity extends AppCompatActivity {
             Log.w("AUTH", "Failed to handle Google sign-in result: " + e.getMessage());
         }
     }
+
+
 
 
     // This method validates the email address with a regex.
