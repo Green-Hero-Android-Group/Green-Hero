@@ -46,6 +46,12 @@ public class StatsFragment extends Fragment {
 
         View root = binding.getRoot();
 
+//        View bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+//        bottomNavigationView.post(() -> {
+//            int height = bottomNavigationView.getHeight();
+//            root.setPadding(root.getPaddingLeft(), root.getPaddingTop(), root.getPaddingRight(), height);
+//        });
+
         //DB
         RealmResults<ClassicUser> users = DB.realm.where(ClassicUser.class).findAll();
         RealmResults<Recycle> recycles = DB.realm.where(Recycle.class).findAll();

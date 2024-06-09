@@ -32,6 +32,12 @@
             View root;
             root = binding.getRoot();
 
+            View bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+            bottomNavigationView.post(() -> {
+                int height = bottomNavigationView.getHeight();
+                root.setPadding(root.getPaddingLeft(), root.getPaddingTop(), root.getPaddingRight(), height);
+            });
+
             recycleButton = root.findViewById(R.id.signUpButton);
             recycleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
