@@ -88,6 +88,57 @@ public class DB extends Application {
         void onUserLoggedIn(User user);
     }
 
+    public static User googleSignInSync(Credentials cr,String name, String email, String password, Context c, OnUserLoginCallback callback) {
+        Credentials credentials1 = Credentials.emailPassword(email, password);
+
+        app.loginAsync(cr, it3 -> {
+            if (it3.isSuccess()) {
+                Log.v("QUICKSTART", "Successfully authenticated Google.");
+            } else {
+                Log.e("QUICKSTART", "Failed to log in. Error: " + it3.getError().getErrorMessage());
+            }
+            User loggedInUser = app.currentUser();
+            SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
+                @Override
+                public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
+                    subscriptions.addOrUpdate(
+                            Subscription.create(
+                                    realm.where(ClassicUser.class)
+                            )
+                    );
+                    subscriptions.addOrUpdate(
+                            Subscription.create(
+                                    realm.where(Trophy.class)
+                            )
+                    );
+                }
+            };
+                    if(loggedInUser!=null) {
+            SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
+                    .initialSubscriptions(handler)
+                    .allowQueriesOnUiThread(true)
+                    .allowWritesOnUiThread(true)
+                    .build();
+
+            realm = Realm.getInstance(flexibleSyncConfig);}
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    ClassicUser user = new ClassicUser(name, email,
+                            password, "user", 1, 0);
+                    realm.insert(user);
+                    Log.v("QUICKSTART", "Successfully inserted user.");
+                }
+            });
+
+
+            System.out.println("Successfully signed up as: " + loggedInUser.isLoggedIn());
+            callback.onUserLoggedIn(loggedInUser);
+        });
+        return app.currentUser();
+    }
+
+
     // This method is used to sign up a user
     public static User signUpSync(String name, String email, String password, Context c, OnUserLoginCallback callback) {
         Credentials credentials1 = Credentials.emailPassword(email, password);
@@ -112,13 +163,15 @@ public class DB extends Application {
                         SyncConfiguration.InitialFlexibleSyncSubscriptions
                                 handler = subscribeOnStart();
 
-                        SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
-                                .initialSubscriptions(handler)
-                                .allowQueriesOnUiThread(true)
-                                .allowWritesOnUiThread(true)
-                                .build();
 
-                        realm = Realm.getInstance(flexibleSyncConfig);
+                            SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(loggedInUser)
+                                    .initialSubscriptions(handler)
+                                    .allowQueriesOnUiThread(true)
+                                    .allowWritesOnUiThread(true)
+                                    .build();
+                            realm = Realm.getInstance(flexibleSyncConfig);
+
+
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
@@ -242,7 +295,7 @@ public class DB extends Application {
         return app.currentUser();
     }
 
-    private static void setupRealmForUser(User loggedInUser, String name, String email, String password) {
+     static void setupRealmForUser(User loggedInUser, String name, String email, String password) {
         SyncConfiguration.InitialFlexibleSyncSubscriptions handler = new SyncConfiguration.InitialFlexibleSyncSubscriptions() {
             @Override
             public void configure(Realm realm, MutableSubscriptionSet subscriptions) {
