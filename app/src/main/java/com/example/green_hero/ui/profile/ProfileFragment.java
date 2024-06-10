@@ -1,6 +1,7 @@
 package com.example.green_hero.ui.profile;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -101,27 +102,31 @@ public class ProfileFragment extends Fragment {
 
         //Add an edit name listener
         editName = binding.profileEditName;
+        TextView editTextName = binding.profileNameEdit;
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (name.getVisibility() == View.VISIBLE) {
                     // TextView is visible, replace it with EditText
                     name.setVisibility(View.GONE);
-                    ((ViewGroup) name.getParent()).removeView(name); // Remove TextView from parent
-                    editText = (EditText) inflater.inflate(R.layout.edit_text_profile, container, false);// Create new EditText
-                    ((ViewGroup) editName.getParent()).addView(editText); // Add EditText to parent (assuming same parent)
-                    editText.setPadding(0, 0, 0, 0);
+                    editTextName.setVisibility(View.VISIBLE);
+//                    ((ViewGroup) name.getParent()).removeView(name); // Remove TextView from parent
+//                    editText = (EditText) inflater.inflate(R.layout.edit_text_profile, container, false);// Create new EditText
+//                    ((ViewGroup) editName.getParent()).addView(editText); // Add EditText to parent (assuming same parent)
+//                    editText.setLeft(100);
+                    // Remove padding
 
-                    editText.setText(name.getText().toString()); // Set initial text in EditText
-                    editText.requestFocus(); // Request focus for keyboard
+                    editTextName.setText(name.getText().toString()); // Set initial text in EditText
+                    editTextName.requestFocus(); // Request focus for keyboard
                 } else {
                     //add an enter click listener
                     // EditText is visible, replace it with TextView
                     name.setVisibility(View.VISIBLE);
-                    ((ViewGroup) editText.getParent()).removeView(editText); // Remove EditText from parent
-                    name = binding.profileName; // Create new TextView
-                    ((ViewGroup) editName.getParent()).addView(name); // Add TextView to parent (assuming same parent)
-                    name.setText(editText.getText().toString()); // Set initial text in TextView
+                    editTextName.setVisibility(View.GONE);
+//                    ((ViewGroup) editText.getParent()).removeView(editText); // Remove EditText from parent
+//                    name = binding.profileName; // Create new TextView
+//                    ((ViewGroup) editName.getParent()).addView(name); // Add TextView to parent (assuming same parent)
+                    name.setText(editTextName.getText().toString()); // Set initial text in TextView
                     System.out.println("New name: " + name.getText().toString());
                     viewModel.changeName(name.getText().toString());
                 }
