@@ -227,8 +227,6 @@ public class AuthActivity extends AppCompatActivity {
                     public void onUserLoggedIn(User user) {
                         if (user != null) {
                             Log.v("AUTH", "Successfully logged in to MongoDB Realm using Google OAuth.");
-//                            Intent intent = new Intent(AuthActivity.this, AppActivity.class);
-//                            startActivity(intent);
                             AuthActivity.this.startActivity(new Intent(AuthActivity.this, AppActivity.class));
 
                         } else {
@@ -238,17 +236,14 @@ public class AuthActivity extends AppCompatActivity {
                                     if (newUser != null) {
                                         SyncConfiguration.InitialFlexibleSyncSubscriptions
                                                 handler = subscribeOnStart();
-                                        // Εάν ο νέος χρήστης δημιουργήθηκε επιτυχώς, δημιουργήστε την SyncConfiguration
                                         SyncConfiguration flexibleSyncConfig = new SyncConfiguration.Builder(newUser)
                                                 .initialSubscriptions(handler)
                                                 .allowQueriesOnUiThread(true)
                                                 .allowWritesOnUiThread(true)
                                                 .build();
                                         realm = Realm.getInstance(flexibleSyncConfig);
-                                        // Εκτελέστε τις απαιτούμενες εργασίες
                                     } else {
                                         Log.e("AUTH", "Failed to create new user.");
-                                        // Χειριστείτε την αποτυχία δημιουργίας νέου χρήστη
                                     }
                                 }
                             });
