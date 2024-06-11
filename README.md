@@ -1,10 +1,4 @@
-<a name="topReadme"></a>
-
-![GitHub forks](https://img.shields.io/github/forks/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
-![GitHub commits](https://img.shields.io/github/commit-activity/t/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
-![GitHub PRs](https://img.shields.io/github/issues-pr-closed/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
-![MIT License](https://img.shields.io/github/license/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
-![GitHub Stras](https://img.shields.io/github/stars/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
+<a name="readme-top"></a>
 
 <br/>
 <div align="center">
@@ -14,6 +8,12 @@
   
 </div>
 <br/>
+
+![GitHub forks](https://img.shields.io/github/forks/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
+![GitHub commits](https://img.shields.io/github/commit-activity/t/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
+![GitHub PRs](https://img.shields.io/github/issues-pr-closed/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
+![MIT License](https://img.shields.io/github/license/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
+![GitHub Stras](https://img.shields.io/github/stars/Green-Hero-Android-Group/Green-Hero?style=for-the-badge)
 
 ## What is Green Hero?
 Green Hero is an Android application that makes recycling easy and rewarding. 
@@ -60,6 +60,13 @@ Since you are new to the application, those are some simple steps you want to fo
 
 ## License
 This app is licensed under the <a href="https://github.com/Green-Hero-Android-Group/Green-Hero/blob/main/LICENSE">MIT License</a>.
+
+## Contributors
+- <a href="https://github.com/dimsparagis0210">Dimitris Sparagis</a>
+- <a href="https://github.com/vtmag">Magda Vitsioti</a>
+- <a href="https://github.com/cstergiou03">Christos Stergiou</a>
+- <a href="https://github.com/JohnSfy">Giannis Sfyrakis</a>
+- <a href="https://github.com/ZoiSpi">Zoi Spiridopoulou</a>
 <br/>
 <br/>
-<a href="topReadme">Go to the top</a>
+<a href="#readme-top">Go to the top</a>
